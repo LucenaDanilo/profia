@@ -1,8 +1,8 @@
 package com.example.springboot.controllers;
 
-import com.example.springboot.dtos.TurmaRecordDto;
+import com.example.springboot.dto.TurmaRecordDto;
 import com.example.springboot.models.TurmaModel;
-import com.example.springboot.repositories.TurmaRepository;
+import com.example.springboot.repository.TurmaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package com.example.springboot.controllers;
 
-import com.example.springboot.dtos.ProductRecordDto;
+import com.example.springboot.dto.ProductRecordDto;
 import com.example.springboot.models.ProductModel;
-import com.example.springboot.repositories.ProductRepository;
+import com.example.springboot.repository.ProductRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
