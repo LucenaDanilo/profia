@@ -6,7 +6,6 @@ import { ProductType } from "../(compponentes)/Product";
 import Product from "../(compponentes)/Product";
 import { TbShoppingCartX } from "react-icons/tb";
 import Link from "next/link";
-import mockProducts from "../(compponentes)/mock";
 
 export interface Props {
     produtos: ProductType[];
@@ -35,6 +34,7 @@ export default function Page({ produtos }: Props) {
             .then((res) => {
                 setProducts(res.data);
                 console.log('meus produtos', res.data);
+                console.log(products)
             })
             .catch((err) => {
                 console.error('Erro ao buscar produtos', err);
@@ -50,8 +50,8 @@ export default function Page({ produtos }: Props) {
                         <h1 className="text-3xl font-bold mb-4 text-center">Produtos</h1>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {products.map((p: ProductType) => (
-                                <Link href={`/products/${p.idProduct}`} key={p.idProduct}>
-                                    <Product idProduct={p.idProduct} name={p.name} value={p.value} description={p.description} img={p.img} />
+                                <Link href={`http://localhost:4000/products/${p.id}`} key={p.id}>
+                                    <Product id={p.id} name={p.name} value={p.value} description={p.description} img={p.img} />
                                 </Link>
                             ))}
                         </div>

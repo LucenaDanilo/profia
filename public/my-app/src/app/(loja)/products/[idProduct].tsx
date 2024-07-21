@@ -4,20 +4,20 @@ import { useRouter } from 'next/router'
 
 export default function ProductInfo() {
     const router = useRouter();
-    const { idProduct } = router.query;
+    const { id } = router.query;
     
     React.useEffect(() => {
-        if (idProduct) {
+        if (id) {
             console.log("estou buscando vc", router);
-            console.log('vc', idProduct);
+            console.log('vc', id);
         }
-    }, [idProduct]);
+    }, [id]);
 
     return (
         <div>
             <h1>Detalhes do Produto</h1>
-            {idProduct ? (
-                <p>ID do Produto: {idProduct}</p>
+            {id ? (
+                <p>ID do Produto: {id}</p>
             ) : (
                 <p>Carregando...</p>
             )}
