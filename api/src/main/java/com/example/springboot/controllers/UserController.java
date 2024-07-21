@@ -1,8 +1,10 @@
 package com.example.springboot.controllers;
 
+import com.example.springboot.dto.UserDTO;
 import com.example.springboot.models.User;
 import com.example.springboot.repository.UserRepository;
 import jakarta.validation.Valid;
+import org.apache.catalina.UserDatabase;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,14 +26,6 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userRepository.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(users);
-    }
-
-    // Create a new user
-    @PostMapping("/users")
-    public ResponseEntity<User> saveProduct(@RequestBody @Valid User user) {
-        var UserModel = new User();
-        BeanUtils.copyProperties(user, UserModel);
-        return (ResponseEntity<User>) ResponseEntity.status(HttpStatus.CREATED);
     }
 
     // Get a user by ID
