@@ -1,0 +1,6 @@
+{
+    "products": [
+      { "id": "1", "name": "Product One", "value": 100, "description": "Description for product one", "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpnSYUlTdAR1nqMMklbTPA5L_NF7AkE5br0w&s" },
+      { "id": "2", "name": "Product Two", "value": 200, "description": "Description for product two", "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNIAjjoy5Z1git_Z1141MNOGrxPZOuFgvtUQ&s" }
+    ]
+  }
