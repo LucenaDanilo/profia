@@ -1,58 +1,65 @@
 package com.example.springboot.models;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import jakarta.persistence.*;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.io.Serializable;
+import java.util.UUID;
 
-public class User implements UserDetails {
+@Entity
+@Table(name = "user_table")
+public abstract class User implements Serializable {
+    private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String username;
     private String password;
+    private String email;
     private boolean isEnabled;
-    private String role;
+    private String type;
 
-    public void CustomUserDetails(String username, String password, boolean isEnabled, String role) {
+    public User(String username, String password, String email, String type) {
         this.username = username;
         this.password = password;
-        this.isEnabled = isEnabled;
-        this.role = role;
+        this.email = email;
+        this.isEnabled = true;
+        this.type = type;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(role));
+    public User() {
     }
 
-    @Override
     public String getPassword() {
         return password;
     }
 
-    @Override
     public String getUsername() {
         return username;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public String getEmail() {
+        return email;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
     public boolean isEnabled() {
         return isEnabled;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = true;
+    }
+
 }
