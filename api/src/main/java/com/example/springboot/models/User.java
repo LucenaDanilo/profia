@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users_table")
-public abstract class User implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -74,5 +74,20 @@ public abstract class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isEnabled;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = true;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
     }
 }
