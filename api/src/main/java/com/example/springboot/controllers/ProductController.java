@@ -1,4 +1,4 @@
-package com.example.springboot.controller;
+package com.example.springboot.controllers;
 
 import com.example.springboot.dtos.ProductRecordDto;
 import com.example.springboot.models.ProductModel;
