@@ -50,7 +50,7 @@ export default function Page({ produtos }: Props) {
                         <h1 className="text-3xl font-bold mb-4 text-center">Produtos</h1>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {products.map((p: ProductType) => (
-                                <Link href={`http://localhost:4000/products/${p.id}`} key={p.id}>
+                                <Link href={`/products/${p.id}`} key={p.id}>
                                     <Product id={p.id} name={p.name} value={p.value} description={p.description} img={p.img} />
                                 </Link>
                             ))}
