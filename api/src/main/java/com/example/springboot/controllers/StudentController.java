@@ -32,7 +32,7 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<Student> createStudent(@RequestBody StudentDTO studentDTO) {
-        Student student = new Student(studentDTO.getUsername(), studentDTO.getPassword(), studentDTO.getEmail(), studentDTO.getResponsibleCPF(), studentDTO.getRegistration(), studentDTO.getAge(), studentDTO.getPoints());
+        Student student = new Student(studentDTO.getUsername(), studentDTO.getPassword(), studentDTO.getEmail(), studentDTO.getResponsibleCPF(), studentDTO.getRegistration(), studentDTO.getBirthday() , studentDTO.getPoints());
         Student savedStudent = studentRepository.save(student);
         return ResponseEntity.ok(savedStudent);
     }
@@ -50,7 +50,7 @@ public class StudentController {
         existingStudent.setEmail(studentDTO.getEmail());
         existingStudent.setResponsibleCPF(studentDTO.getResponsibleCPF());
         existingStudent.setRegistration(studentDTO.getRegistration());
-        existingStudent.setAge(studentDTO.getAge());
+        existingStudent.setBirthday(studentDTO.getBirthday());
         existingStudent.setPoints(studentDTO.getPoints());
 
         Student updatedStudent = studentRepository.save(existingStudent);

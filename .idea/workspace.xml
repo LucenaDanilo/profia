@@ -5,7 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7434d2a3-9463-4c98-a562-ae87c2f2a7a0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/profia/backend/models/ProdutoModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/AuthenticationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ManagerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/ManagerDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Aula.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Manager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Teacher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/ManagerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/AuthenticationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/JwtService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/PrivateController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/UserAuthenticated.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/resources/app.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/resources/app.pub" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/SpringbootApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/SpringbootApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/TeacherRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,11 +47,28 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;gustavo-ataide&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/LucenaDanilo/profia.git&quot;,
+    &quot;accountId&quot;: &quot;d68163a2-a741-49dd-a28d-19534e990da5&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2jXWpVAau4DrbpI3cx5jgKh0raV" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -37,14 +80,26 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.BackendApplication.executor": "Run",
+    "Application.SpringbootApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "cuca__beluddo",
+    "git-widget-placeholder": "feat/Jwttoken",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/gustavohenrique/Library/Mobile Documents/com~apple~CloudDocs/Gustavo/WORK/Profia/profia",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+    "last_opened_file_path": "/Users/gustavohenrique/Library/Mobile Documents/com~apple~CloudDocs/Gustavo/WORK/Profia/profia/profia",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api/src/main/resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.springboot.controllers" />
+      <recent name="com.example.springboot.dto" />
+      <recent name="com.example.springboot.repository" />
+      <recent name="com.example.springboot.models" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.SpringbootApplication">
     <configuration name="BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.profia.backend.BackendApplication" />
       <module name="backend" />
@@ -58,8 +113,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SpringbootApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.springboot.SpringbootApplication" />
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.springboot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SpringbootApplication" />
         <item itemvalue="Application.BackendApplication" />
       </list>
     </recent_temporary>
@@ -74,5 +143,15 @@
       <updated>1721534085322</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
