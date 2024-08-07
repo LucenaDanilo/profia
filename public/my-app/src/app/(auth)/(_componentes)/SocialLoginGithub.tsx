@@ -1,6 +1,7 @@
 import React from 'react'
-import Github from '../../../(icons)/Github'
-import Google from '../../../(icons)/Google'
+import Github from '@/app/(icons)/Github'
+import Google from '@/app/(icons)/Google'
+
 import LoginSocialButton from './Social'
 
 function SocialLoginGithub() {

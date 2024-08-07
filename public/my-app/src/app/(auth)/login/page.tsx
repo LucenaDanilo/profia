@@ -1,9 +1,9 @@
-import LoginForm from "./(_componentes)/FormLogin";
+import LoginForm from "../(_componentes)/FormLogin"
 
 export default function index(){
     return(
-        <div>
+        <>
             <LoginForm/>
-        </div>
+        </>
     )
 }

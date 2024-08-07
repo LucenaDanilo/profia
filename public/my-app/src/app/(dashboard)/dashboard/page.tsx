@@ -2,8 +2,12 @@ import React from 'react'
 import Header from '@/app/(componentes)/Header'
 import Aside from '@/app/(componentes)/Aside'
 import Dash from '@/app/(componentes)/Dash'
+import { getServerSession } from 'next-auth'
+import { nextAuthOptions } from '@/app/api/auth/[...nextauth]/route'
 
-function page() {
+export default async function page() {
+  const session = await getServerSession(nextAuthOptions);
+  console.log('minha sessao apos logar ', session?.user)
   return (
       <>
         <div>
@@ -19,4 +23,3 @@ function page() {
   )
 }
 
-export default page
