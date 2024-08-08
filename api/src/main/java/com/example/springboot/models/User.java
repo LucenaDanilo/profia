@@ -75,4 +75,8 @@ public abstract class User implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+    public User orElseThrow(Object userNotFound) {
+        return null;
+    }
 }

@@ -3,7 +3,8 @@ package com.example.springboot.controllers;
 import com.example.springboot.dto.ManagerDTO;
 import com.example.springboot.models.Manager;
 import com.example.springboot.repository.ManagerRepository;
-import com.example.springboot.security.UserDetailsServiceImpl;
+
+import com.example.springboot.services.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,12 +17,18 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/managers")
 public class ManagerController {
-    @Autowired
-    private UserDetailsServiceImpl userService;
+
 
     @Autowired
     private ManagerRepository managerRepository;
 
+    @Autowired
+    private ManagerService managerService;
+
+    @PostMapping("/save")
+    public ManagerDTO save(@RequestBody ManagerDTO managerDTO) {
+        return managerService.save(managerDTO);
+    }
 
     @GetMapping
     public ResponseEntity<List<Manager>> getAllManagers() {
@@ -35,11 +42,7 @@ public class ManagerController {
         return manager.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<ManagerDTO> createManager(@RequestBody ManagerDTO managerDTO) {
-        ManagerDTO savedManagerDTO = userService.save(managerDTO); // Corrigido para usar DTO
-        return ResponseEntity.ok(savedManagerDTO);
-    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Manager> updateManager(@PathVariable UUID id, @RequestBody ManagerDTO managerDTO) {

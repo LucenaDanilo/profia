@@ -4,33 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7434d2a3-9463-4c98-a562-ae87c2f2a7a0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/AuthenticationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ManagerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/ManagerDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Aula.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Manager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Teacher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/ManagerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/AuthenticationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/PrivateController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/UserAuthenticated.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/UserDetailsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/resources/app.key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/resources/app.pub" afterDir="false" />
+    <list default="true" id="7434d2a3-9463-4c98-a562-ae87c2f2a7a0" name="Changes" comment="feat: using bcrypt">
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/JwtResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/DataInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/ManagerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/SpringbootApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/SpringbootApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/AuthenticationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ManagerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/TeacherRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/AppConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/JwtService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/PrivateController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/UserAuthenticated.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/UserDetailsServiceImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +81,13 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.springboot.dto" />
+      <recent name="com.example.springboot.controllers" />
+      <recent name="com.example.springboot.security" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api/src/main/java/com/example/springboot" />
       <recent name="$PROJECT_DIR$/api/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -142,7 +140,28 @@
       <option name="presentableId" value="Default" />
       <updated>1721534085322</updated>
     </task>
+    <task id="LOCAL-00001" summary="feat: using bcrypt">
+      <option name="closed" value="true" />
+      <created>1722999922079</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722999922079</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: using bcrypt">
+      <option name="closed" value="true" />
+      <created>1722999993711</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722999993711</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: using bcrypt" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: using bcrypt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
