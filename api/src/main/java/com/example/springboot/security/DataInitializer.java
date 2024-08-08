@@ -21,9 +21,9 @@ public class DataInitializer {
     public CommandLineRunner initializeData() {
         return args -> {
             if (userRepository.count() == 0) {
-                String encryptedPassword = new BCryptPasswordEncoder().encode("admin_password");
+                String encryptedPassword = new BCryptPasswordEncoder().encode("Symon000#");
 
-                UserModel adminUser = new UserModel("admin@exemplo.com", encryptedPassword, UserRole.ADMIN);
+                UserModel adminUser = new UserModel("profiaacademy@gmail.com", encryptedPassword, UserRole.ADMIN);
                 adminUser.setCreatedAt(new Date(System.currentTimeMillis()));
                 userRepository.save(adminUser);
 
