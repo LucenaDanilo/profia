@@ -1,8 +1,8 @@
 package com.example.springboot.security;
 
-import com.example.springboot.user.enums.UserRole;
-import com.example.springboot.user.models.UserModel;
-import com.example.springboot.user.repositories.UserRepository;
+import com.example.springboot.enums.UserRole;
+import com.example.springboot.models.UserModel;
+import com.example.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
