@@ -1,5 +1,8 @@
 package com.example.springboot.dto;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class StudentDTO {
 
     private String username;
@@ -7,20 +10,20 @@ public class StudentDTO {
     private String email;
     private String responsibleCPF;
     private String registration;
-    private int age;
+    private LocalDate birthday;
     private int points;
 
     // Construtores, getters e setters
     public StudentDTO() {
     }
 
-    public StudentDTO(String username, String password, String email, String responsibleCPF, String registration, int age, int points) {
+    public StudentDTO(String username, String password, String email, String responsibleCPF, String registration, LocalDate birthday, int points) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.responsibleCPF = responsibleCPF;
         this.registration = registration;
-        this.age = age;
+        this.birthday = birthday;
         this.points = points;
     }
 
@@ -65,13 +68,7 @@ public class StudentDTO {
         this.registration = registration;
     }
 
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public int getPoints() {
         return points;
@@ -79,5 +76,18 @@ public class StudentDTO {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public LocalDate getBirthday(){return this.birthday;}
+
+    public int getAge() {
+        if (birthday == null) {
+            throw new IllegalStateException("A data de nascimento não foi definida.");
+        }
+        return Period.between(birthday, LocalDate.now()).getYears();
     }
 }
