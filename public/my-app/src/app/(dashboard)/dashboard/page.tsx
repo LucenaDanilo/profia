@@ -6,17 +6,15 @@ import { getServerSession } from 'next-auth'
 import { nextAuthOptions } from '@/app/api/auth/[...nextauth]/route'
 
 export default async function page() {
-  const session = await getServerSession(nextAuthOptions);
-  console.log('minha sessao apos logar ', session?.user)
   return (
       <>
         <div>
           <Header></Header>
         </div>
-      <div className='container mx-auto h-[100%]'>
-        <div className='flex '>
-          <Aside></Aside>
-          <Dash></Dash>
+        <div className='container mx-auto h-[100%]'>
+          <div className='flex '>
+            <Aside></Aside>
+            <Dash></Dash>
         </div>
       </div>
       </>

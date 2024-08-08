@@ -2,8 +2,11 @@
 import React from 'react'
 import Image from 'next/image'
 import { IoLogOutOutline } from "react-icons/io5";
+import customSession from '../customHooks/customSession';
 
 function Header() {
+    const {sessionHook} = customSession();
+    
   return (
     <header className='bg-[#FDF7E4] w-full h-[80px]'>
         <div className='container mx-auto'>
@@ -15,7 +18,7 @@ function Header() {
                     <nav>
                         <ul className='flex flex-row gap-4  items-center pt-[10px] '>
                             <div>
-                                <li className='text-[#42204d] font-bold'>Danilo Lucena</li>
+                                <li className='text-[#42204d] font-bold'>aq: {sessionHook?.user.email}</li>
                                 <li className='font-medium'>Professor</li>
                             </div>
                             <div>
