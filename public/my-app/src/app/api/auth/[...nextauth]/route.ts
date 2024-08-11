@@ -11,7 +11,7 @@ const nextAuthOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const response = await fetch('http://localhost:3002/login', {
+        const response = await fetch('http://localhost:3001/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -45,7 +45,9 @@ const nextAuthOptions: NextAuthOptions = {
         session = token.user as any
         return session
     }
+  
   },
+
 };
 
 const handler = NextAuth(nextAuthOptions);

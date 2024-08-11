@@ -1,17 +1,21 @@
 'use client'
 import Header from "../../(componentes)/Header"
 import { useState } from "react"
+import Aside from "@/app/(componentes)/Aside"
+import UpdateExam from "@/app/(componentes)/UpdateExam"
+import Table from "@/app/(componentes)/Table"
+
 export default function page(){
-    const [teste,setTeste] = useState<string>('')
     
     return(
         <>
             <Header/>
-            <button className="p-4 border border-r-2 bg-blue-400 text-white" onClick={() => setTeste('Sorak siul')}>
-                clica aqui pra tu ve um negócio
-            </button>
-            <h1>use state insde session layout</h1>
-            <h1>ele mesmo {teste}</h1>
+            <div className="flex">
+                <Aside/>
+                <h1>Botao pra ir criar atividade</h1>
+                <Table/>
+            </div>
+       
         </>
     )
 
