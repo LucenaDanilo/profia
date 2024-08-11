@@ -11,8 +11,8 @@ export default async function page() {
         <div>
           <Header></Header>
         </div>
-        <div className='container mx-auto h-[100%]'>
-          <div className='flex '>
+        <div className='h-[100%] '>
+          <div className='flex'>
             <Aside></Aside>
             <Dash></Dash>
         </div>
