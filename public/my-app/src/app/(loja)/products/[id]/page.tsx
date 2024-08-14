@@ -3,7 +3,8 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import api from '@/api/axios';
 import { ProductType } from '../../(compponentes)/Product';
-
+import Header from '@/app/(componentes)/Header';
+import Aside from '@/app/(componentes)/Aside';
 export default function ProductInfo({params}: {params:{id: String}}) {
     const [product, setProduct] = useState<ProductType | null>(null);
     const [quantity, setQuantity] = useState(1);
@@ -22,6 +23,10 @@ export default function ProductInfo({params}: {params:{id: String}}) {
         alert(`Produto comprado ${product?.name}`)
       };
     return (
+      <>
+        <Header/>
+        <div className='flex'>
+        <Aside/>
         <div className="p-4">
         <h1 className="text-2xl font-bold mb-4">Detalhes do Produto {params.id}</h1>
         {product ? (
@@ -53,6 +58,9 @@ export default function ProductInfo({params}: {params:{id: String}}) {
           <p className="text-gray-800 font-bold">Saldo do Usuário: {userBalance} moedas</p>
         </div>
       </div>
+        </div>
+        
+      </>
     );
 }
  

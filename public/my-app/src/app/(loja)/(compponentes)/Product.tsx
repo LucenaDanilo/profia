@@ -11,7 +11,7 @@ export interface ProductType {
 
 function Product({ id, name, value, description, img }: ProductType) {
     return (
-        <div className='bg-red-300 w-[320px] h-[300px] flex flex-col items-center'>
+        <div className="hover:shadow-lg transition-shadow duration-300 ease-in-out transform hover:scale-105 bg-purple-400 flex flex-col items-center">
             <img src={img} alt="produto" />
             <div className='flex flex-col'>
                 <div>

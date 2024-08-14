@@ -57,7 +57,7 @@ function UpdateExam() {
                 <h5 className="text-lg text-center font-bold mb-2">Envie seu PDF</h5>
                 <input
                     type="text"
-                    placeholder="Título"
+                    placeholder="Titulo da atividade"
                     required
                     className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={title}
