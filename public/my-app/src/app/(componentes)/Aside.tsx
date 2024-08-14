@@ -2,18 +2,20 @@
 import React from 'react'
 import { PiExam } from "react-icons/pi";
 import { IoMdHome } from "react-icons/io";
-
+import { usePathname } from 'next/navigation';
 import { SiGoogleclassroom } from "react-icons/si";
 
 import { RiRobot3Line } from "react-icons/ri";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { FaCoins } from "react-icons/fa";
-
+import Link from 'next/link';
 
 import { useState } from 'react';
 
 function Aside() {
+  const currentPath = usePathname();
+
   const [open, setOpen] = useState(false);
   return (
     <div className=''>
@@ -29,7 +31,7 @@ function Aside() {
           />
           </div>
         </div>
-        <div className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} items-center  hover:bg-dark-purple-hover w-full`}>
+        <Link href="/dashboard"  className={`flex flex-col ${currentPath === "/dashboard" ? "bg-dark-purple-hover" :"" } ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} items-center  hover:bg-dark-purple-hover w-full`}>
           <div>
             <IoMdHome 
                 size={24} 
@@ -39,8 +41,8 @@ function Aside() {
             Home
           </div>
           
-        </div>
-        <div className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} items-center  hover:bg-dark-purple-hover w-full`}>
+        </Link>
+        <Link href="/products" className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath === "/products" ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
           <div>
             <FaShoppingCart 
                 size={24} 
@@ -50,8 +52,8 @@ function Aside() {
             Loja
           </div>
           
-        </div>
-        <div className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} items-center  hover:bg-dark-purple-hover w-full`}>
+        </Link>
+        <Link href="/coins" className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath === "/coins" ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
           <div>
             <FaCoins 
                 size={24} 
@@ -61,8 +63,8 @@ function Aside() {
             Coins
           </div>
           
-        </div>
-        <div className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} items-center  hover:bg-dark-purple-hover w-full`}>
+        </Link>
+        <Link href="/turma" className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath === "/turma" ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
           <div>
             <SiGoogleclassroom 
                 size={24} 
@@ -71,8 +73,8 @@ function Aside() {
           <div className={`${open ? 'pl-4': 'text-center'} text-white`}>
             Turma
           </div>          
-        </div>
-        <div className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} items-center  hover:bg-dark-purple-hover w-full`}>
+        </Link>
+        <Link href="/historico" className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} items-center ${currentPath === "/historico" ? "bg-dark-purple-hover" :"" } hover:bg-dark-purple-hover w-full`}>
           <div>
             <PiExam 
                 size={24} 
@@ -81,8 +83,8 @@ function Aside() {
           <div className={`${open ? 'pl-4': 'text-center'} text-white`}>
             Histórico
           </div>          
-        </div>
-        <div className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} items-center  hover:bg-dark-purple-hover w-full`}>
+        </Link>
+        <Link href="/perfil" className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} items-center ${currentPath === "/perfil" ? "bg-dark-purple-hover" :"" } hover:bg-dark-purple-hover w-full`}>
           <div>
             <RiRobot3Line 
                 size={24} 
@@ -91,7 +93,7 @@ function Aside() {
           <div className={`${open ? 'pl-4': 'text-center'} text-white`}>
             Perfil
           </div>          
-        </div>
+        </Link >
     </aside>
   </div>
       
