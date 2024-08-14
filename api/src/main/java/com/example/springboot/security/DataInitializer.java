@@ -23,7 +23,7 @@ public class DataInitializer {
             if (userRepository.count() == 0) {
                 String encryptedPassword = new BCryptPasswordEncoder().encode("Symon000#");
 
-                UserModel adminUser = new UserModel("profiaacademy@gmail.com", encryptedPassword, UserRole.ADMIN);
+                UserModel adminUser = new UserModel("Profia","profiaacademy@gmail.com", encryptedPassword, "ROLE_ADMIN");
                 adminUser.setCreatedAt(new Date(System.currentTimeMillis()));
                 userRepository.save(adminUser);
 

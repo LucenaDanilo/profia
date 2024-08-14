@@ -1,8 +1,10 @@
 package com.example.springboot.controllers;
 
-import com.example.springboot.dto.StudentDTO;
+
+import com.example.springboot.dto.StudentUpdateDto;
 import com.example.springboot.models.Student;
 import com.example.springboot.repository.StudentRepository;
+import com.example.springboot.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ public class StudentController {
 
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private StudentService studentService;
 
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents() {
@@ -30,30 +34,11 @@ public class StudentController {
         return student.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<Student> createStudent(@RequestBody StudentDTO studentDTO) {
-        Student student = new Student(studentDTO.getUsername(), studentDTO.getPassword(), studentDTO.getEmail(), studentDTO.getResponsibleCPF(), studentDTO.getRegistration(), studentDTO.getBirthday() , studentDTO.getPoints());
-        Student savedStudent = studentRepository.save(student);
-        return ResponseEntity.ok(savedStudent);
-    }
+
 
     @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable UUID id, @RequestBody StudentDTO studentDTO) {
-        Optional<Student> existingStudentOptional = studentRepository.findById(id);
-        if (!existingStudentOptional.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Student existingStudent = existingStudentOptional.get();
-        existingStudent.setUsername(studentDTO.getUsername());
-        existingStudent.setPassword(studentDTO.getPassword());
-        existingStudent.setEmail(studentDTO.getEmail());
-        existingStudent.setResponsibleCPF(studentDTO.getResponsibleCPF());
-        existingStudent.setRegistration(studentDTO.getRegistration());
-        existingStudent.setBirthday(studentDTO.getBirthday());
-        existingStudent.setPoints(studentDTO.getPoints());
-
-        Student updatedStudent = studentRepository.save(existingStudent);
+    public ResponseEntity<Student> updateStudent(@PathVariable UUID id, @RequestBody StudentUpdateDto studentUpdateDto) {
+        Student updatedStudent = studentService.update(id, studentUpdateDto);
         return ResponseEntity.ok(updatedStudent);
     }
 

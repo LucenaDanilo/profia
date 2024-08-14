@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface ManagerRepository extends JpaRepository<Manager, Long> {
-    Manager findByUsername(String username);
+    Manager findByEmail(String email);
 
     Optional<Manager> findById(UUID id);
 

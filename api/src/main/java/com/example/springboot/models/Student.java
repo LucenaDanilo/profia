@@ -1,27 +1,31 @@
 package com.example.springboot.models;
 
+import com.example.springboot.enums.UserRole;
 import com.example.springboot.utils.CPFUtils;
 import jakarta.persistence.*;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.UUID;
 
 @Entity
-public class Student extends User {
+@Table(name = "students")
+public class Student extends UserModel {
 
 
     private String responsibleCPF;
+    @Setter
     private String registration;
     private LocalDate birthday;
     private int points;
 
-    public Student(String username, String password, String email, String responsibleCPF, String registration, LocalDate birthday, int points) {
-        super(username, password, email, "Student");
+    public Student(String name,String password, String email, String responsibleCPF, String registration, LocalDate birthday) {
+        super(name,email, password, "ROLE_STUDENT");
         this.responsibleCPF = responsibleCPF;
         this.registration = registration;
         this.birthday = birthday;
-        this.points = points;
+        this.points = 0;
     }
 
     public Student() {
@@ -43,10 +47,6 @@ public class Student extends User {
 
     public String getRegistration() {
         return registration;
-    }
-
-    public void setRegistration(String registration) {
-        this.registration = registration;
     }
 
     public LocalDate getBirthday() {

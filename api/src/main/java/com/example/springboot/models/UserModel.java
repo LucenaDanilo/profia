@@ -1,12 +1,16 @@
 package com.example.springboot.models;
 
+import com.example.springboot.dto.RegisterDto;
+import com.example.springboot.dto.StudentRegisterDto;
 import com.example.springboot.enums.UserRole;
 
+import com.example.springboot.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
@@ -31,11 +35,13 @@ public class UserModel implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
+    private String name;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+
+    @Setter
+    @Getter
+    private String userRole;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -45,59 +51,70 @@ public class UserModel implements UserDetails {
     @Column(name = "updated_at", nullable = true)
     private Date updatedAt;
 
-    
-
-
-    public UserModel(String email, String password, UserRole userRole) {
+    public UserModel(String name, String email, String password, String userRole) {
+        this.name = name;
         this.email = email;
         this.password = password;
         this.userRole = userRole;
+        this.createdAt = new Date(); // Define createdAt no momento da criação do objeto
     }
 
-
-
-
+    // Método para registrar um novo usuário
+    public UserModel register(StudentRegisterDto registerDto) {
+        UserModel user = new Student(
+                registerDto.getName(),
+                registerDto.getPassword(),
+                registerDto.getEmail(),
+                registerDto.getResponsibleCPF(),
+                registerDto.getRegistration(),
+                registerDto.getBirthday()
+        );
+        // Aqui deveria estar o userRepository.save(user);, mas o repositório não está injetado
+        return user;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.userRole == userRole.ADMIN) {
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        }
-        else if (this.userRole == userRole.USER){
-            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-        }
-
-        // entao eh teacher
-        else {
+        System.out.println("Role assigned: " + userRole);
+        System.out.println(this.email);
+        if ("ROLE_ADMIN".equals(userRole)) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"),
+                    new SimpleGrantedAuthority("ROLE_STUDENT"),
+                    new SimpleGrantedAuthority("ROLE_TEACHER"));
+        } else if ("ROLE_STUDENT".equals(userRole)) {
+            return List.of(new SimpleGrantedAuthority("ROLE_STUDENT"));
+        } else {
             return List.of(new SimpleGrantedAuthority("ROLE_TEACHER"));
         }
-
     }
 
     @Override
     public String getPassword() {
         return password;
     }
+
     @Override
     public String getUsername() {
         return email;
     }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
+
     @Override
     public boolean isAccountNonLocked() {
         return true;
-
     }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
     @Override
     public boolean isEnabled() {
         return true;
     }
-
 }

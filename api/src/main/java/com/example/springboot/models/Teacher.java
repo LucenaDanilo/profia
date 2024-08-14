@@ -5,7 +5,7 @@ import jakarta.persistence.AccessType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 @Entity
-public class Teacher extends User {
+public class Teacher extends UserModel {
     private static final long serialVersionUID = 1L;
 
     private String cnpj;
@@ -13,7 +13,7 @@ public class Teacher extends User {
     private String especialidade;
 
     public Teacher(String username, String password, String email, String cnpj, float hrAula, String especialidade) {
-        super(username, password, email, "Teacher");
+        super(username, password, email, "ROLE_TEACHER");
         this.cnpj = cnpj;
         this.hrAula = hrAula;
         this.especialidade = especialidade;

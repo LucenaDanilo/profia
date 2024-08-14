@@ -1,18 +1,26 @@
 package com.example.springboot.controllers;
 
 import com.example.springboot.dto.ProductRecordDto;
+import com.example.springboot.enums.UserRole;
 import com.example.springboot.models.ProductModel;
+import com.example.springboot.models.Student;
+import com.example.springboot.models.UserModel;
 import com.example.springboot.repository.ProductRepository;
+import com.example.springboot.repository.UserRepository;
 import jakarta.validation.Valid;
+import org.apache.catalina.Store;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -22,6 +30,8 @@ public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
+
+    UserRepository userRepository;
 
     @GetMapping("/products")
     public ResponseEntity<List<ProductModel>> getAllProducts(){
@@ -73,5 +83,53 @@ public class ProductController {
         BeanUtils.copyProperties(productRecordDto, productModel);
         return ResponseEntity.status(HttpStatus.OK).body(productRepository.save(productModel));
     }
+
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Secured("ROLE_USER")
+    @PostMapping("/products/resgatar")
+    public ResponseEntity<String> resgatar(@RequestBody Map<String, String> body) {
+        // Recupera o UserModel do principal
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Student user = (Student) authentication.getPrincipal();
+
+        String productId = body.get("productId");
+        Optional<ProductModel> productOptional = productRepository.findById(UUID.fromString(productId));
+
+        if (productOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
+        }
+
+        ProductModel productModel = productOptional.get();
+
+        if (user.getPoints() < productModel.getValue()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Pontos insuficientes.");
+        }
+
+        // Defina os dados a serem enviados para o endpoint externo
+        Map<String, Object> externalRequestBody = new HashMap<>();
+        externalRequestBody.put("nome", user.getName());
+        externalRequestBody.put("link", productModel.getLink());
+        // Adicione outros dados se necessário
+
+        // Envie o POST para o endpoint externo
+        String externalUrl = "https://web-copy-production-1dcc.up.railway.app/sentmail"; // Substitua com a URL real
+        ResponseEntity<String> externalResponse = restTemplate.postForEntity(externalUrl, externalRequestBody, String.class);
+
+        // Verifique a resposta do endpoint externo
+        if (externalResponse.getStatusCode().is2xxSuccessful()) {
+            // Lógica para atualizar pontos e salvar alterações
+            user.setPoints(user.getPoints() - (productModel.getValue()));
+            userRepository.save(user);
+            return ResponseEntity.status(HttpStatus.OK).body("Produto " + productId + " resgatado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Falha ao contatar o serviço externo.");
+        }
+    }
+
+
+
 
 }
