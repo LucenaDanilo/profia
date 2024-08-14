@@ -17,9 +17,19 @@ public class ProductModel extends RepresentationModel<ProductModel> implements S
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idProduct;
     private String name;
-    private BigDecimal value;
+    private int value;
     private String description;
     private String image;
+    private String link;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
 
     public UUID getIdProduct() {
         return idProduct;
@@ -37,11 +47,11 @@ public class ProductModel extends RepresentationModel<ProductModel> implements S
         this.name = name;
     }
 
-    public BigDecimal getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(BigDecimal value) {
+    public void setValue(int value) {
         this.value = value;
     }
 

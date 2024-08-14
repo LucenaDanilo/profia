@@ -8,11 +8,17 @@ import lombok.Setter;
 @Setter
 public class RegisterDto {
     @NotEmpty
+    private String name;
+
+    @NotEmpty
     private String email;
 
     @NotEmpty
     private String password;
 
     @NotEmpty
-    private String role;  // Espera-se que seja "ADMIN", "USER" ou "TEACHER"
+    private String role;  // Espera-se que seja "ADMIN", "STUDENT" ou "TEACHER"
+
+
+
 }

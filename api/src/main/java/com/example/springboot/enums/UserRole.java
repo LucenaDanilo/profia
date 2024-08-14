@@ -1,8 +1,13 @@
 package com.example.springboot.enums;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.Getter;
+
+@Getter
 public enum UserRole {
     ADMIN("admin"),
-    USER("user"),
+    STUDENT("student"),
     TEACHER("teacher");
 
     private final String role;
@@ -11,7 +16,4 @@ public enum UserRole {
         this.role = role;
     }
 
-    public String getRole() {
-        return role;
-    }
 }

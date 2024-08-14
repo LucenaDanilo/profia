@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class Manager extends User {
+public class Manager extends UserModel {
 
     @Column(name = "is_superuser")
     private boolean isSuperuser;
@@ -15,13 +15,13 @@ public class Manager extends User {
         // Construtor padrão necessário para JPA
     }
 
-    public Manager(String username, String password, String email) {
-        super(username, password, email, "Manager");
+    public Manager(String name, String email,String password) {
+        super(name,email, password, "ROLE_MANAGER");
         this.isSuperuser = true;
     }
 
     public Manager(Manager manager) {
-        super(manager.getUsername(),manager.getPassword(),manager.getEmail(),"Manager");
+        super(manager.getName(),manager.getPassword(),manager.getEmail(),"ROLE_MANAGER");
 
     }
 

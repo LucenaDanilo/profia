@@ -2,7 +2,9 @@ package com.example.springboot.auth.controllers;
 
 import com.example.springboot.auth.services.AuthorizationService;
 import com.example.springboot.dto.AuthetinticationDto;
-import com.example.springboot.dto.RegisterDto;
+import com.example.springboot.dto.ManagerRegisterDto;
+import com.example.springboot.dto.StudentRegisterDto;
+import com.example.springboot.dto.TeacherRegisterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +27,19 @@ public class AuthController {
     }
 
 
-    @PostMapping("/register")
-    public ResponseEntity<Object> register (@RequestBody RegisterDto registerDto){
-        return authorizationService.register(registerDto);
+
+    @PostMapping("/student/register")
+    public ResponseEntity<Object> Studentregister(@RequestBody StudentRegisterDto studentregisterDto) {
+        return authorizationService.studentRegister(studentregisterDto);
+    }
+
+    @PostMapping("/teacher/register")
+    public ResponseEntity<Object> Teacherregister(@RequestBody TeacherRegisterDto teacherRegisterDto) {
+        return authorizationService.teacherRegister(teacherRegisterDto);
+    }
+
+    @PostMapping("/manager/register")
+    public ResponseEntity<Object> Managerregister(@RequestBody ManagerRegisterDto managerRegisterDto) {
+        return authorizationService.managerRegister(managerRegisterDto);
     }
 }

@@ -4,26 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7434d2a3-9463-4c98-a562-ae87c2f2a7a0" name="Changes" comment="feat: using bcrypt">
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/JwtResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/DataInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/ManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7434d2a3-9463-4c98-a562-ae87c2f2a7a0" name="Changes" comment="feat: jwt working">
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/ManagerDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/ManagerRegisterDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentRegisterDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentUpdateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/TeacherDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/TeacherRegisterDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/string.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/StudentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/SpringbootApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/SpringbootApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/AuthenticationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/AppConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/AuthenticationService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/JwtService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/PrivateController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/UserAuthenticated.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/UserDetailsServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/auth/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/auth/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/auth/services/AuthorizationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/auth/services/AuthorizationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ManagerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/LoginResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/LoginResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/ManagerDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/RegisterDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/RegisterDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/enums/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/enums/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/ProductModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/ManagerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/ManagerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/TeacherRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/TeacherRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/DataInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/SecurityConfigurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/SecurityConfigurations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/ManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/ManagerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,19 +84,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BackendApplication.executor": "Run",
-    "Application.SpringbootApplication.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feat/Jwttoken",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/gustavohenrique/Library/Mobile Documents/com~apple~CloudDocs/Gustavo/WORK/Profia/profia/profia",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BackendApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SpringbootApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/Jwttoken&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gustavohenrique/Library/Mobile Documents/com~apple~CloudDocs/Gustavo/WORK/Profia/profia/profia&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.springboot.models" />
       <recent name="com.example.springboot.dto" />
       <recent name="com.example.springboot.controllers" />
       <recent name="com.example.springboot.security" />
@@ -91,8 +107,8 @@
       <recent name="$PROJECT_DIR$/api/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.example.springboot.controllers" />
       <recent name="com.example.springboot.dto" />
+      <recent name="com.example.springboot.controllers" />
       <recent name="com.example.springboot.repository" />
       <recent name="com.example.springboot.models" />
     </key>
