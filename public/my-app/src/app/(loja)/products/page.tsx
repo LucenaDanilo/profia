@@ -46,15 +46,13 @@ export default function Page({ produtos }: Props) {
             <Header />
             <div className="flex">
                 <Aside/>
-                <div className="container mx-auto p-4">
+                <div className="container mx-auto p-4 ">
                     {products.length > 0 ? (
                         <>
-                            <h1 className="text-3xl font-bold mb-4 text-center">Produtos</h1>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <h1 className="text-3xl font-bold mb-4 text-center mx-auto text-red-600">Use seus pontos para ganhar recompensas</h1>
+                            <div className="flex flex-wrap justify-center gap-6 md:gap-x-6 md:gap-y-6 mx-auto w-[90%] md:p-4">
                                 {products.map((p: ProductType) => (
-                                    <Link href={`/products/${p.id}`} key={p.id}>
                                         <Product id={p.id} name={p.name} value={p.value} description={p.description} img={p.img} />
-                                    </Link>
                                 ))}
                             </div>
                         </>

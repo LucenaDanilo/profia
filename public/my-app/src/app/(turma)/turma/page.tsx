@@ -13,9 +13,7 @@ export default function page(){
             <div className="flex">
                 <Aside/>
                 <div>
-                    <Link href="/turma/update">
-                        <span className="bg-green-700 p-2 text-black">Update</span>
-                    </Link>
+                   
                 </div>
                 <Table/>
             </div>
