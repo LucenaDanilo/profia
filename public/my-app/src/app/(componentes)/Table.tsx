@@ -1,4 +1,5 @@
 import React from 'react'
+import { CiEdit } from "react-icons/ci";
 
 function Table() {
   return (
@@ -24,7 +25,7 @@ function Table() {
               <td className='p-3 text-sm text-gray-700 whitespace-nowrap'>
                 <span className='p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-500'>Ativo</span>
               </td>
-              <td className='p-3 text-sm text-gray-700 whitespace-nowrap'>Editar</td>
+              <td className='p-3 text-sm text-gray-700 whitespace-nowrap flex items-center'>Editar <CiEdit size={22}/></td>
             </tr>
             <tr className='bg-gray-50 hover:bg-gray-300 hover:cursor-pointer'>
               <td className='p-3 text-sm text-gray-700 whitespace-nowrap'>
@@ -34,7 +35,8 @@ function Table() {
               <td className='p-3 text-sm text-gray-700 whitespace-nowrap'>
                 <span className='p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-500'>Ativo</span>
               </td>
-              <td className='p-3 text-sm text-gray-700 whitespace-nowrap'>Editar</td>
+              <td className='p-3 text-sm text-gray-700 whitespace-nowrap flex items-center'>Editar <CiEdit size={22}/></td>
+
             </tr>
             <tr className='bg-gray-50 hover:bg-gray-300 hover:cursor-pointer'>
               <td className='p-3 text-sm text-gray-700 whitespace-nowrap'>
@@ -44,7 +46,8 @@ function Table() {
               <td className='p-3 text-sm text-gray-700 whitespace-nowrap'>
                 <span className='p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-500'>Ativo</span>
               </td>
-              <td className='p-3 text-sm text-gray-700 whitespace-nowrap'>Editar</td>
+              <td className='p-3 text-sm text-gray-700 whitespace-nowrap flex items-center'>Editar <CiEdit size={18}/></td>
+
             </tr>
             
             
