@@ -19,7 +19,7 @@ function Aside() {
   const [open, setOpen] = useState(false);
   return (
     <div className=''>
-    <aside className={`bg-[#28272bf1] border-r-2 border-white h-screen flex flex-col gap-4 px-2 md:gap-0 md:px-0 items-center pt-4 ${open ? "w-72" : "w-24"} duration-300`}>
+    <aside className={`bg-[#28272bf1] border-r-2 border-white h-[100%] flex flex-col gap-4 px-2 md:gap-0 md:px-0 items-center pt-4 ${open ? "w-72" : "w-24"} duration-300`}>
         <div className={` ${open ?'flex justify-between w-[80%]' : 'flex-col pb-2'} `}>
           <div className=''></div>
           <div className=''>
