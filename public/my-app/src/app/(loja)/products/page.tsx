@@ -44,7 +44,7 @@ export default function Page({ produtos }: Props) {
     return (
         <>
             <Header />
-            <div className="flex">
+            <div className="flex h-[100vh]">
                 <Aside/>
                 <div className="container mx-auto p-4 ">
                     {products.length > 0 ? (

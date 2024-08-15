@@ -5,7 +5,7 @@ function page() {
   return (
     <div>
         <Header/>
-        <div className='flex'>
+        <div className='flex h-[100vh]'>
             <Aside/>
         </div>
     </div>

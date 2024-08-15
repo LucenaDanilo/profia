@@ -1,12 +1,22 @@
 import React from 'react'
 import { CiEdit } from "react-icons/ci";
+import Link from 'next/link';
+import Search from './Search';
+import { FaPlus } from "react-icons/fa6";
 
 function Table() {
   return (
     <div  className='h-screen bg-gray-500 p-5 w-full'>
-         <h1 className="text-xl mb-2">Alunos</h1>
+         <div className='flex flex-col gap-[25px] md:gap-0 md:flex md:flex-row md:justify-between md:items-center'>
+          <div><h1 className="text-xl mb-2">Alunos </h1></div>
+          <div>
+                <Search/>
+          </div>
+          <Link href="/turma/novo" className='bg-green-600 hover:bg-green-800 cursor-pointer text-white p-3 rounded-md flex items-center gap-2'> novo aluno  <FaPlus size={14} color='white'/></Link>
+         
+         </div>
  
-        <div className="overflow-auto rounded-lg shadow">
+        <div className="overflow-auto rounded-lg shadow mt-8">
           <table className="w-full">
             <thead className="bg-gray-50 border-b-2 border-gray-200">
             <tr>
