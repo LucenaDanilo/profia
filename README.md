@@ -10,6 +10,8 @@ Welcome to the School Management and Gamification System for **Profia**. This sy
 - **Product Management:** Manage products that students can redeem using their earned points.
 - **Gamification:** Award points to students and allow them to exchange these points for products.
 
+---
+
 ## API Endpoints
 
 ### Student
@@ -101,6 +103,7 @@ Welcome to the School Management and Gamification System for **Profia**. This sy
         "points": 0
     }
     ```
+---
 
 ### Teacher
 
@@ -164,6 +167,7 @@ Welcome to the School Management and Gamification System for **Profia**. This sy
         "credentialsNonExpired": true
     }
     ```
+---
 
 ### Class (Turma)
 
@@ -221,6 +225,8 @@ Welcome to the School Management and Gamification System for **Profia**. This sy
         "teacherIds": ["4551fd07-d6b7-4c1d-ae2a-23dfa7d6b3cb"]
     }
     ```
+
+---
 
 ### Product
 
