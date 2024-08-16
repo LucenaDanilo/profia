@@ -62,13 +62,5 @@ public class StudentController {
         return ResponseEntity.ok().body("Pontos atribuidos com sucesso");
     }
 
-//    @PostMapping("/matricular")
-//    public ResponseEntity<String> matricular(@RequestParam UUID studentId, @RequestParam UUID turmaId) {
-//        try {
-//            studentService.matricular(studentId, turmaId);
-//            return ResponseEntity.ok("Student matriculated successfully");
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error matriculating student: " + e.getMessage());
-//        }
-//    }
+
 }
