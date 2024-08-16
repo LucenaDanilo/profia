@@ -4,41 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7434d2a3-9463-4c98-a562-ae87c2f2a7a0" name="Changes" comment="feat: jwt working">
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/ManagerDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/ManagerRegisterDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentRegisterDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentUpdateDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/TeacherDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/TeacherRegisterDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/string.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/StudentService.java" afterDir="false" />
+    <list default="true" id="7434d2a3-9463-4c98-a562-ae87c2f2a7a0" name="Changes" comment="feat: CRUD Teacher/Products/Turmas&#10;&#10;fix: login (now the default password for students is &quot;profia&quot;)">
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/PointsDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/auth/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/auth/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/auth/services/AuthorizationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/auth/services/AuthorizationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ManagerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/controllers/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/LoginResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/LoginResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/ManagerDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/RegisterDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/RegisterDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/StudentDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/enums/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/enums/UserRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/ProductModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/models/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/ManagerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/ManagerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/TeacherRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/repository/TeacherRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/DataInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/SecurityConfigurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/security/SecurityConfigurations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/ManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/ManagerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/springboot/services/StudentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,12 +142,30 @@
       <option name="project" value="LOCAL" />
       <updated>1722999993711</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: FUNCIONANDO A PORRA TODA EM (login/register de todos os tipos de users, verificacao de permissoes e resgate de pontos)">
+      <option name="closed" value="true" />
+      <created>1723672293758</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1723672293758</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: CRUD Teacher/Products/Turmas&#10;&#10;fix: login (now the default password for students is &quot;profia&quot;)">
+      <option name="closed" value="true" />
+      <created>1723823199395</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1723823199395</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: using bcrypt" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: using bcrypt" />
+    <MESSAGE value="feat: FUNCIONANDO A PORRA TODA EM (login/register de todos os tipos de users, verificacao de permissoes e resgate de pontos)" />
+    <MESSAGE value="feat: CRUD Teacher/Products/Turmas&#10;&#10;fix: login (now the default password for students is &quot;profia&quot;)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: CRUD Teacher/Products/Turmas&#10;&#10;fix: login (now the default password for students is &quot;profia&quot;)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

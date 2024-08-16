@@ -1,11 +1,13 @@
 package com.example.springboot.controllers;
 
 
+import com.example.springboot.dto.PointsDto;
 import com.example.springboot.dto.StudentUpdateDto;
 import com.example.springboot.models.Student;
 import com.example.springboot.repository.StudentRepository;
 import com.example.springboot.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,4 +52,15 @@ public class StudentController {
         studentRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/coins")
+    public ResponseEntity<String> atribuirPontos(@RequestBody PointsDto pointsDto ){
+        UUID studentId = pointsDto.getStudentId();
+        int points = pointsDto.getPoints();
+
+        studentService.atribuirPontos(studentId,points);
+        return ResponseEntity.ok().body("Pontos atribuidos com sucesso");
+    }
+
+
 }

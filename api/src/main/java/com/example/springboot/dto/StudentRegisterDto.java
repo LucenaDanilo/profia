@@ -4,16 +4,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
-public class StudentRegisterDto extends RegisterDto {
+
+public class StudentRegisterDto {
+    private String name;
+    private String email;
     private String responsibleCPF;
     private String registration;
     private LocalDate birthday;
-    private int points;
+    private UUID turmaId;
 
-    // Getters and Setters
-
+    // Getters e Setters
 }
 

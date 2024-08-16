@@ -17,13 +17,13 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("auth")
 public class AuthController {
-   
+
     @Autowired
     AuthorizationService authorizationService;
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody @Valid AuthetinticationDto authetinticationDto){
-        return authorizationService.login(authetinticationDto);
+    public ResponseEntity<Object> login(@RequestBody @Valid AuthetinticationDto authenticationDto){
+        return authorizationService.login(authenticationDto);
     }
 
 
