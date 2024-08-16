@@ -1,23 +1,18 @@
 package com.example.springboot.models;
 
-
 import jakarta.persistence.*;
-import org.springframework.hateoas.RepresentationModel;
-
-import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Set;
 import java.util.UUID;
+import org.springframework.hateoas.RepresentationModel;
 
 @Entity
-@Table(name = "TB_TURMAS")
-public class TurmaModel extends RepresentationModel<TurmaModel> implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class TurmaModel extends RepresentationModel<TurmaModel> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idProduct;
+    private UUID id;
+
     private String name;
     private String trilha;
     private String semester;
@@ -26,12 +21,26 @@ public class TurmaModel extends RepresentationModel<TurmaModel> implements Seria
     private LocalDate datafim;
     private LocalTime horario;
 
-    public UUID getIdTurma() {
-        return idProduct;
+    @ManyToMany
+    @JoinTable(
+            name = "turma_teachers",
+            joinColumns = @JoinColumn(name = "turma_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
+    private Set<Teacher> teachers;
+
+    @ManyToMany(mappedBy = "turmas")
+    private Set<Student> students;
+
+
+    // Getters and setters...
+
+    public UUID getId() {
+        return id;
     }
 
-    public void setIdTurma(UUID idProduct) {
-        this.idProduct = idProduct;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -88,5 +97,21 @@ public class TurmaModel extends RepresentationModel<TurmaModel> implements Seria
 
     public void setHorario(LocalTime horario) {
         this.horario = horario;
+    }
+
+    public Set<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }

@@ -1,27 +1,42 @@
 package com.example.springboot.models;
 
-import com.example.springboot.enums.UserRole;
+import com.example.springboot.models.TurmaModel;
+import com.example.springboot.models.UserModel;
 import com.example.springboot.utils.CPFUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.UUID;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "students")
 public class Student extends UserModel {
 
-
     private String responsibleCPF;
     @Setter
     private String registration;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private LocalDate birthday;
+
     private int points;
 
-    public Student(String name,String password, String email, String responsibleCPF, String registration, LocalDate birthday) {
-        super(name,email, password, "ROLE_STUDENT");
+    @ManyToMany
+    @JoinTable(
+            name = "turma_students",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "turma_id")
+    )
+    @JsonIgnore
+    private Set<TurmaModel> turmas = new HashSet<>();
+
+    public Student(String name, String password, String email, String responsibleCPF, String registration, LocalDate birthday) {
+        super(name, email, password, "ROLE_STUDENT");
         this.responsibleCPF = responsibleCPF;
         this.registration = registration;
         this.birthday = birthday;
@@ -30,7 +45,7 @@ public class Student extends UserModel {
 
     public Student() {
         super();
-        // Construtor padrão necessário para JPA
+        this.turmas = new HashSet<>();
     }
 
     public String getResponsibleCPF() {
@@ -41,7 +56,7 @@ public class Student extends UserModel {
         if (CPFUtils.isValidCPF(responsibleCPF)) {
             this.responsibleCPF = responsibleCPF;
         } else {
-            throw new IllegalArgumentException("CPF inválido");
+            throw new IllegalArgumentException("Invalid CPF");
         }
     }
 
@@ -53,19 +68,19 @@ public class Student extends UserModel {
         return birthday;
     }
 
-    public int getAge() {
-        if (birthday == null) {
-            throw new IllegalStateException("A data de nascimento não foi definida.");
-        }
-        return Period.between(birthday, LocalDate.now()).getYears();
-    }
-
     public void setBirthday(LocalDate birthday) {
         if (birthday != null && birthday.isBefore(LocalDate.now())) {
             this.birthday = birthday;
         } else {
-            throw new IllegalArgumentException("A data de nascimento deve ser anterior à data atual.");
+            throw new IllegalArgumentException("Birthdate must be before the current date.");
         }
+    }
+
+    public int getAge() {
+        if (birthday == null) {
+            return 0; // or any other value indicating "unknown"
+        }
+        return Period.between(birthday, LocalDate.now()).getYears();
     }
 
     public int getPoints() {
@@ -76,7 +91,15 @@ public class Student extends UserModel {
         if (points >= 0) {
             this.points = points;
         } else {
-            throw new IllegalArgumentException("Os pontos devem ser igual ou iguais a 0");
+            throw new IllegalArgumentException("Points must be equal to or greater than 0.");
         }
+    }
+
+    public Set<TurmaModel> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(Set<TurmaModel> turmas) {
+        this.turmas = turmas;
     }
 }

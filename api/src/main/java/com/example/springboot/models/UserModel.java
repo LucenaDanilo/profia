@@ -59,19 +59,19 @@ public class UserModel implements UserDetails {
         this.createdAt = new Date(); // Define createdAt no momento da criação do objeto
     }
 
-    // Método para registrar um novo usuário
-    public UserModel register(StudentRegisterDto registerDto) {
-        UserModel user = new Student(
-                registerDto.getName(),
-                registerDto.getPassword(),
-                registerDto.getEmail(),
-                registerDto.getResponsibleCPF(),
-                registerDto.getRegistration(),
-                registerDto.getBirthday()
-        );
-        // Aqui deveria estar o userRepository.save(user);, mas o repositório não está injetado
-        return user;
-    }
+//    // Método para registrar um novo usuário
+//    public UserModel register(StudentRegisterDto registerDto) {
+//        UserModel user = new UserModel(
+//                registerDto.getName(),
+//                registerDto.getPassword(),
+//                registerDto.getEmail(),
+//                registerDto.getResponsibleCPF(),
+//                registerDto.getRegistration(),
+//                registerDto.getBirthday()
+//        );
+//        // Aqui deveria estar o userRepository.save(user);, mas o repositório não está injetado
+//        return user;
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

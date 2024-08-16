@@ -2,7 +2,10 @@ package com.example.springboot.services;
 
 import com.example.springboot.dto.StudentUpdateDto;
 import com.example.springboot.models.Student;
+import com.example.springboot.models.TurmaModel;
 import com.example.springboot.repository.StudentRepository;
+import com.example.springboot.repository.TurmaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,9 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private TurmaRepository turmaRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -48,9 +54,32 @@ public class StudentService {
                 student.setPoints(updateDto.getPoints());
             }
 
+
             return studentRepository.save(student);
         } else {
             throw new RuntimeException("Student not found");
         }
     }
+
+    @Transactional
+    public Student matricularAluno(UUID studentId, UUID turmaId) {
+        Optional<Student> studentOpt = studentRepository.findById(studentId);
+        Optional<TurmaModel> turmaOpt = turmaRepository.findById(turmaId);
+
+        if (studentOpt.isPresent() && turmaOpt.isPresent()) {
+            Student student = studentOpt.get();
+            TurmaModel turma = turmaOpt.get();
+
+            // Adiciona o aluno à turma e a turma ao aluno
+            turma.getStudents().add(student);  // Certifique-se de que turma.getStudents() não é null
+            student.getTurmas().add(turma);    // Certifique-se de que student.getTurmas() não é null
+
+            // Salva a turma e o aluno
+            turmaRepository.save(turma);
+            return studentRepository.save(student);
+        } else {
+            throw new RuntimeException("Student or Turma not found");
+        }
+    }
+
 }

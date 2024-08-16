@@ -27,9 +27,12 @@ public class SecurityConfigurations {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers( "/auth/register").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/products/resgatar").hasAuthority("ROLE_STUDENT")
-                        .requestMatchers(HttpMethod.PUT, "/api/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
+                        .requestMatchers( "/api/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
+                        .requestMatchers("/api/teachers/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
+                        .requestMatchers("/products/**").hasAnyAuthority("ROLE_ADMIN")
+
 
 
                         .anyRequest().authenticated() // Requer autenticação para todas as outras requisições
