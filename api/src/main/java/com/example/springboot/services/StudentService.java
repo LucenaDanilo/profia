@@ -82,4 +82,18 @@ public class StudentService {
         }
     }
 
+
+    public Student atribuirPontos(UUID studentId, int points){
+        Optional<Student> studentOpt = studentRepository.findById(studentId);
+        if (studentOpt.isPresent()){
+            Student student = studentOpt.get();
+            student.setPoints(student.getPoints() + points);
+            return studentRepository.save(student);
+
+        }
+        else{
+            throw new RuntimeException("Student not found");
+        }
+    }
+
 }

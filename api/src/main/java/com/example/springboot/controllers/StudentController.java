@@ -1,6 +1,7 @@
 package com.example.springboot.controllers;
 
 
+import com.example.springboot.dto.PointsDto;
 import com.example.springboot.dto.StudentUpdateDto;
 import com.example.springboot.models.Student;
 import com.example.springboot.repository.StudentRepository;
@@ -52,6 +53,14 @@ public class StudentController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping("/coins")
+    public ResponseEntity<String> atribuirPontos(@RequestBody PointsDto pointsDto ){
+        UUID studentId = pointsDto.getStudentId();
+        int points = pointsDto.getPoints();
+
+        studentService.atribuirPontos(studentId,points);
+        return ResponseEntity.ok().body("Pontos atribuidos com sucesso");
+    }
 
 //    @PostMapping("/matricular")
 //    public ResponseEntity<String> matricular(@RequestParam UUID studentId, @RequestParam UUID turmaId) {
