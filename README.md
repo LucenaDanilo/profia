@@ -1,6 +1,6 @@
-# School Management and Gamification System
+# Portal do Aluno Profia
 
-Welcome to the School Management and Gamification System for our programming school. This system is designed to manage students, teachers, and classes while also incorporating a gamification mechanism to reward students for good behavior. Students can earn points and redeem them for products through the system.
+Welcome to the School Management and Gamification System for **Profia**. This system is designed to manage students, teachers, and classes while also incorporating a gamification mechanism to reward students for good behavior. Students can earn points and redeem them for products through the system.
 
 ## Features
 
