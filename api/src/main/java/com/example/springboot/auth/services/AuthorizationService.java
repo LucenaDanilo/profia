@@ -143,11 +143,9 @@ public class AuthorizationService implements UserDetailsService{
 
 
 
-
-
     public ResponseEntity<Object> studentRegister(StudentRegisterDto registerDto) {
         // Criptografa a senha
-        String encryptedPassword = passwordEncoder.encode("profia"); //senha padrao
+        String encryptedPassword = passwordEncoder.encode("profia"); // senha padrão
 
         // Busca a Turma pelo UUID
         TurmaModel turma = turmaRepository.findById(registerDto.getTurmaId())
@@ -171,12 +169,21 @@ public class AuthorizationService implements UserDetailsService{
 
         // Salva o novo Student no banco de dados
         studentRepository.save(newUser);
-        studentService.matricularAluno(newUser.getId(),turma.getId());
+        studentService.matricularAluno(newUser.getId(), turma.getId());
 
-        return ResponseEntity.ok().build();
+        // Criar DTO de resposta
+        StudentDto studentDto = new StudentDto();
+        studentDto.setId(newUser.getId());
+        studentDto.setName(newUser.getName());
+        studentDto.setEmail(newUser.getEmail());
+        studentDto.setUserRole(newUser.getUserRole());
+        studentDto.setResponsibleCPF(newUser.getResponsibleCPF());
+        studentDto.setRegistration(newUser.getRegistration());
+        studentDto.setBirthday(newUser.getBirthday());
+        studentDto.setPoints(newUser.getPoints());
+
+        return ResponseEntity.ok(studentDto);
     }
-
-
 
     public ResponseEntity<Object> teacherRegister(TeacherRegisterDto registerDto) {
         // Criptografa a senha
@@ -202,28 +209,46 @@ public class AuthorizationService implements UserDetailsService{
                 registerDto.getEspecialidade()
         );
         newUser.setTurmas(turmas);
-
         newUser.setCreatedAt(new Date(System.currentTimeMillis()));
 
         // Salva o novo Teacher no banco de dados
         teacherRepository.save(newUser);
 
-        return ResponseEntity.ok().build();
-    }
+        // Criar DTO de resposta
+        TeacherDto teacherDto = new TeacherDto();
+        teacherDto.setId(newUser.getId());
+        teacherDto.setName(newUser.getName());
+        teacherDto.setEmail(newUser.getEmail());
+        teacherDto.setUserRole(newUser.getUserRole());
+        teacherDto.setCnpj(newUser.getCnpj());
+        teacherDto.setHrAula(newUser.getHrAula());
+        teacherDto.setEspecialidade(newUser.getEspecialidade());
 
+        return ResponseEntity.ok(teacherDto);
+    }
 
     public ResponseEntity<Object> managerRegister(ManagerRegisterDto registerDto) {
-
+        // Criptografa a senha
         String encryptedPassword = new BCryptPasswordEncoder().encode(registerDto.getPassword());
 
-
-        Manager newUser = new Manager(registerDto.getName(),encryptedPassword,registerDto.getEmail());
-
+        // Cria o novo Manager
+        Manager newUser = new Manager(registerDto.getName(), encryptedPassword, registerDto.getEmail());
         newUser.setCreatedAt(new Date(System.currentTimeMillis()));
+
+        // Salva o novo Manager no banco de dados
         managerRepository.save(newUser);
 
-        return ResponseEntity.ok().build();
+        // Criar DTO de resposta
+        ManagerDto managerDto = new ManagerDto();
+        managerDto.setId(newUser.getId());
+        managerDto.setName(newUser.getName());
+        managerDto.setEmail(newUser.getEmail());
+        managerDto.setUserRole(newUser.getUserRole());
+        managerDto.setSuperuser(newUser.isSuperuser());
+
+        return ResponseEntity.ok(managerDto);
     }
+
 
 
 

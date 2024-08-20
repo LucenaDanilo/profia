@@ -32,6 +32,7 @@ public class SecurityConfigurations {
                         .requestMatchers( "/api/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
                         .requestMatchers("/api/teachers/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
                         .requestMatchers("/products/**").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/products/**").hasAnyAuthority("ROLE_STUDENT")
 
 
 
