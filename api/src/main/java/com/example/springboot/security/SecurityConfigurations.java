@@ -34,6 +34,7 @@ public class SecurityConfigurations {
 
                         // Permitir acesso para resgatar produtos apenas para STUDENT
                         .requestMatchers(HttpMethod.POST, "/products/resgatar").hasAuthority("ROLE_STUDENT")
+                        .requestMatchers(HttpMethod.POST, "/products/resgatar").hasAuthority("ROLE_STUDENT")
 
                         // Permitir acesso a estudantes e professores para /api/students/** e /api/teachers/**
                         .requestMatchers("/api/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
@@ -41,6 +42,9 @@ public class SecurityConfigurations {
 
                         // Permitir GET para produtos apenas para STUDENT
                         .requestMatchers(HttpMethod.GET, "/products/**").hasAuthority("ROLE_STUDENT")
+                        // Minha turma (aluno)
+                        .requestMatchers(HttpMethod.GET, "/turma/**").hasAnyAuthority("ROLE_STUDENT", "ROLE_TEACHER")
+
 
                         // Permitir acesso completo para produtos apenas para ADMIN
                         .requestMatchers("/products/**").hasAuthority("ROLE_ADMIN")

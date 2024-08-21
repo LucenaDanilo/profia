@@ -1,8 +1,10 @@
 package com.example.springboot.controllers;
 
 import com.example.springboot.dto.TurmaRecordDto;
+import com.example.springboot.models.Student;
 import com.example.springboot.models.Teacher;
 import com.example.springboot.models.TurmaModel;
+import com.example.springboot.repository.StudentRepository;
 import com.example.springboot.repository.TeacherRepository;
 import com.example.springboot.repository.TurmaRepository;
 import jakarta.validation.Valid;
@@ -26,6 +28,8 @@ public class TurmaController {
 
     @Autowired
     private TeacherRepository teacherRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
     @GetMapping("/turmas")
     public ResponseEntity<List<TurmaModel>> getAllTurmas() {
@@ -96,4 +100,18 @@ public class TurmaController {
         BeanUtils.copyProperties(turmaRecordDto, turmaModel);
         return ResponseEntity.status(HttpStatus.OK).body(turmaRepository.save(turmaModel));
     }
+
+    @GetMapping("/turma/{id}")
+    public ResponseEntity<Object> getMyTurmas(@PathVariable(value = "id") UUID id) {
+        Optional<Student> student = studentRepository.findById(id);
+
+        if (student.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student not found.");
+        }
+
+        // Supondo que Student tenha uma lista de turmas
+        return ResponseEntity.status(HttpStatus.OK).body(student.get().getTurmas());
+    }
+
+
 }
