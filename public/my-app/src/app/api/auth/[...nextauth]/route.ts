@@ -1,17 +1,16 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-
+import { cookies } from 'next/headers';
 const nextAuthOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'apipost',
       credentials: {
         email: { label: 'Email', type: 'text' },
-        userType: { label: 'User Type', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const response = await fetch('http://192.168.15.25:3001/login', {
+        const response = await fetch('http://192.168.15.25:8080/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -19,12 +18,11 @@ const nextAuthOptions: NextAuthOptions = {
           body: JSON.stringify({
             email: credentials?.email,
             password: credentials?.password,
-            userType: credentials?.userType,
           }),
         });
 
         const user = await response.json();
-
+        cookies().set("jwt", user.token)
         if(user && response.ok){
           return user
         }
@@ -34,7 +32,7 @@ const nextAuthOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: '/dashboard',
+    signIn: '/login',
   },
   callbacks: {
     async jwt({token,user}){

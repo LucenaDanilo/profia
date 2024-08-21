@@ -1,15 +1,17 @@
 import React from 'react';
 import { FaBook, FaClock, FaClipboardList, FaPenFancy } from 'react-icons/fa';
-
+import Link from 'next/link';
 interface ClassCardProps {
   nome: string;
   horario: string;
   professor: string;
   descricao: string;
+  id: string;
 }
 
-const ClassCard: React.FC<ClassCardProps> = ({ nome, horario, professor, descricao }) => {
+const ClassCard: React.FC<ClassCardProps> = ({ id, nome, horario, professor, descricao }) => {
   return (
+    <Link href={`/turma/${id}`}>
     <div className='bg-white p-2 md:p-4 hover:bg-gray-100 border-[1px] flex flex-col justify-between border-blue-700 w-[250px] h-[250px] mt-6 md:mt-0 md:w-[300px] lg:w-[330px] rounded-md '>
       <div className='w-full'>
         <h1 className='text-lg font-bold mb-2'>{nome}</h1>
@@ -27,6 +29,7 @@ const ClassCard: React.FC<ClassCardProps> = ({ nome, horario, professor, descric
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 
