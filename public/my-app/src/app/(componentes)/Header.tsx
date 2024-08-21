@@ -20,7 +20,7 @@ function Header() {
                         <ul className='flex flex-row gap-4  items-center pt-[10px] '>
                             <div>
                                 <li className='font-bold'>{sessionHook?.user.email.split('@')[0]}</li>
-                                <li className='font-medium'>Professor</li>
+                                <li className='font-medium'>{}</li>
                             </div>
                             <div>
                                 <button onClick={() => signOut()}>

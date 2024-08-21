@@ -7,7 +7,7 @@ export default async function layout({children}: {children: React.ReactNode}){
 
     const session = await getServerSession(nextAuthOptions)
 
-    console.log('to buscando vc', session?.user.email)
+    console.log(session)
     if(!session){
         redirect('/login')
     }
