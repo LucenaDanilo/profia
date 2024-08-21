@@ -9,7 +9,6 @@ import { signIn } from 'next-auth/react'
 
 function LoginForm() {
   const [email, setEmail] = useState<string>('')
-  const [userType, setUserType] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
 
@@ -19,7 +18,6 @@ function LoginForm() {
     event.preventDefault()
     const result = await signIn('credentials',{
       email,
-      userType,
       password,
       redirect: false
     })
@@ -44,12 +42,7 @@ function LoginForm() {
                 <input id="email" name="email" onChange={(e) => setEmail(e.target.value)} type="email"  required className="block w-full rounded-md border-0 pl-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
             </div>
           </div>
-          <div className='w-[320px] md:w-[400px]'>
-            <label htmlFor="userType" className='block text-sm font-medium leading-4 text-gray-900'>UserType</label>
-            <div className='mt-2'>
-                <input id="userType" onChange={(e) => setUserType(e.target.value)}  name="userType" type="text"  required className="block w-full rounded-md border-0 pl-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
-            </div>
-          </div>
+          
           <div>
             <label htmlFor="senha" className='block text-sm font-medium leading-4 text-gray-900'>Senha</label>
             <div className='mt-2'>
@@ -58,7 +51,7 @@ function LoginForm() {
             </div>
           </div>
           <div>
-            <button type='submit'>Entrar</button>
+            <button type='submit' className='bg-white rounded-lg w-[160px] h-[35px] text-center hover:bg-gray-200'>Entrar</button>
           </div>
           <div className='flex justify-center '>
             <div className='border border-black p-2 rounded-md text-black font-medium hover:cursor-pointer hover:bg-[#ffffff85]'>

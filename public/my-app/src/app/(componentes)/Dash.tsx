@@ -4,11 +4,13 @@ import customSession from '../customHooks/customSession';
 import { FaBook, FaClock, FaClipboardList, FaPenFancy } from 'react-icons/fa';
 import ClassCard from './Card';
 import Link from 'next/link';
+
 const Dashboard: React.FC = () => {
-  
+ 
   return (
     
     <main className="flex flex-wrap h-[100vh]  justify-center gap-6 md:gap-x-6 md:gap-y-2 mx-auto w-[90%] md:p-4">
+      <h1>Sorak siul</h1>
         <ClassCard
         nome="Desenvolvimento Frontend"
         horario="sex 17h"

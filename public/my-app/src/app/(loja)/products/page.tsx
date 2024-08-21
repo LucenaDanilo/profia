@@ -7,14 +7,19 @@ import Product from "../(compponentes)/Product";
 import { TbShoppingCartX } from "react-icons/tb";
 import Link from "next/link";
 import Aside from "@/app/(componentes)/Aside";
+import { useMyContext } from "@/app/providers/testeprovider";
+
 export interface Props {
     produtos: ProductType[];
 }
 
+
 function EmptyState() {
+
     return (
         <div className="flex flex-col items-center justify-center">
             <span className=""> <TbShoppingCartX size={42} /></span>
+
             <h2 className="text-2xl font-semibold mb-2 text-black">Nenhum produto encontrado</h2>
             <p className="text-gray-600">Por favor, tente novamente mais tarde.</p>
             <Link href="/products/novo">

@@ -1,25 +1,34 @@
 'use client'
 import Header from "../../(componentes)/Header"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Aside from "@/app/(componentes)/Aside"
-import UpdateExam from "@/app/(componentes)/UpdateExam"
 import Table from "@/app/(componentes)/Table"
-import Link from "next/link"
+import { useMyContext } from "@/app/providers/testeprovider"
 
-export default function page(){
-    
-    return(
+interface User {
+    id: string;
+    email: string;
+    name: string;
+    userRole: string;
+}
+
+interface Session {
+    user: User;
+}
+
+export default function Page() {
+    const { soraka } = useMyContext();
+   
+
+    return (
         <>
-            <Header/>
+            <Header />
             <div className="flex">
-                <Aside/>
-                <div>
-                   
-                </div>
-                <Table/>
+                <h1>{soraka}</h1>
+                <Aside />
+               
+                <Table />
             </div>
-       
         </>
     )
-
 }

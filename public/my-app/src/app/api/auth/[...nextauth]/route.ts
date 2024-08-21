@@ -1,5 +1,8 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { DefaultSession, DefaultUser, JWT as NextAuthJWT } from 'next-auth';
+
+
 
 const nextAuthOptions: NextAuthOptions = {
   providers: [
@@ -7,11 +10,10 @@ const nextAuthOptions: NextAuthOptions = {
       name: 'apipost',
       credentials: {
         email: { label: 'Email', type: 'text' },
-        userType: { label: 'User Type', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const response = await fetch('http://192.168.15.25:3001/login', {
+        const response = await fetch('http://172.19.96.1:8080/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -19,14 +21,14 @@ const nextAuthOptions: NextAuthOptions = {
           body: JSON.stringify({
             email: credentials?.email,
             password: credentials?.password,
-            userType: credentials?.userType,
           }),
         });
 
-        const user = await response.json();
+        const data = await response.json();
 
-        if(user && response.ok){
-          return user
+        if (data && response.ok) {
+          const { token, user } = data;
+          return { ...user, token };
         }
 
         return null;
@@ -36,17 +38,16 @@ const nextAuthOptions: NextAuthOptions = {
   pages: {
     signIn: '/dashboard',
   },
-  callbacks: {
-    async jwt({token,user}){
-      user && (token.user = user)
-      return token
+  callbacks:{
+    async jwt({token, user}){
+        user && (token.user = user) 
+        return token
     },
     async session({session, token}){
         session = token.user as any
         return session
     }
-  
-  },
+},
 
 };
 
