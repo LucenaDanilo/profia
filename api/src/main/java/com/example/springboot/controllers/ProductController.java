@@ -93,7 +93,7 @@ public class ProductController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Secured("ROLE_USER")
+//    @Secured("ROLE_USER")
     @PostMapping("/products/resgatar")
     public ResponseEntity<String> resgatar(@RequestBody Map<String, String> body) {
         // Recupera o UserModel do principal

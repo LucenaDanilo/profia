@@ -26,21 +26,36 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                        // Permitir acesso público para login
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers( "/auth/register").hasAuthority("ROLE_ADMIN")
+
+                        // Permitir acesso para registro apenas para ADMIN
+                        .requestMatchers("/auth/register").hasAuthority("ROLE_ADMIN")
+
+                        // Permitir acesso para resgatar produtos apenas para STUDENT
                         .requestMatchers(HttpMethod.POST, "/products/resgatar").hasAuthority("ROLE_STUDENT")
-                        .requestMatchers( "/api/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
+                        .requestMatchers(HttpMethod.POST, "/products/resgatar").hasAuthority("ROLE_STUDENT")
+
+                        // Permitir acesso a estudantes e professores para /api/students/** e /api/teachers/**
+                        .requestMatchers("/api/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
                         .requestMatchers("/api/teachers/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
+
+                        // Permitir GET para produtos apenas para STUDENT
                         .requestMatchers(HttpMethod.GET, "/products/**").hasAuthority("ROLE_STUDENT")
+                        // Minha turma (aluno)
+                        .requestMatchers(HttpMethod.GET, "/turma/**").hasAnyAuthority("ROLE_STUDENT", "ROLE_TEACHER")
+
+
+                        // Permitir acesso completo para produtos apenas para ADMIN
                         .requestMatchers("/products/**").hasAuthority("ROLE_ADMIN")
 
-
-
-                        .anyRequest().authenticated() // Requer autenticação para todas as outras requisições
+                        // Requer autenticação para todas as outras requisições
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
