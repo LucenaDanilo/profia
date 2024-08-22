@@ -3,10 +3,16 @@ package com.example.springboot.models;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
+@Getter
+@Setter
 @Entity
 public class TurmaModel extends RepresentationModel<TurmaModel> {
     @Id
@@ -21,6 +27,11 @@ public class TurmaModel extends RepresentationModel<TurmaModel> {
     private LocalDate datafim;
     private LocalTime horario;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "turma_id")
+    private Set<Aula> aulas = new HashSet<>();
+
+
     @ManyToMany
     @JoinTable(
             name = "turma_teachers",
@@ -33,85 +44,5 @@ public class TurmaModel extends RepresentationModel<TurmaModel> {
     private Set<Student> students;
 
 
-    // Getters and setters...
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTrilha() {
-        return trilha;
-    }
-
-    public void setTrilha(String trilha) {
-        this.trilha = trilha;
-    }
-
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public LocalDate getDatainicio() {
-        return datainicio;
-    }
-
-    public void setDatainicio(LocalDate datainicio) {
-        this.datainicio = datainicio;
-    }
-
-    public LocalDate getDatafim() {
-        return datafim;
-    }
-
-    public void setDatafim(LocalDate datafim) {
-        this.datafim = datafim;
-    }
-
-    public LocalTime getHorario() {
-        return horario;
-    }
-
-    public void setHorario(LocalTime horario) {
-        this.horario = horario;
-    }
-
-    public Set<Teacher> getTeachers() {
-        return teachers;
-    }
-
-    public void setTeachers(Set<Teacher> teachers) {
-        this.teachers = teachers;
-    }
-
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
-    }
 }
