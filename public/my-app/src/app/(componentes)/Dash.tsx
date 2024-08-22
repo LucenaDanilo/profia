@@ -20,7 +20,7 @@ const Dashboard: React.FC = () => {
   }, [turmas]); 
   return (
     
-    <main className="flex flex-wrap h-[100vh]  justify-center gap-6 md:gap-x-6 md:gap-y-2 mx-auto w-[90%] md:p-4">
+    <main className="flex flex-wrap  justify-center gap-6 md:gap-x-6 md:gap-y-2 mx-auto w-[90%] md:p-4">
       {turmas.map((turma:Turma, index:any)=> {
         return(
           <>

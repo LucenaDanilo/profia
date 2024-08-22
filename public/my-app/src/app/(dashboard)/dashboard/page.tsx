@@ -8,14 +8,16 @@ import { nextAuthOptions } from '@/app/api/auth/[...nextauth]/route'
 export default async function page() {
   return (
       <>
+      <div className='h-full bg-[#28272bf1] '>
         <div>
           <Header></Header>
         </div>
-        <div className='h-[100%] '>
-          <div className='flex'>
+        
+          <div className='flex min-h-full'>
             <Aside></Aside>
             <Dash></Dash>
-        </div>
+          </div>
+             
       </div>
       </>
   )
