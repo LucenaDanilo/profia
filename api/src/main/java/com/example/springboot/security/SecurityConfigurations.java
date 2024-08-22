@@ -40,6 +40,8 @@ public class SecurityConfigurations {
                         .requestMatchers("/api/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
                         .requestMatchers("/api/teachers/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
 
+                        .requestMatchers("/aula/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
+
                         // Permitir GET para produtos apenas para STUDENT
                         .requestMatchers(HttpMethod.GET, "/products/**").hasAuthority("ROLE_STUDENT")
                         // Minha turma (aluno)

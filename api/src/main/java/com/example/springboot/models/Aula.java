@@ -1,13 +1,16 @@
 package com.example.springboot.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "TB_AULAS")
 public class Aula extends RepresentationModel<Aula> implements Serializable {
@@ -15,9 +18,15 @@ public class Aula extends RepresentationModel<Aula> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idProduct;
+    private UUID id;
 
     private String conteudo;
+    private String linkAtividade;
+
+
+    @ManyToOne
+    @JoinColumn(name = "turma_id")
+    private TurmaModel turma;
 
     @ManyToOne
     @JoinColumn(name = "professor_id")
@@ -33,43 +42,5 @@ public class Aula extends RepresentationModel<Aula> implements Serializable {
 
     private LocalDate data;
 
-    public LocalDate getData() {
-        return data;
-    }
 
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-
-    public Teacher getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Teacher professor) {
-        this.professor = professor;
-    }
-
-    public String getConteudo() {
-        return conteudo;
-    }
-
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
-    }
-
-    public UUID getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(UUID idProduct) {
-        this.idProduct = idProduct;
-    }
 }
