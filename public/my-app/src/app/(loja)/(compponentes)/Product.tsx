@@ -5,14 +5,19 @@ import Link from 'next/link';
 import { FaPlusCircle } from "react-icons/fa";
 
 export interface ProductType {
-    id: string;
-    name: string;
-    value: number;
-    description: string;
-    img: string;
+    idProduct?: string;
+    name?: string;
+    value?: number;
+    description?: string;
+    image?: string;
+    link?: string | null;
+    links?: Array<{
+        rel?: string;
+        href?: string;
+    }>;
 }
 
-function Product({ id, name, value, description, img }: ProductType) {
+function Product({ idProduct, name, value, description, image }: ProductType) {
     return (
         <div className="hover:shadow-lg lg:h-[310px] lg:w-[340px] transition-shadow duration-300 ease-in-out transform hover:scale-[1.01] bg-[#28272B] flex flex-col rounded-md ">
             <div className='bg-[#5c59ebde] w-full flex justify-center h-[120px] rounded-t-md'>
