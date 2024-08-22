@@ -1,5 +1,6 @@
 package com.example.springboot.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class Aula extends RepresentationModel<Aula> implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "turma_id")
+    @JsonBackReference
     private TurmaModel turma;
 
     @ManyToOne

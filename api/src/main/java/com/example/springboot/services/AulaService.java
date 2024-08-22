@@ -37,6 +37,7 @@ public class AulaService {
         TurmaModel turma = turmaRepository.findById(aulaDto.turmaId())
                 .orElseThrow(() -> new IllegalArgumentException("Turma não encontrada com o ID: " + aulaDto.turmaId()));
 
+
         aula.setId(UUID.randomUUID());
         aula.setTurma(turma);
         aula.setConteudo(aulaDto.conteudo());
@@ -45,6 +46,8 @@ public class AulaService {
         aula.setStudents(studentRepository.findAllById(aulaDto.studentIds()));
         aula.setData(aulaDto.data());
         aula.setLinkAtividade(aulaDto.linkAtividade());
+
+        turma.getAulas().add(aula);
 
         return aulaRepository.save(aula);
     }
