@@ -24,7 +24,7 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
       console.error("Erro ao buscar a turma:", error);
       setLoading(false); // Mesmo em caso de erro, definir o carregamento como concluído
     });
-  }, [id]);
+  }, []);
 
   if (loading) {
     return (
@@ -43,6 +43,7 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
           <div className='flex justify-between'>
               <h1 className="text-2xl font-bold mb-4">{myclass.name}</h1>
               <Link href={`new/${id}`}>Novo aluno</Link>
+              <h1>id dessa turma: {id}</h1>
           </div>
           
           <div className="bg-white shadow-md rounded-lg p-6 mb-6">

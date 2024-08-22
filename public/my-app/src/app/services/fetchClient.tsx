@@ -7,6 +7,7 @@ export const fetchClient = async(
     init?: RequestInit
 ): Promise<Response> => {
     const jwt = getCookie("jwt");
+    console.log(jwt)
     const response = await fetch(input,{
         ...init,
         headers:{

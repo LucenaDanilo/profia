@@ -14,7 +14,7 @@ export default function page(){
             <div className="flex">
                 <Aside/>
                 <div>
-                   
+                  
                 </div>
                 <Table/>
             </div>
