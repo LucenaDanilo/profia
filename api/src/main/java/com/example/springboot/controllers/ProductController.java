@@ -6,6 +6,7 @@ import com.example.springboot.models.ProductModel;
 import com.example.springboot.models.Student;
 import com.example.springboot.models.UserModel;
 import com.example.springboot.repository.ProductRepository;
+import com.example.springboot.repository.StudentRepository;
 import com.example.springboot.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.apache.catalina.Store;
@@ -31,7 +32,11 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
 
     @GetMapping("/products")
     public ResponseEntity<List<ProductModel>> getAllProducts(){
