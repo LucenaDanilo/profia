@@ -17,8 +17,9 @@ function Aside() {
   const currentPath = usePathname();
 
   const [open, setOpen] = useState(false);
-  return (    
-    <aside className={`bg-[#28272bf1]  border-r-2 border-white  flex flex-col gap-4 px-2 md:gap-0 md:px-0 items-center pt-4 ${open ? "w-72" : "w-24"} duration-300`}>
+  return (
+    <div className=' min-h-screen'>
+    <aside className={`bg-[#28272bf1] h-full border-r-2 border-white  flex flex-col gap-4 px-2 md:gap-0 md:px-0 items-center pt-4 ${open ? "w-72" : "w-24"} duration-300`}>
         <div className={` ${open ?'flex justify-between w-[80%]' : 'flex-col pb-2'} `}>
           <div className=''></div>
           <div className=''>
@@ -94,7 +95,7 @@ function Aside() {
           </div>          
         </Link >
     </aside> 
-   
+    </div>
     
   )
 }

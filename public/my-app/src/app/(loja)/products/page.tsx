@@ -1,12 +1,12 @@
 "use client";
 import Header from "@/app/(componentes)/Header";
 import { useEffect, useState } from "react";
-import api from "@/api/axios";
-import { ProductType } from "../(compponentes)/Product";
 import Product from "../(compponentes)/Product";
+import { fetchClient } from "@/app/services/fetchClient";
 import { TbShoppingCartX } from "react-icons/tb";
 import Link from "next/link";
 import Aside from "@/app/(componentes)/Aside";
+import { ProductType } from "../(compponentes)/Product";
 export interface Props {
     produtos: ProductType[];
 }
@@ -30,16 +30,13 @@ export default function Page({ produtos }: Props) {
     const [products, setProducts] = useState<ProductType[]>([]);
 
     useEffect(() => {
-        api.get('/products')
-            .then((res) => {
-                setProducts(res.data);
-                console.log('meus produtos', res.data);
-                console.log(products)
-            })
-            .catch((err) => {
-                console.error('Erro ao buscar produtos', err);
-            }); 
-    }, []);
+        fetchClient("http://192.168.15.9:8080/products").then(async (response) => {
+          if (response.status === 200) {
+            const data = await response.json();
+            setProducts(data);
+          }
+        });
+      }, []); 
 
     return (
         <>
@@ -52,7 +49,7 @@ export default function Page({ produtos }: Props) {
                             <h1 className="text-3xl font-bold mb-4 text-center mx-auto text-red-600">Use seus pontos para ganhar recompensas</h1>
                             <div className="flex flex-wrap justify-center gap-6 md:gap-x-6 md:gap-y-6 mx-auto w-[90%] md:p-4">
                                 {products.map((p: ProductType) => (
-                                        <Product id={p.id} name={p.name} value={p.value} description={p.description} img={p.img} />
+                                        <Product idProduct={p.idProduct} name={p.name} value={p.value} description={p.description} image={p.image} />
                                 ))}
                             </div>
                         </>

@@ -1,20 +1,22 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import api from '@/api/axios';
 import Header from '@/app/(componentes)/Header';
 import Aside from '@/app/(componentes)/Aside';
 import { Turma } from '@/types/Turma';
 import { fetchClient } from '@/app/services/fetchClient';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation'
+
 
 export default function TurmaInfo({ params }: { params: { id: String } }) {
   const [myclass, setMyclass] = useState<Turma>({});
   const [loading, setLoading] = useState(true); 
-
+  const router = useRouter();
   const id = params.id;
-
+  
   useEffect(() => {
-    fetchClient(`http://localhost:8080/turmas/${id}`).then(async (response) => {
+    fetchClient(`http://192.168.15.9:8080/turmas/${id}`).then(async (response) => {
       if (response.status === 200) {
         const data = await response.json();
         setMyclass(data);
@@ -22,7 +24,7 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
       setLoading(false); 
     }).catch((error) => {
       console.error("Erro ao buscar a turma:", error);
-      setLoading(false); // Mesmo em caso de erro, definir o carregamento como concluído
+      setLoading(false); 
     });
   }, []);
 
@@ -51,11 +53,11 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
             <div>
                     { myclass.teachers && myclass.teachers?.length > 0 ? (
                       myclass.teachers.map((teacher, index) => (
-                        <div>
-                          <p key={index}>Nome:  {teacher.name}</p>
-                          <p key={index}>Email: {teacher.email}</p>
-                          <p key={index}>Hora Aula: {teacher.hrAula}</p>
-                          <p key={index}>Especialidade: {teacher.especialidade}</p>
+                        <div key={teacher.id}>
+                          <p>Nome:  {teacher.name}</p>
+                          <p>Email: {teacher.email}</p>
+                          <p>Hora Aula: {teacher.hrAula}</p>
+                          <p>Especialidade: {teacher.especialidade}</p>
 
                         </div>
                       ))
@@ -76,12 +78,14 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
             </thead>
             <tbody>
               {myclass && myclass.students && myclass.students.map((student) => (
-                <tr key={student.id}>
-                  <td className="py-2 px-4 border-b">{student.name}</td>
-                  <td className="py-2 px-4 border-b">{student.email}</td>
-                  <td className="py-2 px-4 border-b">{student.registration}</td>
-                  <td className="py-2 px-4 border-b">{student.points}</td>
-                </tr>
+                  <tr key={student.id} className="hover:bg-gray-300 cursor-pointer" onClick={() => router.push(`/aluno/${student.id}`)}>
+                 
+                    
+                    <td className="py-2 px-4 border-b">{student.name}</td>
+                    <td className="py-2 px-4 border-b">{student.email}</td>
+                    <td className="py-2 px-4 border-b">{student.registration}</td>
+                    <td className="py-2 px-4 border-b">{student.points}</td>
+                  </tr>
               ))}
             </tbody>
           </table>
