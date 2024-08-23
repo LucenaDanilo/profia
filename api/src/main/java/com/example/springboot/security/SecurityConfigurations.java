@@ -40,6 +40,12 @@ public class SecurityConfigurations {
                         .requestMatchers("/api/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
                         .requestMatchers("/api/teachers/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
 
+                        //Permitir acesso do admin (token adm) para pagina de detalhe de cada aluno
+                        .requestMatchers(HttpMethod.GET, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
+
                         .requestMatchers("/aula/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
 
                         // Permitir GET para produtos apenas para STUDENT

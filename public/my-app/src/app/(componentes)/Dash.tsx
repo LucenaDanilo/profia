@@ -11,7 +11,7 @@ const Dashboard: React.FC = () => {
   const [turmas, setTurmas] = useState<Turma[]>([])
   
   useEffect(() => {
-    fetchClient("http://192.168.15.9:8080/turmas").then(async (response) => {
+    fetchClient("http://192.168.15.6:8080/turmas").then(async (response) => {
       if (response.status === 200) {
         const data = await response.json();
         setTurmas(data);
