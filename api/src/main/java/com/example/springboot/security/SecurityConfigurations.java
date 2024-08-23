@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfigurations {
@@ -26,21 +27,26 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        // Permitir acesso público para login
+                        // Allow OPTIONS requests to pass through for CORS preflight checks
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                        // Allow self-update for students
+                        .requestMatchers(HttpMethod.PUT, "/api/students/myprofile/**").hasAnyAuthority("ROLE_STUDENT")
+
+                        // Allow public access for login
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
 
-                        // Permitir acesso para registro apenas para ADMIN
+                        // Allow access to registration only for ADMIN
                         .requestMatchers("/auth/register").hasAuthority("ROLE_ADMIN")
 
-                        // Permitir acesso para resgatar produtos apenas para STUDENT
-                        .requestMatchers(HttpMethod.POST, "/products/resgatar").hasAuthority("ROLE_STUDENT")
+                        // Allow access to redeem products only for STUDENT
                         .requestMatchers(HttpMethod.POST, "/products/resgatar").hasAuthority("ROLE_STUDENT")
 
-                        // Permitir acesso a estudantes e professores para /api/students/** e /api/teachers/**
+                        // Allow access for admins and teachers to /api/students/** and /api/teachers/**
                         .requestMatchers("/api/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
                         .requestMatchers("/api/teachers/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
 
-                        //Permitir acesso do admin (token adm) para pagina de detalhe de cada aluno
+                        // Allow admin access (admin token) to student detail page
                         .requestMatchers(HttpMethod.GET, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
@@ -48,25 +54,22 @@ public class SecurityConfigurations {
 
                         .requestMatchers("/aula/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
 
-                        // Permitir GET para produtos apenas para STUDENT
+                        // Allow GET access to products only for STUDENT
                         .requestMatchers(HttpMethod.GET, "/products/**").hasAuthority("ROLE_STUDENT")
-                        .requestMatchers(HttpMethod.GET, "/students/**").hasAuthority("ROLE_STUDENT")
+                        .requestMatchers(HttpMethod.GET, "/api/students/**").hasAuthority("ROLE_STUDENT")
 
-
-                        // Minha turma (aluno)
+                        // Allow "Minha turma" access for students and teachers
                         .requestMatchers(HttpMethod.GET, "/turma/**").hasAnyAuthority("ROLE_STUDENT", "ROLE_TEACHER")
 
-
-                        // Permitir acesso completo para produtos apenas para ADMIN
+                        // Allow full access to products only for ADMIN
                         .requestMatchers("/products/**").hasAuthority("ROLE_ADMIN")
 
-                        // Requer autenticação para todas as outras requisições
+                        // Require authentication for all other requests
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

@@ -1,5 +1,6 @@
 package com.example.springboot.services;
 
+import com.example.springboot.dto.SelfStudentUpdateDto;
 import com.example.springboot.dto.StudentUpdateDto;
 import com.example.springboot.models.Student;
 import com.example.springboot.models.TurmaModel;
@@ -53,6 +54,34 @@ public class StudentService {
             if (updateDto.getPoints() != 0) {
                 student.setPoints(updateDto.getPoints());
             }
+
+
+            return studentRepository.save(student);
+        } else {
+            throw new RuntimeException("Student not found");
+        }
+    }
+
+    public Student selfUpdate(UUID studentId, SelfStudentUpdateDto updateDto) {
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+
+        if (studentOptional.isPresent()) {
+            Student student = studentOptional.get();
+
+            // Atualizar os campos do estudante
+            if (updateDto.getName() != null) {
+                student.setName(updateDto.getName());
+            }
+            if (updateDto.getEmail() != null) {
+                student.setEmail(updateDto.getEmail());
+            }
+            if (updateDto.getPassword() != null) {
+                student.setPassword(passwordEncoder.encode(updateDto.getPassword()));
+            }
+            if (updateDto.getResponsibleCPF() != null) {
+                student.setResponsibleCPF(updateDto.getResponsibleCPF());
+            }
+
 
 
             return studentRepository.save(student);

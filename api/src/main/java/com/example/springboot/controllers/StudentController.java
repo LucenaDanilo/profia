@@ -2,6 +2,7 @@ package com.example.springboot.controllers;
 
 
 import com.example.springboot.dto.PointsDto;
+import com.example.springboot.dto.SelfStudentUpdateDto;
 import com.example.springboot.dto.StudentUpdateDto;
 import com.example.springboot.models.Student;
 import com.example.springboot.repository.StudentRepository;
@@ -44,6 +45,13 @@ public class StudentController {
     @PutMapping("/{id}")
     public ResponseEntity<Student> updateStudent(@PathVariable UUID id, @RequestBody StudentUpdateDto studentUpdateDto) {
         Student updatedStudent = studentService.update(id, studentUpdateDto);
+        return ResponseEntity.ok(updatedStudent);
+    }
+
+
+    @PutMapping("/myprofile/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable UUID id, @RequestBody SelfStudentUpdateDto selfStudentUpdateDto) {
+        Student updatedStudent = studentService.selfUpdate(id, selfStudentUpdateDto);
         return ResponseEntity.ok(updatedStudent);
     }
 
