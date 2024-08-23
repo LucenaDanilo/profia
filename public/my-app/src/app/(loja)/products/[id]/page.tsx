@@ -1,22 +1,17 @@
 "use client"
 import React from 'react'
 import { useEffect, useState } from 'react';
-import api from '@/api/axios';
 import { ProductType } from '../../(compponentes)/Product';
 import Header from '@/app/(componentes)/Header';
 import Aside from '@/app/(componentes)/Aside';
+import { fetchClient } from '@/app/services/fetchClient';
 export default function ProductInfo({params}: {params:{id: String}}) {
     const [product, setProduct] = useState<ProductType | null>(null);
     const [quantity, setQuantity] = useState(1);
     const [userBalance, setUserBalance] = useState(100);
     const id = params.id;
 
-    useEffect(() => {
-        api.get(`/products/${id}`).then((res) => {
-            setProduct(res.data);
-            console.log(res.data)
-        })
-    },[id])
+   
 
     const addToCart = () => {
         // Lógica para adicionar ao carrinho

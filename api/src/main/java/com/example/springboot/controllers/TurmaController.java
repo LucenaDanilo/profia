@@ -21,6 +21,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @CrossOrigin("*")
 @RestController
+@CrossOrigin(origins = "*")
 public class TurmaController {
 
     @Autowired

@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/aula")
+@CrossOrigin(origins = "*")
 public class AulaController {
 
     @Autowired
