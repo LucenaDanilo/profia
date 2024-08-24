@@ -12,7 +12,7 @@ function TeacherPage() {
     const [cnpj, setCnpj] = useState<string>("");
     const [hrAula, setHrAula] = useState<number>(0);
     const [especialidade, setEspecialidade] = useState<string>("");
-    const [turmaIds, setTurmaIds] = useState<string[]>([]);  // Add this if needed
+    const [turmaIds, setTurmaIds] = useState<string[]>([]);  
 
     const handleCreateTeacher = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -41,12 +41,11 @@ function TeacherPage() {
             const data = await response.json();
             console.log('Professor cadastrado com sucesso:', data);
 
-            // Limpa os campos do formulário após o cadastro bem-sucedido
             setName("");
             setCnpj("");
             setHrAula(0);
             setEspecialidade("");
-            setTurmaIds([]);  // Clear turmaIds if used
+            setTurmaIds([]); 
 
         } catch (error) {
             console.error('Erro:', error);
@@ -128,14 +127,14 @@ function TeacherPage() {
                                             required
                                         />
                                     </div>
-                                    {/* Add an input for turmaIds if needed */}
+                                  
                                     <div className="sm:col-span-2">
                                         <label htmlFor="turmaIds" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Turmas</label>
                                         <input
                                             type="text"
                                             name="turmaIds"
                                             id="turmaIds"
-                                            value={turmaIds.join(',')}  // Display as a comma-separated string
+                                            value={turmaIds.join(',')} 
                                             onChange={(e) => setTurmaIds(e.target.value.split(','))}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             placeholder="IDs das turmas separadas por vírgula"
