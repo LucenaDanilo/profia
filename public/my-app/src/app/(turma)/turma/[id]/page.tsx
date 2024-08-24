@@ -7,6 +7,9 @@ import { fetchClient } from '@/app/services/fetchClient';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { useRouter } from 'next/navigation'
+import { FaPlus } from "react-icons/fa6";
+import { IoMdMore } from "react-icons/io";
+
 
 
 export default function TurmaInfo({ params }: { params: { id: String } }) {
@@ -16,7 +19,7 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
   const id = params.id;
   
   useEffect(() => {
-    fetchClient(`http://192.168.15.9:8080/turmas/${id}`).then(async (response) => {
+    fetchClient(`http://192.168.15.6:8080/turmas/${id}`).then(async (response) => {
       if (response.status === 200) {
         const data = await response.json();
         setMyclass(data);
@@ -42,53 +45,55 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
       <div className='flex'>
         <Aside />
         <div className="container mx-auto p-4 ">
-          <div className='flex justify-between'>
-              <h1 className="text-2xl font-bold mb-4">{myclass.name}</h1>
-              <Link href={`new/${id}`}>Novo aluno</Link>
-              <h1>id dessa turma: {id}</h1>
+          <div className='flex justify-between mb-4'>
+              <h1 className="text-2xl font-bold ">{myclass.name}</h1>
+              <Link href={`new/${id}`} className='bg-blue-600 p-2 text-white rounded-md cursor-pointer flex items-center gap-1 hover:text-green-300 '><FaPlus size={12} color='white'/> <span className='font-bold '>Novo aluno</span></Link>
           </div>
           
-          <div className="bg-white shadow-md rounded-lg p-6 mb-6">
-            <h2 className="text-xl font-semibold mb-2">Professor</h2>
-            <div>
-                    { myclass.teachers && myclass.teachers?.length > 0 ? (
-                      myclass.teachers.map((teacher, index) => (
-                        <div key={teacher.id}>
-                          <p>Nome:  {teacher.name}</p>
-                          <p>Email: {teacher.email}</p>
-                          <p>Hora Aula: {teacher.hrAula}</p>
-                          <p>Especialidade: {teacher.especialidade}</p>
-
-                        </div>
-                      ))
-                    ) : (
-                      <p>Nenhum professor disponível.</p>
-                    )}
+          <div className="">
+           <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-[60px] rounded-t-lg w-full p-4">  <h2 className="text-xl  text-white font-semibold mb-4">Professor</h2></div>
+            <div className=''>
+              {myclass.teachers && myclass.teachers.length > 0 ? (
+                myclass.teachers.map((teacher, index) => (
+                  <div key={teacher.id} className="border border-gray-300 rounded-b-lg p-4 mb-4 bg-white">
+                    <p className="text-gray-700 font-medium">Nome: <span className="font-normal">{teacher.name}</span></p>
+                    <p className="text-gray-700 font-medium">Email: <span className="font-normal">{teacher.email}</span></p>
+                    <p className="text-gray-700 font-medium">Especialidade: <span className="font-normal">{teacher.especialidade}</span></p>
                   </div>
+                ))
+              ) : (
+                <p className="text-gray-500">Nenhum professor disponível.</p>
+              )}
+            </div>
           </div>
 
-          <table className="min-w-full bg-white border border-gray-300 ">
-            <thead>
-              <tr>
-                <th className="py-2 px-4 bg-gray-100 border-b">Nome</th>
-                <th className="py-2 px-4 bg-gray-100 border-b">Email</th>
-                <th className="py-2 px-4 bg-gray-100 border-b">Matrícula</th>
-                <th className="py-2 px-4 bg-gray-100 border-b">Pontuação</th>
-              </tr>
-            </thead>
-            <tbody>
-              {myclass && myclass.students && myclass.students.map((student) => (
-                  <tr key={student.id} className="hover:bg-gray-300 cursor-pointer" onClick={() => router.push(`/aluno/${student.id}`)}>
-                 
-                    
+
+          <table className="min-w-full  border border-purple-700 rounded-sm">
+              <thead className=''>
+                <tr className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white'>
+                  <th className="py-2 px-4 border-b text-left">Nome</th>
+                  <th className="py-2 px-4 border-b text-left">Email</th>
+                  <th className="py-2 px-4 border-b text-left">Matrícula</th>
+                  <th className="py-2 px-4 border-b text-left">Pontuação</th>
+                  
+                </tr>
+              </thead>
+              <tbody className='bg-white'>
+                {myclass?.students?.map((student) => (
+                  <tr
+                    key={student.id}
+                    className="hover:bg-purple-100 cursor-pointer"
+                    onClick={() => router.push(`/aluno/${student.id}`)}
+                  >
                     <td className="py-2 px-4 border-b">{student.name}</td>
                     <td className="py-2 px-4 border-b">{student.email}</td>
                     <td className="py-2 px-4 border-b">{student.registration}</td>
                     <td className="py-2 px-4 border-b">{student.points}</td>
+                  
                   </tr>
-              ))}
-            </tbody>
-          </table>
+                ))}
+              </tbody>
+            </table>
         </div>
       </div>
     </>
