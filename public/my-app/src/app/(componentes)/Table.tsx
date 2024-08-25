@@ -33,7 +33,7 @@ function Table() {
                 <a href="#" className="font-bold text-blue-500 hover:underline">001</a>
               </td>
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                Antonio Moraes Lino
+                Legado
               </td>
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
               <span
@@ -46,7 +46,7 @@ function Table() {
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
                 <a href="#" className="font-bold text-blue-500 hover:underline">10002</a>
               </td>
-              <td className="p-3 text-sm text-gray-700 whitespace-nowrap">Antonio Moraes Lino</td>
+              <td className="p-3 text-sm text-gray-700 whitespace-nowrap">Legado</td>
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
               <span
                 className="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">Ausente</span>
@@ -58,7 +58,7 @@ function Table() {
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
                 <a href="#" className="font-bold text-blue-500 hover:underline">10002</a>
               </td>
-              <td className="p-3 text-sm text-gray-700 whitespace-nowrap">Antonio Moraes Lino</td>
+              <td className="p-3 text-sm text-gray-700 whitespace-nowrap">Legado</td>
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
               <span
                 className="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">Inativo</span>
