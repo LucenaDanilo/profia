@@ -8,8 +8,6 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { useRouter } from 'next/navigation'
 import { FaPlus } from "react-icons/fa6";
-import { IoMdMore } from "react-icons/io";
-
 
 
 export default function TurmaInfo({ params }: { params: { id: String } }) {
@@ -19,7 +17,7 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
   const id = params.id;
   
   useEffect(() => {
-    fetchClient(`http://192.168.15.6:8080/turmas/${id}`).then(async (response) => {
+    fetchClient(`http://192.168.100.122:8080/turmas/${id}`).then(async (response) => {
       if (response.status === 200) {
         const data = await response.json();
         setMyclass(data);

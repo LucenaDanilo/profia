@@ -7,6 +7,7 @@ import { TbShoppingCartX } from "react-icons/tb";
 import Link from "next/link";
 import Aside from "@/app/(componentes)/Aside";
 import { ProductType } from "../(compponentes)/Product";
+
 export interface Props {
     produtos: ProductType[];
 }
@@ -30,7 +31,7 @@ export default function Page({ produtos }: Props) {
     const [products, setProducts] = useState<ProductType[]>([]);
 
     useEffect(() => {
-        fetchClient("http://192.168.15.6:8080/products").then(async (response) => {
+        fetchClient("http://192.168.100.122:8080/products").then(async (response) => {
           if (response.status === 200) {
             const data = await response.json();
             setProducts(data);
@@ -39,14 +40,15 @@ export default function Page({ produtos }: Props) {
       }, []); 
 
     return (
-        <>
+        <div className="min-h-screen">
             <Header />
-            <div className="flex h-[100vh]">
+                <div className="flex h-full">
                 <Aside/>
                 <div className="container mx-auto p-4 ">
                     {products.length > 0 ? (
                         <>
                             <h1 className="text-3xl font-bold mb-4 text-center mx-auto text-red-600">Use seus pontos para ganhar recompensas</h1>
+                            <h2>to nessa pagina</h2>
                             <div className="flex flex-wrap justify-center gap-6 md:gap-x-6 md:gap-y-6 mx-auto w-[90%] md:p-4">
                                 {products.map((p: ProductType) => (
                                         <Product idProduct={p.idProduct} name={p.name} value={p.value} description={p.description} image={p.image} />
@@ -57,7 +59,7 @@ export default function Page({ produtos }: Props) {
                         <EmptyState />
                     )}
                 </div>
-            </div>
-        </>
+                </div>
+        </div>
     );
 }

@@ -7,11 +7,13 @@ import Link from 'next/link';
 import { Turma } from '@/types/Turma';
 import { useEffect, useState } from 'react';
 import { fetchClient } from '../services/fetchClient';
+import { useSession } from 'next-auth/react';
 const Dashboard: React.FC = () => {
   const [turmas, setTurmas] = useState<Turma[]>([])
-  
+  const {data: session} = useSession()
+  console.log('logado', session?.user.userRole)
   useEffect(() => {
-    fetchClient("http://192.168.15.6:8080/turmas").then(async (response) => {
+    fetchClient("http://192.168.100.122:8080/turmas").then(async (response) => {
       if (response.status === 200) {
         const data = await response.json();
         setTurmas(data);
