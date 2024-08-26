@@ -36,13 +36,12 @@ export default function ProductInfo({ params }: { params: { id: string } }) {
       <Header />
       <div className="flex">
         <Aside />
-        <div className="p-2 bg-[#28272B]">
+        <div className=" bg-[#28272B] container mx-auto flex justify-center ">
           {product ? (
-            <div>
-              <h1>to chamando aqui ?</h1>
-              <div className="shadow-lg rounded-lg bg-[#1d1c1f] text-white flex flex-col gap-6" >
-                <div className='bg-[#5DBF79] rounded-t-lg'>
-                  <img src="/img.png" alt="imagem do produto" />
+            <div className='pt-2 '>
+              <div className="shadow-lg rounded-lg bg-[#1d1c1f] max-w-[400px] text-white flex flex-col gap-6" >
+                <div className='bg-[#5DBF79] rounded-t-lg '>
+                  <img src="/img.png" alt="imagem do produto" className='' />
                 </div>
                 <div className='flex flex-col p-2 gap-2'>
                   <span>{product.name}</span>

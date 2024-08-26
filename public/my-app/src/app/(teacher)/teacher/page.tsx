@@ -22,11 +22,11 @@ function TeacherPage() {
             cnpj,
             hrAula,
             especialidade,
-            turmaIds,  // Include turmaIds if needed
+            turmaIds,
         };
 
         try {
-            const response = await fetchClient('http://192.168.15.9:8080/auth/teacher/register', {
+            const response = await fetchClient('http://192.168.15.6:8080/auth/teacher/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

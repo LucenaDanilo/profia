@@ -22,9 +22,8 @@ export interface ProductType {
 
 function Product({ idProduct, name, value, description, image }: ProductType) {
     return (
-        <Link href={`/products/${idProduct}`} className='hover:shadow-lg lg:h-[310px] lg:w-[340px] transition-shadow duration-300 ease-in-out transform hover:scale-[1.01] bg-[#28272B] flex flex-col rounded-md '>
+        <Link href={`/products/${idProduct}`} className='hover:shadow-lg h-[330px] w-[260px]  md:h-[290px] md:w-[290px] lg:h-[310px] lg:w-[340px] transition-shadow duration-300 ease-in-out transform hover:scale-[1.01] bg-[#28272B] flex flex-col rounded-md '>
             <div className="">
-                <h1>to chamando aqui</h1>
                     <div className='bg-[#5c59ebde] w-full flex justify-center h-[120px] rounded-t-md'>
                         <img src="/img.png" className="max-h-[100px] max-w-[320px]"alt="produto" />
                     </div>

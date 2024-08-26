@@ -12,6 +12,7 @@ export interface Turma {
     horario?: string;
     teachers?: Teacher[];
     students?: Student[];
+    aulas?: any;
     links?: Link[];
 }
 

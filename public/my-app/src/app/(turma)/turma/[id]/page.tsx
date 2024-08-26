@@ -8,18 +8,24 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { useRouter } from 'next/navigation'
 import { FaPlus } from "react-icons/fa6";
+import { useSession } from 'next-auth/react';
 
 
 export default function TurmaInfo({ params }: { params: { id: String } }) {
   const [myclass, setMyclass] = useState<Turma>({});
   const [loading, setLoading] = useState(true); 
   const router = useRouter();
-  const id = params.id;
-  
+  const idTurma = params.id;
+  const {data: session } = useSession();
+
+  const userRole = session?.user.userRole;
+  const idUser = session?.user.id;
+  console.log(userRole)
   useEffect(() => {
-    fetchClient(`http://192.168.100.122:8080/turmas/${id}`).then(async (response) => {
+    fetchClient( `${userRole === 'ROLE_STUDENT' ? `http://192.168.15.6:8080/turma/${idUser}`: `http://192.168.15.6:8080/turmas/${idTurma}`}`).then(async (response) => {
       if (response.status === 200) {
         const data = await response.json();
+        console.log('turma:', data)
         setMyclass(data);
       }
       setLoading(false); 
@@ -45,7 +51,7 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
         <div className="container mx-auto p-4 ">
           <div className='flex justify-between mb-4'>
               <h1 className="text-2xl font-bold ">{myclass.name}</h1>
-              <Link href={`new/${id}`} className='bg-blue-600 p-2 text-white rounded-md cursor-pointer flex items-center gap-1 hover:text-green-300 '><FaPlus size={12} color='white'/> <span className='font-bold '>Novo aluno</span></Link>
+              <Link href={`new/${idTurma}`} className={`bg-blue-600 p-2 text-white rounded-md cursor-pointer flex items-center gap-1 hover:text-green-300 ${userRole === 'ROLE_ADMIN' ? 'block': 'hidden'}`}><FaPlus size={12} color='white'/> <span className='font-bold '>Novo aluno</span></Link>
           </div>
           
           <div className="">
@@ -64,6 +70,22 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
               )}
             </div>
           </div>
+          <Link href="/aula">
+            <div>
+            <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-[60px] rounded-t-lg w-full p-4"><h2 className="text-xl  text-white font-semibold mb-4">Aulas</h2></div>
+
+            {myclass.aulas && myclass.aulas.length > 0 ? (
+                  myclass.aulas.map((aula: any, index:any) => (
+                    <div key={aula.id} className="border border-gray-300 rounded-b-lg p-4 mb-4 bg-white">
+                      <p className="text-gray-700 font-medium">Conteudo: <span className="font-normal">{aula.conteudo}</span></p>
+                      <p className="text-gray-700 font-medium">link: <span className="font-normal">{aula.linkAtividade}</span></p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500"></p>
+                )}
+            </div>
+          </Link>
 
 
           <table className="min-w-full  border border-purple-700 rounded-sm">
@@ -71,9 +93,8 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
                 <tr className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white'>
                   <th className="py-2 px-4 border-b text-left">Nome</th>
                   <th className="py-2 px-4 border-b text-left">Email</th>
-                  <th className="py-2 px-4 border-b text-left">Matrícula</th>
-                  <th className="py-2 px-4 border-b text-left">Pontuação</th>
-                  
+                  <th className={`py-2 px-4 border-b text-left ${userRole === 'ROLE_ADMIN' ? '': 'hidden'}`}>Matrícula</th>
+                  <th className={`py-2 px-4 border-b text-left ${userRole === 'ROLE_ADMIN' ? '': 'hidden'}`}>Pontuação</th>
                 </tr>
               </thead>
               <tbody className='bg-white'>
@@ -83,11 +104,10 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
                     className="hover:bg-purple-100 cursor-pointer"
                     onClick={() => router.push(`/aluno/${student.id}`)}
                   >
-                    <td className="py-2 px-4 border-b">{student.name}</td>
-                    <td className="py-2 px-4 border-b">{student.email}</td>
-                    <td className="py-2 px-4 border-b">{student.registration}</td>
-                    <td className="py-2 px-4 border-b">{student.points}</td>
-                  
+                    <td className="py-2 px-4 border-b ">{student.name}</td>
+                    <td className="py-2 px-4 border-b ">{student.email}</td>
+                    <td className={`py-2 px-4 border-b ${userRole === 'ROLE_ADMIN' ? '': 'hidden'}`}>{student.registration}</td>
+                    <td className={`py-2 px-4 border-b ${userRole === 'ROLE_ADMIN' ? '': 'hidden'}`}>{student.points}</td>
                   </tr>
                 ))}
               </tbody>

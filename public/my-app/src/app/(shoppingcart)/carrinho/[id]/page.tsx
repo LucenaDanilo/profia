@@ -19,16 +19,16 @@ function Page({ params }: { params: { id: string } }) {
     
     useEffect(() => {
         const fetchProduct = async () => {
-          console.log("ID do produto:", id); // Verifique o ID
+          console.log("ID do produto:", id);
           try {
-            const response = await fetchClient(`http://192.168.100.60:8080/products/${id}`);
-            console.log("Resposta do fetch:", response); // Verifique a resposta
+            const response = await fetchClient(`http://192.168.15.6:8080/products/${id}`);
+            console.log("Resposta do fetch:", response);
             if (response.status === 200) {
               const fetchedProduct = await response.json();
-              console.log("Produto buscado:", fetchedProduct); // Verifique os dados do produto
+              console.log("Produto buscado:", fetchedProduct); 
               setProduct(fetchedProduct);
             } else {
-              console.error("Erro na resposta:", response.status); // Verifique o código de status
+              console.error("Erro na resposta:", response.status);
               setError("Produto não encontrado.");
             }
           } catch (error) {
@@ -54,7 +54,7 @@ function Page({ params }: { params: { id: string } }) {
                             <p>Preço: {product.value}</p>
                             <button 
                                 className="bg-green-300 text-white p-4 rounded-md" 
-                                onClick={() => buyProduct(product.idProduct)} // Ajuste aqui
+                                onClick={() => buyProduct(product.idProduct)} 
                             >
                                 Botão da verdade
                             </button>
