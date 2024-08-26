@@ -99,6 +99,7 @@ public class ProductController {
     private RestTemplate restTemplate;
 
 //    @Secured("ROLE_USER")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/products/resgatar")
     public ResponseEntity<String> resgatar(@RequestBody Map<String, String> body) {
         // Recupera o UserModel do principal

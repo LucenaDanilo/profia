@@ -2,6 +2,7 @@
 import React, {useState, createContext} from "react"
 import {Product} from '@/types/Product'
 import getProductById from "../(services)/ProductFetch"
+import { fetchClient } from "../services/fetchClient"
 
 type CartItem = {
     id: string;
@@ -16,7 +17,7 @@ type CartContextType = {
     addItemToCart: (id: string) => void;
     removeItemToCart: (id: string) => void;
     getTotalPrice: () => number;
-    checkout: () => void;
+    buyProduct: (id: string) => void; 
 };
 
 export const CartContext = createContext<CartContextType | undefined>({} as CartContextType);
@@ -27,6 +28,39 @@ interface CartProviderProps {
 
 export function CartProvider(props: CartProviderProps) {
     const [items, setItems] = useState<CartItem[]>([]);
+    async function buyProduct(id: string) {
+      try {
+        const product = await getProductById(id);
+        alert(product?.name)
+        if (product) {
+          console.log(product.idProduct)
+          const response = await fetchClient('http://192.168.100.60:8080/products/resgatar', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              productId: product.idProduct,
+            }),
+          });
+
+          if (response.ok) {
+            alert("RESGATOU")
+            console.log('Produto resgatado com sucesso!');
+          } else {
+            console.error('Falha ao resgatar o produto:', await response);
+            alert("DEU ERRADO")
+
+          }
+        } else {
+          console.error('Produto não encontrado');
+          alert("NAO ENCONTREI")
+        }
+      } catch (error) {
+        console.log('Erro ao comprar produto:', error);
+        alert("ERRO NA API")
+      }
+    }
   
     async function addItemToCart(id: string){
       try {
@@ -89,11 +123,7 @@ export function CartProvider(props: CartProviderProps) {
         console.error('Erro ao obter produto:', error);
       }
     }
-    function checkout(){
-      alert('comprou parabéns')
-      setItems([])
-      
-    }
+    
     function getItemsCount() {
       return items.reduce((sum, item) => sum + item.qtd, 0);
     }
@@ -103,7 +133,7 @@ export function CartProvider(props: CartProviderProps) {
     }
   
     return (
-      <CartContext.Provider value={{ items, getItemsCount, addItemToCart, getTotalPrice, removeItemToCart, checkout }}>
+      <CartContext.Provider value={{ items, getItemsCount, addItemToCart, getTotalPrice, removeItemToCart, buyProduct }}>
         {props.children}
       </CartContext.Provider>
     );

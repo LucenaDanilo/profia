@@ -63,7 +63,8 @@ public class SecurityConfigurations {
 
                         // Allow full access to products only for ADMIN
                         .requestMatchers("/products/**").hasAuthority("ROLE_ADMIN")
-
+                        // Verificar isso posteriormente
+                        .requestMatchers("/products/**").hasAuthority("ROLE_STUDENT")
                         // Require authentication for all other requests
                         .anyRequest().authenticated()
                 )
