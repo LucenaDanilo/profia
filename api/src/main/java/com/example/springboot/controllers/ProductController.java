@@ -133,7 +133,10 @@ public class ProductController {
         if (externalResponse.getStatusCode().is2xxSuccessful()) {
             // Lógica para atualizar pontos e salvar alterações
             user.setPoints(user.getPoints() - (productModel.getValue()));
+            user.getProdutosResgatados().add(productModel);
             userRepository.save(user);
+
+
             return ResponseEntity.status(HttpStatus.OK).body("Produto " + productId + " resgatado com sucesso!");
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Falha ao contatar o serviço externo.");

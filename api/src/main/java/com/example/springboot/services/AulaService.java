@@ -2,6 +2,7 @@ package com.example.springboot.services;
 
 import com.example.springboot.dto.AulaDto;
 import com.example.springboot.models.Aula;
+import com.example.springboot.models.Student;
 import com.example.springboot.models.TurmaModel;
 import com.example.springboot.repository.AulaRepository;
 import com.example.springboot.repository.StudentRepository;
@@ -11,9 +12,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class AulaService {
@@ -37,20 +36,49 @@ public class AulaService {
         TurmaModel turma = turmaRepository.findById(aulaDto.turmaId())
                 .orElseThrow(() -> new IllegalArgumentException("Turma não encontrada com o ID: " + aulaDto.turmaId()));
 
-
         aula.setId(UUID.randomUUID());
         aula.setTurma(turma);
         aula.setConteudo(aulaDto.conteudo());
         aula.setProfessor(teacherRepository.findById(aulaDto.professorId())
                 .orElseThrow(() -> new IllegalArgumentException("Professor não encontrado com o ID: " + aulaDto.professorId())));
-        aula.setStudents(studentRepository.findAllById(aulaDto.studentIds()));
+
+        // Converter List<Student> para Set<Student>
+        Set<Student> studentsSet = new HashSet<>(studentRepository.findAllById(aulaDto.studentIds()));
+        aula.setStudents(studentsSet);
+
         aula.setData(aulaDto.data());
         aula.setLinkAtividade(aulaDto.linkAtividade());
 
         turma.getAulas().add(aula);
 
+        // Atualizar o percentual de presença de todos os estudantes da turma
+//        for (Student student : turma.getStudents()) {
+//            // Contar o número total de aulas da turma
+//            int totalAulas = turma.getAulas().size();
+//
+//            student.getAulas().add(aula);
+//            // Contar o número de aulas que o estudante participou
+//            long aulasComPresenca = turma.getAulas().stream()
+//                    .filter(a -> a.getStudents().contains(student))
+//                    .count();
+//
+//            // Calcular o percentual de presença
+//            float percentualPresenca = ((float) aulasComPresenca / totalAulas) * 100;
+//
+//            // Atualizar o percentual de presença do estudante
+//            student.setPresenca(percentualPresenca);
+//            System.out.println(percentualPresenca);
+//            System.out.println(totalAulas);
+//            System.out.println(student.getAulas());
+//
+//
+//            // Salvar o estudante com o novo percentual de presença (se necessário)
+//            studentRepository.save(student);
+//        }
+
         return aulaRepository.save(aula);
     }
+
 
     // Método para obter todas as aulas
     public List<Aula> getAllAulas() {
@@ -63,7 +91,6 @@ public class AulaService {
                 .orElseThrow(() -> new IllegalArgumentException("Aula não encontrada com o ID: " + id));
     }
 
-    // Método para atualizar uma aula existente
     public Aula updateAula(UUID id, AulaDto aulaDto) {
         Aula aula = getAulaById(id);
         TurmaModel turma = turmaRepository.findById(aulaDto.turmaId())
@@ -73,7 +100,11 @@ public class AulaService {
         aula.setConteudo(aulaDto.conteudo());
         aula.setProfessor(teacherRepository.findById(aulaDto.professorId())
                 .orElseThrow(() -> new IllegalArgumentException("Professor não encontrado com o ID: " + aulaDto.professorId())));
-        aula.setStudents(studentRepository.findAllById(aulaDto.studentIds()));
+
+        // Converter List<Student> para Set<Student>
+        Set<Student> studentsSet = new HashSet<>(studentRepository.findAllById(aulaDto.studentIds()));
+        aula.setStudents(studentsSet);
+
         aula.setData(aulaDto.data());
         aula.setLinkAtividade(aulaDto.linkAtividade());
 

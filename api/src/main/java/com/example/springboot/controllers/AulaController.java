@@ -2,6 +2,10 @@ package com.example.springboot.controllers;
 
 import com.example.springboot.dto.AulaDto;
 import com.example.springboot.models.Aula;
+import com.example.springboot.models.Student;
+import com.example.springboot.models.TurmaModel;
+import com.example.springboot.repository.StudentRepository;
+import com.example.springboot.repository.TurmaRepository;
 import com.example.springboot.services.AulaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +23,42 @@ public class AulaController {
     @Autowired
     private AulaService aulaService;
 
+    @Autowired
+    private TurmaRepository turmaRepository;
+    @Autowired
+    private StudentRepository studentRepository;
+
     // Endpoint para criar uma nova aula
     @PostMapping("/register")
     public ResponseEntity<Aula> registrarAula(@RequestBody AulaDto aulaDto) {
         Aula aula = aulaService.registrarAula(aulaDto);
+
+        TurmaModel turma = turmaRepository.getById(aulaDto.turmaId());
+
+        for (Student student : turma.getStudents()) {
+            student.getAulas().add(aula);
+            // Contar o número total de aulas da turma
+            int totalAulas = turma.getAulas().size();
+
+            student.getAulas().add(aula);
+            // Contar o número de aulas que o estudante participou
+            long aulasComPresenca = turma.getAulas().stream()
+                    .filter(a -> a.getStudents().contains(student))
+                    .count();
+
+            // Calcular o percentual de presença
+            float percentualPresenca = ((float) aulasComPresenca / totalAulas) * 100;
+
+            // Atualizar o percentual de presença do estudante
+            student.setPresenca(percentualPresenca);
+            System.out.println(percentualPresenca);
+            System.out.println(totalAulas);
+            System.out.println(student.getAulas());
+
+
+            // Salvar o estudante com o novo percentual de presença (se necessário)
+            studentRepository.save(student);
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(aula);
     }
 

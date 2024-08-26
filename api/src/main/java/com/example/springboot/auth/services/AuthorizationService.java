@@ -98,6 +98,7 @@ public class AuthorizationService implements UserDetailsService{
                 userDto = teacherDto;
             } else if (user instanceof Student) {
                 Student student = (Student) user;
+                TurmaModel turma = student.getTurmas().iterator().next();
                 StudentDto studentDto = new StudentDto();
                 studentDto.setId(student.getId());
                 studentDto.setName(student.getName());
@@ -107,6 +108,7 @@ public class AuthorizationService implements UserDetailsService{
                 studentDto.setRegistration(student.getRegistration());
                 studentDto.setBirthday(student.getBirthday());
                 studentDto.setPoints(student.getPoints());
+                studentDto.setTurmaId(turma.getId());
                 userDto = studentDto;
             } else if (user instanceof Manager) {
                 Manager manager = (Manager) user;
