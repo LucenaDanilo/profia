@@ -1,6 +1,7 @@
 package com.example.springboot.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import org.springframework.hateoas.RepresentationModel;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 @Getter
 @Setter
@@ -35,12 +37,8 @@ public class Aula extends RepresentationModel<Aula> implements Serializable {
     private Teacher professor;
 
     @ManyToMany
-    @JoinTable(
-            name = "aula_student",
-            joinColumns = @JoinColumn(name = "aula_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id")
-    )
-    private List<Student> students;
+    @JsonIgnore
+    private Set<Student> students;
 
     private LocalDate data;
 
