@@ -8,12 +8,14 @@ import { IoStarSharp } from 'react-icons/io5';
 import { FaPlusCircle } from 'react-icons/fa';
 import { RiRobot2Line } from 'react-icons/ri';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function ProductInfo({ params }: { params: { id: string } }) {
   const [product, setProduct] = useState<ProductType | null>(null);
   const [userBalance, setUserBalance] = useState(100);
   const id = params.id;
   const {data: session} = useSession();
+  const router = useRouter();
   useEffect(() => {
     const fetchProduct = async () => {
       const fetchedProduct = await getProductById(id);
@@ -37,6 +39,7 @@ export default function ProductInfo({ params }: { params: { id: string } }) {
         <div className="p-2 bg-[#28272B]">
           {product ? (
             <div>
+              <h1>to chamando aqui ?</h1>
               <div className="shadow-lg rounded-lg bg-[#1d1c1f] text-white flex flex-col gap-6" >
                 <div className='bg-[#5DBF79] rounded-t-lg'>
                   <img src="/img.png" alt="imagem do produto" />
@@ -54,7 +57,7 @@ export default function ProductInfo({ params }: { params: { id: string } }) {
                     <small className='text-gray-500'>(5)</small>
                 </div>
                 <div className='flex pl-2 pb-6'>
-                  <button onClick={() => console.log('add')} className='flex p-2 items-center gap-2 bg-[#FFA049] hover:bg-[#ffa149a8] rounded-[20px]'><FaPlusCircle size={18} color='white'/> Adicionar ao carrinho</button>
+                  <button onClick={() => router.push(`/carrinho/${product.idProduct}`)} className='flex p-2 items-center gap-2 bg-[#FFA049] hover:bg-[#ffa149a8] rounded-[20px]'><FaPlusCircle size={18} color='white'/> Adicionar ao carrinho</button>
                 </div>
               </div>
               <div className='flex gap-2 items-center p-2'>
@@ -65,9 +68,7 @@ export default function ProductInfo({ params }: { params: { id: string } }) {
           ) : (
             <p>Carregando...</p>
           )}
-          <div className="mt-4">
-            <p className="text-gray-800 font-bold">Saldo do Usuário: {userBalance} moedas</p>
-          </div>
+          
         </div>
       </div>
     </>

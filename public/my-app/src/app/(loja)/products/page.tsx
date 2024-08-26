@@ -31,12 +31,21 @@ export default function Page({ produtos }: Props) {
     const [products, setProducts] = useState<ProductType[]>([]);
 
     useEffect(() => {
-        fetchClient("http://192.168.100.122:8080/products").then(async (response) => {
-          if (response.status === 200) {
-            const data = await response.json();
-            setProducts(data);
-          }
-        });
+        const fetchProducts = async () => {
+            try{
+                const response = await fetchClient("http://192.168.100.60:8080/products");
+                if(response.status == 200){
+                    const data = await response.json();
+                    setProducts(data)
+                }else{
+                    throw new Error('falha na api')
+                }
+
+            }catch(error){
+                console.log("erro nos produtos", error)
+            }
+        }
+        fetchProducts()
       }, []); 
 
     return (
@@ -48,7 +57,6 @@ export default function Page({ produtos }: Props) {
                     {products.length > 0 ? (
                         <>
                             <h1 className="text-3xl font-bold mb-4 text-center mx-auto text-red-600">Use seus pontos para ganhar recompensas</h1>
-                            <h2>to nessa pagina</h2>
                             <div className="flex flex-wrap justify-center gap-6 md:gap-x-6 md:gap-y-6 mx-auto w-[90%] md:p-4">
                                 {products.map((p: ProductType) => (
                                         <Product idProduct={p.idProduct} name={p.name} value={p.value} description={p.description} image={p.image} />

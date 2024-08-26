@@ -13,12 +13,21 @@ const Dashboard: React.FC = () => {
   const {data: session} = useSession()
   console.log('logado', session?.user.userRole)
   useEffect(() => {
-    fetchClient("http://192.168.100.122:8080/turmas").then(async (response) => {
-      if (response.status === 200) {
-        const data = await response.json();
-        setTurmas(data);
+    const fetchTurmas = async () => {
+      try {
+        const response = await fetchClient("http://192.168.100.60:8080/turmas");
+        if (response.status === 200) {
+          const data = await response.json();
+          setTurmas(data)
+        } else {
+          throw new Error('Falha ao buscar turmas');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar turmas:', error);
       }
-    });
+    };
+    fetchTurmas();
+
   }, []); 
   console.log("minhas turmas: ",turmas)
   return (

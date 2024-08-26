@@ -3,7 +3,7 @@ import { Product } from "@/types/Product";
 
 export default async function getProductById(id: string): Promise<Product | undefined> {
     try {
-        const response = await fetchClient(`http://192.168.100.122:8080/products/${id}`);
+        const response = await fetchClient(`http://192.168.100.60:8080/products/${id}`);
         if (response.status === 200) {
             const data = await response.json();
             return data as Product;
