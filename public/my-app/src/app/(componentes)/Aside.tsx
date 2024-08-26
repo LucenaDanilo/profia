@@ -10,11 +10,14 @@ import { FaShoppingCart } from "react-icons/fa";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { FaCoins } from "react-icons/fa";
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 import { useState } from 'react';
 
 function Aside() {
   const currentPath = usePathname();
+  const {data: session} = useSession();
+  const id = session?.user.id
 
   const [open, setOpen] = useState(false);
   return (
@@ -42,7 +45,7 @@ function Aside() {
           </div>
           
         </Link>
-        <Link href="/products" className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath === "/products" ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
+        <Link href="/products" className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath.startsWith("/products") ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
           <div>
             <FaShoppingCart 
                 size={24} 
@@ -64,7 +67,7 @@ function Aside() {
           </div>
           
         </Link>
-        <Link href="/turma" className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath === "/turma" ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
+        <Link href={`/turma/${id}`} className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath.startsWith("/turma" ) ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
           <div>
             <SiGoogleclassroom 
                 size={24} 

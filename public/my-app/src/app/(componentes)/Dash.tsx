@@ -11,11 +11,13 @@ import { useSession } from 'next-auth/react';
 const Dashboard: React.FC = () => {
   const [turmas, setTurmas] = useState<Turma[]>([])
   const {data: session} = useSession()
-  console.log('logado', session?.user.userRole)
+
+  const userRole = session?.user.userRole;
+  const id = session?.user.id
   useEffect(() => {
     const fetchTurmas = async () => {
       try {
-        const response = await fetchClient("http://192.168.100.60:8080/turmas");
+        const response = await fetchClient(`${userRole == 'ROLE_STUDENT' ? `http://192.168.15.6:8080/turma/${id}`: 'http://192.168.15.6:8080/turmas'}`);
         if (response.status === 200) {
           const data = await response.json();
           setTurmas(data)

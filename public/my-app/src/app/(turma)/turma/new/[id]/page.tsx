@@ -29,7 +29,7 @@ function Page({ params }: { params: { id: string } }) {
         e.preventDefault();
         console.log("tentando cadastrar", formData)
         try {
-            const response = await fetchClient('http://192.168.100.122:8080/auth/student/register', {
+            const response = await fetchClient('http://192.168.15.6:8080/auth/student/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
