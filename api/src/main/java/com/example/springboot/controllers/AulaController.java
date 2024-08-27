@@ -36,6 +36,12 @@ public class AulaController {
         TurmaModel turma = turmaRepository.getById(aulaDto.turmaId());
 
         for (Student student : turma.getStudents()) {
+
+
+
+            // Ganhar 10 pontos por aula
+            student.setPoints(student.getPoints() + 10);
+
             student.getAulas().add(aula);
             // Contar o número total de aulas da turma
             int totalAulas = turma.getAulas().size();
@@ -51,10 +57,6 @@ public class AulaController {
 
             // Atualizar o percentual de presença do estudante
             student.setPresenca(percentualPresenca);
-            System.out.println(percentualPresenca);
-            System.out.println(totalAulas);
-            System.out.println(student.getAulas());
-
 
             // Salvar o estudante com o novo percentual de presença (se necessário)
             studentRepository.save(student);
