@@ -20,7 +20,8 @@ import jakarta.validation.Valid;
 public class AuthController {
 
     @Autowired
-    AuthorizationService authorizationService;
+    AuthorizationService authorizationService = AuthorizationService.getInstance();
+
 
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody @Valid AuthetinticationDto authenticationDto){

@@ -12,5 +12,8 @@ import java.util.UUID;
 public interface TeacherRepository extends JpaRepository<Teacher, UUID> {
     @Override
     Optional<Teacher> findById(UUID uuid);
-    UserDetails findByEmail(String email);
+//    UserDetails findByEmail(String email);
+    Optional<Teacher> findByEmail(String email);
+
+//    Optional<Teacher> findByUsername(String username);
 }

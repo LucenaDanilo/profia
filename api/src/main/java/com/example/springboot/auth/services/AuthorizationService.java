@@ -11,6 +11,7 @@ import com.example.springboot.models.*;
 import com.example.springboot.repository.*;
 import com.example.springboot.security.TokenService;
 import com.example.springboot.services.StudentService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,8 @@ import jakarta.validation.Valid;
 
 @Service
 public class AuthorizationService implements UserDetailsService{
+    private static AuthorizationService instance;
+
     @Autowired
     private ApplicationContext context;
 
@@ -50,6 +53,7 @@ public class AuthorizationService implements UserDetailsService{
 
     @Autowired
     private TokenService tokenService;
+
     @Autowired
     private StudentService studentService;
 
@@ -59,9 +63,21 @@ public class AuthorizationService implements UserDetailsService{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-
     private AuthenticationManager authenticationManager;
+
+    // Private constructor to prevent instantiation
+    private AuthorizationService() {
+    }
+
+    @PostConstruct
+    public void init() {
+        instance = this;
+    }
+
+    // Static method to get the instance
+    public static AuthorizationService getInstance() {
+        return instance;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
