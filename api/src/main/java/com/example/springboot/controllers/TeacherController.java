@@ -5,16 +5,21 @@ import com.example.springboot.dto.StudentUpdateDto;
 import com.example.springboot.dto.TeacherUpdateDto;
 import com.example.springboot.models.Student;
 import com.example.springboot.models.Teacher;
+import com.example.springboot.models.TurmaModel;
 import com.example.springboot.repository.StudentRepository;
 import com.example.springboot.repository.TeacherRepository;
 import com.example.springboot.services.StudentService;
 import com.example.springboot.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -55,6 +60,10 @@ public class TeacherController {
         teacherRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+
+
+
 
 
 //    @PostMapping("/matricular")

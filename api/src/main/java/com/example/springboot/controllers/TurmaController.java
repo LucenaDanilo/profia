@@ -12,6 +12,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -112,6 +115,31 @@ public class TurmaController {
         // Supondo que Student tenha uma lista de turmas
         return ResponseEntity.status(HttpStatus.OK).body(student.get().getTurmas());
     }
+
+    @GetMapping("/myclassrooms")
+    public ResponseEntity<Set<TurmaModel>> getMyClassrooms(@AuthenticationPrincipal UserDetails userDetails) {
+
+        // Obtenha o email do token
+        String email = userDetails.getUsername();
+
+        // Tente encontrar o usuário no repositório de professores
+        Optional<Teacher> optionalTeacher = teacherRepository.findByEmail(email);
+        if (optionalTeacher.isPresent()) {
+            Teacher teacher = optionalTeacher.get();
+            return ResponseEntity.ok(teacher.getTurmas());
+        }
+
+        // Se não for um professor, tente encontrar no repositório de estudantes
+        Optional<Student> optionalStudent = studentRepository.findByEmail(email);
+        if (optionalStudent.isPresent()) {
+            Student student = optionalStudent.get();
+            return ResponseEntity.ok(student.getTurmas());
+        }
+
+        // Se não for encontrado nem como Teacher nem como Student
+        throw new UsernameNotFoundException("User not found");
+    }
+
 
 
 

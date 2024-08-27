@@ -31,7 +31,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         // Allow self-update for students
-                        .requestMatchers(HttpMethod.PUT, "/api/students/myprofile/**").hasAnyAuthority("ROLE_STUDENT")
+                        .requestMatchers(HttpMethod.PUT, "/students/myprofile/**").hasAnyAuthority("ROLE_STUDENT")
 
                         // Allow public access for login
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
@@ -43,23 +43,24 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/products/resgatar").hasAuthority("ROLE_STUDENT")
 
                         // Allow access for admins and teachers to /api/students/** and /api/teachers/**
-                        .requestMatchers("/api/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
-                        .requestMatchers("/api/teachers/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
+                        .requestMatchers("/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
+                        .requestMatchers("/teachers/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
 
                         // Allow admin access (admin token) to student detail page
-                        .requestMatchers(HttpMethod.GET, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/students/**").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/students/**").hasAnyAuthority("ROLE_ADMIN","ROLE_TEACHER")
+                        .requestMatchers(HttpMethod.POST, "/students/**").hasAnyAuthority("ROLE_ADMIN","ROLE_TEACHER")
+                        .requestMatchers(HttpMethod.PUT, "/students/**").hasAnyAuthority("ROLE_ADMIN","ROLE_TEACHER")
+                        .requestMatchers(HttpMethod.DELETE, "/students/**").hasAnyAuthority("ROLE_ADMIN","ROLE_TEACHER")
 
                         .requestMatchers("/aula/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
 
                         // Allow GET access to products only for STUDENT
                         .requestMatchers(HttpMethod.GET, "/products/**").hasAuthority("ROLE_STUDENT")
-                        .requestMatchers(HttpMethod.GET, "/api/students/**").hasAuthority("ROLE_STUDENT")
+                        .requestMatchers(HttpMethod.GET, "/students/**").hasAuthority("ROLE_STUDENT")
 
                         // Allow "Minha turma" access for students and teachers
                         .requestMatchers(HttpMethod.GET, "/turma/**").hasAnyAuthority("ROLE_STUDENT", "ROLE_TEACHER")
+                        .requestMatchers(HttpMethod.GET, "/myclassrooms").hasAnyAuthority("ROLE_STUDENT", "ROLE_TEACHER")
 
                         // Allow full access to products only for ADMIN
                         .requestMatchers("/products/**").hasAuthority("ROLE_ADMIN")
