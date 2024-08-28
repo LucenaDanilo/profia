@@ -49,7 +49,7 @@ const StudentHistory = () => {
           </div>
         
           <div className='flex-1 bg-[#4ED7E3] p-4 rounded shadow'>
-            <h2 className="text-xl font-semibold mb-4">Histórico de Produtos Resgatados</h2>
+            <h2 className="text-xl font-semibold mb-4">Histórico de Produtos comprados recentemente</h2>
             <div className="space-y-4">
               {produtosResgatados.map((product) => (
                 <div key={product.id} className="bg-white p-4 h-[110px]  rounded shadow hover:bg-gray-300 cursor-pointer">
