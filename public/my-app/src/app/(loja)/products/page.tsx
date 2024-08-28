@@ -7,6 +7,8 @@ import { TbShoppingCartX } from "react-icons/tb";
 import Link from "next/link";
 import Aside from "@/app/(componentes)/Aside";
 import { ProductType } from "../(compponentes)/Product";
+import { useSession } from "next-auth/react";
+
 
 export interface Props {
     produtos: ProductType[];
@@ -29,6 +31,7 @@ function EmptyState() {
 
 export default function Page({ produtos }: Props) {
     const [products, setProducts] = useState<ProductType[]>([]);
+    const {data: session} = useSession();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -53,10 +56,13 @@ export default function Page({ produtos }: Props) {
             <Header />
                 <div className="flex h-full">
                 <Aside/>
+                <div className="mx-auto">
+                {session?.user.userRole == 'ROLE_ADMIN' ? ( <div className="p-6 mx-auto"><Link href={"/products/novo"} className="bg-blue-300 text-center p-2 rounded-md"> NOVO</Link> </div>):(
+                    null
+                )}
                 <div className="container mx-auto p-4 ">
                     {products.length > 0 ? (
                         <>
-                            <h1 className="text-3xl font-bold mb-4 text-center mx-auto text-red-600">Use seus pontos para ganhar recompensas</h1>
                             <div className="flex flex-wrap justify-center gap-6 md:gap-x-6 md:gap-y-6 mx-auto w-[90%] md:p-4">
                                 {products.map((p: ProductType) => (
                                         <Product idProduct={p.idProduct} name={p.name} value={p.value} description={p.description} image={p.image} />
@@ -67,6 +73,9 @@ export default function Page({ produtos }: Props) {
                         <EmptyState />
                     )}
                 </div>
+
+                </div>
+                
                 </div>
         </div>
     );

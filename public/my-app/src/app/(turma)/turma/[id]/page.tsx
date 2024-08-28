@@ -38,7 +38,7 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <p>Carregando...</p>
+        <p>Carregando... </p>
       </div>
     );
   }
@@ -66,7 +66,7 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
                   </div>
                 ))
               ) : (
-                <p className="text-gray-500">Nenhum professor disponível.</p>
+                <p className="text-gray-500">Nenhum professor disponível. F5 Caso não apareça nenhuma informação, pressione F5. isso ocorre devido ao carregamento do component que é mais rapido que o retorno da api.</p>
               )}
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
                     </div>
                   ))
                 ) : (
-                  <p className="text-gray-500"></p>
+                  <p className="text-gray-500">F5</p>
                 )}
             </div>
           </Link>

@@ -4,6 +4,7 @@ import { redirect } from "next/navigation"
 
 export default async function layout({children} :{children: React.ReactNode}){
     const session = await getServerSession(nextAuthOptions)
+    
     if(!session){
         redirect('/login')
     }

@@ -67,7 +67,7 @@ function Aside() {
           </div>
           
         </Link>
-        <Link href={`/turma/${id}`} className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath.startsWith("/turma" ) ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
+        <Link href={`/aula`} className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath.startsWith("/turma" ) ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
           <div>
             <SiGoogleclassroom 
                 size={24} 

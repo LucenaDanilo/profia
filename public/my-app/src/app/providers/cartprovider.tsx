@@ -30,37 +30,38 @@ export function CartProvider(props: CartProviderProps) {
     const [items, setItems] = useState<CartItem[]>([]);
     async function buyProduct(id: string) {
       try {
-        const product = await getProductById(id);
-        alert(product?.name)
-        if (product) {
-          console.log(product.idProduct)
-          const response = await fetchClient('http://192.168.15.6:8080/products/resgatar', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              productId: product.idProduct,
-            }),
-          });
-
-          if (response.ok) {
-            alert("RESGATOU")
-            console.log('Produto resgatado com sucesso!');
+          const product = await getProductById(id);
+          alert(product?.name);
+  
+          if (product) {
+              console.log(product.idProduct);
+              const response = await fetchClient('http://192.168.15.6:8080/products/resgatar', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                      productId: product.idProduct,
+                  }),
+              });
+  
+              if (response.ok) {
+                  alert("RESGATOU");
+                  console.log('Produto resgatado com sucesso!');
+              } else {
+                  const errorResponse = await response.json(); 
+                  console.error('Falha ao resgatar o produto:', errorResponse);
+                  alert("DEU ERRADO");
+              }
           } else {
-            console.error('Falha ao resgatar o produto:', await response);
-            alert("DEU ERRADO")
-
+              console.error('Produto não encontrado');
+              alert("NAO ENCONTREI");
           }
-        } else {
-          console.error('Produto não encontrado');
-          alert("NAO ENCONTREI")
-        }
       } catch (error) {
-        console.log('Erro ao comprar produto:', error);
-        alert("ERRO NA API")
+          console.log('Erro ao comprar produto:', error);
+          alert("ERRO NA API");
       }
-    }
+  }
   
     async function addItemToCart(id: string){
       try {
