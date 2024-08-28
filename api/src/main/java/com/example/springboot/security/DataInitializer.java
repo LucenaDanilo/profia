@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Configuration
@@ -24,7 +25,7 @@ public class DataInitializer {
                 String encryptedPassword = new BCryptPasswordEncoder().encode("Symon000#");
 
                 UserModel adminUser = new UserModel("Profia","profiaacademy@gmail.com", encryptedPassword, "ROLE_ADMIN");
-                adminUser.setCreatedAt(new Date(System.currentTimeMillis()));
+                adminUser.setCreatedAt(LocalDate.now());
                 userRepository.save(adminUser);
 
                 // Adicione um log para verificar a criação

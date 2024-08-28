@@ -183,7 +183,7 @@ public class AuthorizationService implements UserDetailsService{
                 registerDto.getBirthday()
         );
 
-        newUser.setCreatedAt(new Date(System.currentTimeMillis()));
+        newUser.setCreatedAt(LocalDate.now());
 
         // Salva o novo Student no banco de dados
         studentRepository.save(newUser);
@@ -227,7 +227,7 @@ public class AuthorizationService implements UserDetailsService{
                 registerDto.getEspecialidade()
         );
         newUser.setTurmas(turmas);
-        newUser.setCreatedAt(new Date(System.currentTimeMillis()));
+        newUser.setCreatedAt(LocalDate.now());
 
         // Salva o novo Teacher no banco de dados
         teacherRepository.save(newUser);
@@ -251,7 +251,7 @@ public class AuthorizationService implements UserDetailsService{
 
         // Cria o novo Manager
         Manager newUser = new Manager(registerDto.getName(), encryptedPassword, registerDto.getEmail());
-        newUser.setCreatedAt(new Date(System.currentTimeMillis()));
+        newUser.setCreatedAt(LocalDate.now());
 
         // Salva o novo Manager no banco de dados
         managerRepository.save(newUser);

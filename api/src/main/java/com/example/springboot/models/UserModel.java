@@ -43,20 +43,18 @@ public class UserModel implements UserDetails {
     @Getter
     private String userRole;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt;
+    private LocalDate createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = true)
-    private Date updatedAt;
+    private LocalDate updatedAt;
 
     public UserModel(String name, String email, String password, String userRole) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.userRole = userRole;
-        this.createdAt = new Date(); // Define createdAt no momento da criação do objeto
+        this.createdAt = LocalDate.now(); // Define createdAt no momento da criação do objeto
     }
 
 //    // Método para registrar um novo usuário
