@@ -99,7 +99,7 @@ public class ProductController {
     private RestTemplate restTemplate;
 
 //    @Secured("ROLE_USER")
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @PostMapping("/products/resgatar")
     public ResponseEntity<String> resgatar(@RequestBody Map<String, String> body) {
         // Recupera o UserModel do principal
@@ -133,8 +133,8 @@ public class ProductController {
         if (externalResponse.getStatusCode().is2xxSuccessful()) {
             // Lógica para atualizar pontos e salvar alterações
             user.setPoints(user.getPoints() - (productModel.getValue()));
-            user.getProdutosResgatados().add(productModel);
-            userRepository.save(user);
+            //user.getProdutosResgatados().add(productModel);
+            //userRepository.save(user);
 
 
             return ResponseEntity.status(HttpStatus.OK).body("Produto " + productId + " resgatado com sucesso!");
