@@ -1,6 +1,7 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { cookies } from 'next/headers';
+import apiUrl from '@/app/services/utils';
 const nextAuthOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -10,7 +11,7 @@ const nextAuthOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const response = await fetch('http://192.168.15.6:8080/auth/login', {
+        const response = await fetch(`${apiUrl}/auth/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

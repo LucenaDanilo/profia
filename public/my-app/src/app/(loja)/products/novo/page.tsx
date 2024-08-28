@@ -28,7 +28,7 @@ function page() {
         e.preventDefault();
         console.log("tentando cadastrar", formData)
         try {
-            const response = await fetchClient('http://192.168.15.6:8080/products', {
+            const response = await fetchClient('/products', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

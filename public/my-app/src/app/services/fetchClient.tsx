@@ -1,14 +1,14 @@
 "use client"
 import { getCookie } from "cookies-next"
 import { signOut } from "next-auth/react"
-
+import apiUrl from "./utils"
 export const fetchClient = async(
     input: string | URL | Request,
     init?: RequestInit
 ): Promise<Response> => {
     const jwt = getCookie("jwt");
     console.log(jwt)
-    const response = await fetch(input,{
+    const response = await fetch(`${apiUrl}${input}`,{
         ...init,
         headers:{
             ...init?.headers,

@@ -6,6 +6,7 @@ import { fetchClient } from '@/app/services/fetchClient';
 import Header from '@/app/(componentes)/Header';
 import Aside from '@/app/(componentes)/Aside';
 import { CartContext } from '@/app/providers/cartprovider';
+import apiUrl from '@/app/services/utils';
 
 function CheckoutPage({ params }: { params: { id: string } }) {
     const [product, setProduct] = useState<ProductType | null>(null);
@@ -19,7 +20,7 @@ function CheckoutPage({ params }: { params: { id: string } }) {
         const fetchProduct = async () => {
             console.log("ID do produto:", id); 
             try {
-                const response = await fetchClient(`http://192.168.15.6:8080/products/${id}`);
+                const response = await fetchClient(`/products/${id}`);
                 console.log("Resposta do fetch:", response); 
                 if (response.status === 200) {
                     const fetchedProduct = await response.json();
