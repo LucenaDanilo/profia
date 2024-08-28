@@ -35,7 +35,7 @@ export function CartProvider(props: CartProviderProps) {
   
           if (product) {
               console.log(product.idProduct);
-              const response = await fetchClient('http://192.168.15.6:8080/products/resgatar', {
+              const response = await fetchClient('/products/resgatar', {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',

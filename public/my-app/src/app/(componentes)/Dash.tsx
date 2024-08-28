@@ -8,6 +8,7 @@ import { Turma } from '@/types/Turma';
 import { useEffect, useState } from 'react';
 import { fetchClient } from '../services/fetchClient';
 import { useSession } from 'next-auth/react';
+import apiUrl from '../services/utils';
 const Dashboard: React.FC = () => {
   const [turmas, setTurmas] = useState<Turma[]>([])
   const {data: session} = useSession()
@@ -17,7 +18,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const fetchTurmas = async () => {
       try {
-        const response = await fetchClient(`${userRole == 'ROLE_STUDENT' ? `http://192.168.15.6:8080/turma/${id}`: 'http://192.168.15.6:8080/turmas'}`);
+        const response = await fetchClient(`${userRole == 'ROLE_STUDENT' ? `/turma/${id}`: `/turmas`}`);
         if (response.status === 200) {
           const data = await response.json();
           setTurmas(data)

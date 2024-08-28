@@ -7,6 +7,7 @@ function page() {
         <Header/>
         <div className='flex'>
           <Aside/>
+          <div>minhas moedas</div>
         </div>
     </div>
   )
