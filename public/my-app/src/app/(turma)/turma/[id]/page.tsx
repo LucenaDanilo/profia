@@ -100,15 +100,15 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
               <tbody className='bg-white'>
                 {myclass?.students?.map((student) => (
                   <tr
-                    key={student.id}
-                    className="hover:bg-purple-100 cursor-pointer"
-                    onClick={() => router.push(`/aluno/${student.id}`)}
-                  >
-                    <td className="py-2 px-4 border-b ">{student.name}</td>
-                    <td className="py-2 px-4 border-b ">{student.email}</td>
-                    <td className={`py-2 px-4 border-b ${userRole === 'ROLE_ADMIN' ? '': 'hidden'}`}>{student.registration}</td>
-                    <td className={`py-2 px-4 border-b ${userRole === 'ROLE_ADMIN' ? '': 'hidden'}`}>{student.points}</td>
-                  </tr>
+                  key={student.id}
+                  className="hover:bg-purple-100 cursor-pointer"
+                  onClick={() => router.push(userRole === 'ROLE_TEACHER' ? `/coins/${student.id}` : `/aluno/${student.id}`)}
+                >
+                  <td className="py-2 px-4 border-b ">{student.name}</td>
+                  <td className="py-2 px-4 border-b ">{student.email}</td>
+                  <td className={`py-2 px-4 border-b ${userRole === 'ROLE_ADMIN' ? '': 'hidden'}`}>{student.registration}</td>
+                  <td className={`py-2 px-4 border-b ${userRole === 'ROLE_ADMIN' ? '': 'hidden'}`}>{student.points}</td>
+                </tr>
                 ))}
               </tbody>
             </table>

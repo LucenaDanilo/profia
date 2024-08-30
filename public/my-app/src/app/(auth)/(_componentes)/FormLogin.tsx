@@ -32,7 +32,7 @@ function LoginForm() {
     <div className='flex flex-col items-center justify-center  px-2 py-4 md:px-6 md:py-12 lg:px-8 text-black'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm flex flex-col items-center'> 
           <Image src="/Robo.jpg" width={56} height={56} alt="imagem da profia" className='rounded-[50%]'/>
-          <h2 className='mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>Sign in to your account</h2>
+          <h2 className='mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>Portal de aluno profia</h2>
       </div>
       <div className='mt-4'>
         <form onSubmit={handleSubmit} className='space-y-6'>
@@ -53,17 +53,9 @@ function LoginForm() {
           <div>
             <button type='submit'>Entrar</button>
           </div>
-          <div className='flex justify-center '>
-            <div className='border border-black p-2 rounded-md text-black font-medium hover:cursor-pointer hover:bg-[#ffffff85]'>
-            <Link href="/login">Criar conta</Link>
-            </div>
-          </div>
-          <div className='flex justify-center'>
-            <div className='flex items-center justify-center w-full'>
-            <div className='bg-black w-[48%] h-[0.2px]'></div><span className='px-2'>or</span><div className='bg-black w-[48%] h-[0.2px]'></div>
-            </div>
-          </div>
-          <SocialLoginGithub/>
+          
+          
+          
         </form>
         
       </div>
