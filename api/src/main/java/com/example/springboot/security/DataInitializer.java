@@ -29,6 +29,7 @@ public class DataInitializer {
                 userRepository.save(adminUser);
 
                 // Adicione um log para verificar a criação
+                System.out.println("change to localDate.now()");
                 System.out.println("Admin user created: " + adminUser);
             } else {
                 System.out.println("User table already populated.");
