@@ -26,7 +26,7 @@ function TeacherPage() {
         };
 
         try {
-            const response = await fetchClient('http://192.168.15.6:8080/auth/teacher/register', {
+            const response = await fetchClient('/auth/teacher/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

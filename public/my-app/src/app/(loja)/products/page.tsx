@@ -8,8 +8,7 @@ import Link from "next/link";
 import Aside from "@/app/(componentes)/Aside";
 import { ProductType } from "../(compponentes)/Product";
 import { useSession } from "next-auth/react";
-
-
+import apiUrl from "@/app/services/utils";
 export interface Props {
     produtos: ProductType[];
 }
@@ -36,7 +35,7 @@ export default function Page({ produtos }: Props) {
     useEffect(() => {
         const fetchProducts = async () => {
             try{
-                const response = await fetchClient("http://192.168.15.6:8080/products");
+                const response = await fetchClient(`/products`);
                 if(response.status == 200){
                     const data = await response.json();
                     setProducts(data)

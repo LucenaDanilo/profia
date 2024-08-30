@@ -12,7 +12,7 @@ function page() {
     <img className="h-20 w-20 object-cover rounded-full" src="profile.jpg" alt="Profile Image"/>
     <div>
       <h2 className="text-xl font-semibold">Nome do Usuário</h2>
-      <p className="text-gray-600">email@example.com</p>
+      <p className="text-gray-600">joao@silvinha@gmail.com</p>
     </div>
   </div>
 

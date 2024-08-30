@@ -22,7 +22,7 @@ export default function TurmaInfo({ params }: { params: { id: String } }) {
   const idUser = session?.user.id;
   console.log(userRole)
   useEffect(() => {
-    fetchClient( `${userRole === 'ROLE_STUDENT' ? `http://192.168.15.6:8080/turma/${idUser}`: `http://192.168.15.6:8080/turmas/${idTurma}`}`).then(async (response) => {
+    fetchClient( `${userRole === 'ROLE_STUDENT' ? `/turma/${idUser}`: `/turmas/${idTurma}`}`).then(async (response) => {
       if (response.status === 200) {
         const data = await response.json();
         console.log('turma:', data)

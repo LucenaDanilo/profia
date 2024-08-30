@@ -11,7 +11,7 @@ function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchClient("http://192.168.15.6:8080/myclassrooms");
+        const response = await fetchClient("/myclassrooms");
         if (response.status === 200) {
           const data = await response.json();
           setData(data);
