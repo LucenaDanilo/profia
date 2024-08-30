@@ -2,34 +2,41 @@
 import React from 'react'
 import Image from 'next/image'
 import { IoLogOutOutline } from "react-icons/io5";
-import customSession from '../customHooks/customSession';
 import { signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 function Header() {
-    const {sessionHook} = customSession();
+    const { data: session } = useSession();
     
+    const getEmailPrefix = (email: string | undefined) => {
+        return email ? email.split('@')[0] : '';
+    };
+
   return (
-    <header className='bg-[#243364e5] text-white w-full h-[60px]'>
+    <header className='bg-[#5fcdee] text-black w-full h-[70px] shadow-md'>
         <div className='container mx-auto'>
-            <div className='flex items-center justify-between px-[10px] md:p-0'>
-                <div className='pt-[4px]'>
-                    <img src="https://i.pinimg.com/236x/66/b3/24/66b3247f3e0ed3fa5279221874f628ac.jpg" alt="profile image" width={50} height={50} className='rounded-[50%]'></img>
+            <div className='flex items-center justify-between px-4 md:px-0 py-2'>
+                <div className='flex items-center'>
+                    <img 
+                        src="/Robo.jpg" 
+                        alt="profile image" 
+                        width={50} 
+                        height={50} 
+                        className='rounded-full border-2 border-white'
+                    />
+                    <div className='ml-4'>
+                        <h1 className='text-lg font-semibold'>{session?.user.name}</h1>
+                        <p className='text-sm text-gray-800'>{getEmailPrefix(session?.user.email)}</p>
+                    </div>
                 </div>
                 <div>
-                    <nav>
-                        <ul className='flex flex-row gap-4  items-center pt-[10px] '>
-                            <div>
-                                <li className='font-bold'>{sessionHook?.user.email.split('@')[0]}</li>
-                                <li className='font-medium'>{}</li>
-                            </div>
-                            <div>
-                                <button onClick={() => signOut()}>
-                                    <IoLogOutOutline size={28} />
-
-                                </button>
-                            </div>
-                        </ul>
-                    </nav>
+                    <button 
+                        onClick={() => signOut()} 
+                        className='flex items-center text-black hover:text-[#3a4140] transition-colors duration-300'
+                    >
+                        <IoLogOutOutline size={28} />
+                        <span className='ml-2 text-sm'>Logout</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -37,4 +44,4 @@ function Header() {
   )
 }
 
-export default Header
+export default Header;

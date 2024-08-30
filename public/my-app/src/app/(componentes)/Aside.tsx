@@ -22,7 +22,7 @@ function Aside() {
   const [open, setOpen] = useState(false);
   return (
     <div className=' min-h-screen'>
-    <aside className={`bg-[#28272bf1] h-full border-r-2 border-white  flex flex-col gap-4 px-2 md:gap-0 md:px-0 items-center pt-4 ${open ? "w-72" : "w-24"} duration-300`}>
+    <aside className={`bg-[#093248] h-full border-r-2 border-white  flex flex-col gap-4 px-2 md:gap-0 md:px-0 items-center pt-4 ${open ? "w-72" : "w-24"} duration-300`}>
         <div className={` ${open ?'flex justify-between w-[80%]' : 'flex-col pb-2'} `}>
           <div className=''></div>
           <div className=''>
@@ -40,7 +40,7 @@ function Aside() {
                 size={24} 
                 color='whitesmoke' />
             </div>
-          <div className={`${open ? 'pl-4': 'text-center'} text-white`}>
+          <div className={`${open ? 'pl-4': 'text-center'} text-[#5fcdee]`}>
             Home
           </div>
           
@@ -51,7 +51,7 @@ function Aside() {
                 size={24} 
                 color='whitesmoke' />
             </div>
-          <div className={`${open ? 'pl-4': 'text-center'} text-white`}>
+          <div className={`${open ? 'pl-4': 'text-center'} text-[#5fcdee]`}>
             Loja
           </div>
           
@@ -62,7 +62,7 @@ function Aside() {
                 size={24} 
                 color='whitesmoke' />
             </div>
-          <div className={`${open ? 'pl-4': 'text-center'} text-white`}>
+          <div className={`${open ? 'pl-4': 'text-center'} text-[#5fcdee]`}>
             Coins
           </div>
           
@@ -73,7 +73,7 @@ function Aside() {
                 size={24} 
                 color='whitesmoke' />
             </div>
-          <div className={`${open ? 'pl-4': 'text-center'} text-white`}>
+          <div className={`${open ? 'pl-4': 'text-center'} text-[#5fcdee]`}>
             Turma
           </div>          
         </Link>
@@ -83,7 +83,7 @@ function Aside() {
                 size={24} 
                 color='whitesmoke' />
             </div>
-          <div className={`${open ? 'pl-4': 'text-center'} text-white`}>
+          <div className={`${open ? 'pl-4': 'text-center'} text-[#5fcdee]`}>
             Histórico
           </div>          
         </Link>
@@ -93,7 +93,7 @@ function Aside() {
                 size={24} 
                 color='whitesmoke' />
             </div>
-          <div className={`${open ? 'pl-4': 'text-center'} text-white`}>
+          <div className={`${open ? 'pl-4': 'text-center'} text-[#5fcdee]`}>
             Perfil
           </div>          
         </Link >

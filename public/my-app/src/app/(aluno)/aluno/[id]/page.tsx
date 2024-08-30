@@ -25,7 +25,7 @@ function Page({ params }: { params: { id: string } }) {
   useEffect(() => {
     const fetchAluno = async () => {
       try {
-        const response = await fetchClient(`http://192.168.15.25:8080/students/${id}`);
+        const response = await fetchClient(`/students/${id}`);
         if (response.status === 200) {
           const data = await response.json();
           setAluno(data);
@@ -56,7 +56,7 @@ function Page({ params }: { params: { id: string } }) {
     if (formData) {
       console.log(formData)
       try {
-        const response = await fetchClient(`http://192.168.15.6:8080/api/students/${id}`, {
+        const response = await fetchClient(`/students/${id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
