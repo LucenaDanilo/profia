@@ -14,7 +14,7 @@ export default function page(){
             <div className="flex">
                 <Aside/>
                 <div>
-                  <h1>Essa pagina que ta sendo renderizada</h1>
+               
                 </div>
                 <Table/>
             </div>

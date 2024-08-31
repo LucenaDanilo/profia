@@ -2,31 +2,29 @@ import React from 'react';
 
 const SkeletonCard: React.FC = () => {
   return (
-    <div className='w-[250px] h-[350px] lg:w-[330px] rounded-md md:w-[300px] bg-gray-200 p-2 md:p-4 border-[1px] flex flex-col justify-between border-blue-700 mt-6 md:mt-0 animate-pulse duration-1000'>
-      <div className=''>
-        <div className='w-full'>
-          <div className='h-6 bg-gray-300 rounded mb-4'></div>
-          <div className='flex items-center mb-2'>
-            <div className='w-8 h-8 bg-gray-300 rounded-full mr-2'></div>
-            <div className='h-4 bg-gray-300 rounded w-3/4'></div>
-          </div>
-          <div className='flex items-center mb-2'>
-            <div className='w-8 h-8 bg-gray-300 rounded-full mr-2'></div>
-            <div className='h-4 bg-gray-300 rounded w-3/4'></div>
-          </div>
-          <div className='h-4 bg-gray-300 rounded w-full'></div>
+    <div className='w-[250px] h-[350px] lg:w-[330px] rounded-lg md:w-[300px] bg-[#2c2f3a] p-4 border border-[#1d1f22] shadow-lg flex flex-col justify-between mt-6 md:mt-0 animate-pulse rounde-'>
+    <div className='flex flex-col h-full'>
+      <div className='mb-4'>
+        <div className='h-6 bg-[#3a3f4c] rounded-md w-3/4 mb-2'></div>
+        <div className='flex items-center mb-1'>
+          <div className='h-4 w-12 bg-[#5fcdee] rounded-md mr-2'></div>
+          <div className='h-4 bg-[#3a3f4c] rounded-md w-1/2'></div>
         </div>
-        <div className='border-t-[1px]py-4 flex justify-between'>
-          <div className='flex items-center'>
-            <div className='w-6 h-6 bg-gray-300 rounded-full mr-2'></div>
-            <div className='h-4 bg-gray-300 rounded w-3/4'></div>
-          </div>
-          <div className='flex items-center'>
-            <div className='h-4 bg-gray-300 rounded w-1/2'></div>
-          </div>
+        <div className='flex items-center mb-1'>
+          <div className='h-4 w-12 bg-[#5fcdee] rounded-md mr-2'></div>
+          <div className='h-4 bg-[#3a3f4c] rounded-md w-1/2'></div>
+        </div>
+        <div className='h-4 bg-[#3a3f4c] rounded-md w-full mb-1'></div>
+        <div className='h-4 bg-[#3a3f4c] rounded-md w-5/6'></div>
+      </div>
+      <div className='border-t border-gray-600 pt-4 flex justify-between text-gray-200'>
+        <div className='flex items-center cursor-pointer'>
+          <div className='h-4 w-12 bg-[#5fcdee] rounded-md mr-2'></div>
+          <div className='h-4 bg-[#3a3f4c] rounded-md w-1/4'></div>
         </div>
       </div>
     </div>
+  </div>
   );
 };
 
