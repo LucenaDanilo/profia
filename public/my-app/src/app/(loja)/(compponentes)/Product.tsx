@@ -22,12 +22,12 @@ export interface ProductType {
 
 function Product({ idProduct, name, value, description, image }: ProductType) {
     return (
-        <Link href={`/products/${idProduct}`} className='hover:shadow-lg h-[330px] w-[260px]  md:h-[290px] md:w-[290px] lg:h-[310px] lg:w-[340px] transition-shadow duration-300 ease-in-out transform hover:scale-[1.01] bg-[#28272B] flex flex-col rounded-md '>
+        <Link href={`/products/${idProduct}`} className='hover:shadow-lg h-[330px] w-[260px]  md:h-[330px] md:w-[290px] lg:h-[330px] lg:w-[340px] transition-shadow duration-300 ease-in-out transform hover:scale-[1.01] bg-[#28272B] flex flex-col rounded-md '>
             <div className="">
-                    <div className='bg-[#5c59ebde] w-full flex justify-center h-[120px] rounded-t-md'>
+                    <div className='bg-[#FFA049] w-full flex justify-center h-[120px] rounded-t-md'>
                         <img src="/img.png" className="max-h-[100px] max-w-[320px]"alt="produto" />
                     </div>
-                    <div className='flex flex-col mt-6'>
+                    <div className='flex flex-col mt-6 '>
                         <div className='flex flex-col p-4'>
                             <span className='text-white text-[22px] font-semibold'>1{name}</span>
                             <div className='flex gap-1 items-center'>
@@ -37,12 +37,12 @@ function Product({ idProduct, name, value, description, image }: ProductType) {
                                 <small className='text-gray-500'>(11)</small>
                             </div>
                         </div>
-                        <div className='p-4 flex justify-between '>
+                        <div className='p-4 flex justify-between'>
                             <div className='p-2'>
                                 <span className='text-[16px] text-white'>${value},00</span>
                             </div>
                             <div className='flex'>
-                                <button onClick={() => console.log('add')} className='flex py-2 px-4 items-center gap-2 bg-[#FFA049] hover:bg-[#ffa149a8] rounded-[20px]'>Detalhes <TbShoppingCartSearch size={18} color=''/> </button>
+                                <button onClick={() => console.log('add')} className='flex py-2 px-4 items-center gap-2 bg-[#5fcdee] hover:bg-[#5fcdeea9] rounded-[20px]'>Detalhes <TbShoppingCartSearch size={18} color=''/> </button>
                             </div>
                         </div>
                     </div>

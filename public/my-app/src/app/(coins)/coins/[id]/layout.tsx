@@ -7,8 +7,7 @@ export default async function layout({children}: {children: React.ReactNode}){
 
     const session = await getServerSession(nextAuthOptions)
 
- 
-    if(session?.user.userRole == "ROLE_STUDENT"){
+    if(session?.user.userRole == 'ROLE_STUDENT'){
         redirect('/login')
     }
     return <>{children}</>

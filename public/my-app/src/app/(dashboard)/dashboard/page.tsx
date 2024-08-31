@@ -6,7 +6,7 @@ import Dash from '@/app/(componentes)/Dash'
 
 export default async function page() {
   return (
-    <div className="bg-[#28272bf1] min-h-screen">
+    <div className="bg-custom-gradient min-h-screen">
       <Header />
       <div className="flex h-full">
         <Aside />
