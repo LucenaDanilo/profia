@@ -78,21 +78,29 @@ export default function TurmaInfo({ params }: { params: { id: string } }) {
   return (
     <>
       <Header />
-      <div className='flex bg-custom-gradient'>
-        <Aside />
-        <div className="container mx-auto p-4 ">
+      <div className='flex flex-row md:flex-row bg-custom-gradient'>
+        <Aside/>
+        <div className="container mx-auto p-4">
           {myclass.map((turma, index) => (
-            <div key={turma.id || index}>
-              <div className='flex justify-between mb-4'>
+            <div key={turma.id || index} className="mb-6">
+              <div className='flex flex-col md:flex-row justify-between mb-4'>
                 <h1 className="text-2xl font-bold">{turma.name}</h1>
-                {userRole === 'ROLE_ADMIN' && (
-                  <Link href={`new/${idTurma}`} className="bg-blue-600 p-2 text-white rounded-md cursor-pointer flex items-center gap-1 hover:text-green-300">
-                    <FaPlus size={12} color='white' />
-                    <span className='font-bold'>Novo aluno</span>
-                  </Link>
-                )}
+                <div className='flex gap-2 mt-2 md:mt-0'>
+                  {userRole === 'ROLE_TEACHER' && (
+                    <Link href={`/aula/registrar/${idTurma}`} className="bg-blue-600 p-2 text-white rounded-md cursor-pointer flex items-center gap-1 hover:text-green-300">
+                      <FaPlus size={12} color='white' />
+                      <span className='font-bold'>NOVA AULA</span>
+                    </Link>
+                  )}
+                  {userRole === 'ROLE_ADMIN' && (
+                    <Link href={`new/${idTurma}`} className="bg-blue-600 p-2 text-white rounded-md cursor-pointer flex items-center gap-1 hover:text-green-300">
+                      <FaPlus size={12} color='white' />
+                      <span className='font-bold'>Novo aluno</span>
+                    </Link>
+                  )}
+                </div>
               </div>
-
+  
               <div>
                 <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 h-[60px] rounded-t-lg w-full p-4">
                   <h2 className="text-xl text-white font-semibold mb-4">Professor</h2>
@@ -111,12 +119,12 @@ export default function TurmaInfo({ params }: { params: { id: string } }) {
                   )}
                 </div>
               </div>
-
+  
               <Link href="/aula">
                 <div>
-                  <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 h-[60px] rounded-t-lg w-full p-4 flex justify-between">
-                    <h2 className="text-xl text-white font-semibold mb-4">Aulas</h2>
-                    <h2 className="text-xl text-white font-semibold mb-4">Visualizar</h2>
+                  <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 h-[60px] rounded-t-lg w-full p-4 flex flex-col md:flex-row justify-between items-center">
+                    <h2 className="text-xl text-white font-semibold mb-4 md:mb-0">Aulas</h2>
+                    <h2 className="text-xl text-white font-semibold mb-4 md:mb-0">Visualizar</h2>
                   </div>
                   {turma.aulas && turma.aulas.length > 0 ? (
                     turma.aulas.map((aula: any, index: any) => (
@@ -130,12 +138,12 @@ export default function TurmaInfo({ params }: { params: { id: string } }) {
                   )}
                 </div>
               </Link>
-
+  
               <table className="min-w-full border border-purple-700 rounded-sm">
                 <thead>
                   <tr className='bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 text-white'>
                     <th className="py-2 px-4 border-b text-left">Nome</th>
-                    <th className="py-2 px-4 border-b text-left">Email</th>
+                    <th className="py-2 px-4 border-b text-left hidden md:block">Email</th>
                     {userRole === 'ROLE_ADMIN' && (
                       <>
                         <th className="py-2 px-4 border-b text-left">Matrícula</th>
@@ -153,7 +161,7 @@ export default function TurmaInfo({ params }: { params: { id: string } }) {
                         onClick={userRole === 'ROLE_STUDENT' ? undefined : () => router.push(`/aluno/${student.id}`)}
                       >
                         <td className="py-2 px-4 border-b">{student.name}</td>
-                        <td className="py-2 px-4 border-b">{student.email}</td>
+                        <td className="py-2 px-4 border-b hidden md:block">{student.email}</td>
                         {userRole === 'ROLE_ADMIN' && (
                           <>
                             <td className="py-2 px-4 border-b">{student.registration}</td>

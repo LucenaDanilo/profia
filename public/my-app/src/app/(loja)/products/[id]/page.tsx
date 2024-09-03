@@ -43,7 +43,7 @@ export default function ProductInfo({ params }: { params: { id: string } }) {
             <div className='pt-2'>
               <div className="shadow-lg rounded-lg bg-[#1d1c1f] max-w-[400px]  text-white flex flex-col gap-6" >
                 <div className='bg-[#5DBF79] rounded-t-lg h-[180px] flex justify-center items-center'>
-                  <img src="/img.png" alt="imagem do produto" className='h-[130px]'  />
+                  <img src={product.image} alt="imagem do produto" className='h-[130px] max-w-[200px]'  />
                 </div>
                 <div className='flex flex-col p-2 gap-2'>
                   <span>{product.name}</span>

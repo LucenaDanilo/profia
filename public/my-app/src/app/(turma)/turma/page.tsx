@@ -16,7 +16,7 @@ export default function page(){
                 <div>
                
                 </div>
-                <Table/>
+                {/* <Table/> */}
             </div>
        
         </>

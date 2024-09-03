@@ -20,39 +20,40 @@ const StudentHistory = () => {
 
   return (
     <div>
-      <Header/>
-      <div className='flex h-full'>
-        <Aside/>
-        <div className="flex flex-col md:flex gap-4 md:flex-wrap w-full p-8 bg-black">
-          <div className='flex-1 bg-[#4ED7E3] p-4 rounded shadow'>
+      <Header />
+      <div className='flex  md:flex-row h-full bg-black'>
+        <Aside />
+        <div className="flex flex-col gap-4 p-4 w-full md:w-3/4">
+          <div className='bg-[#4ED7E3] p-4 rounded shadow w-[75%] md:w-3/4'>
             <h2 className="text-xl font-semibold mb-4">Histórico de Aulas</h2>
-            <div className="space-y-4">
+            <div className="space-y-4 overflow-x-auto">
               {aulas.map((lesson) => (
-                <div key={lesson.id} className="bg-white p-4 h-[110px] rounded shadow hover:bg-gray-300 cursor-pointer">
-                  <h3 className="font-bold text-lg">{lesson.name}</h3>
+                <div key={lesson.id} className="bg-white p-4 rounded shadow hover:bg-gray-300 cursor-pointer">
+                  <h3 className="font-bold text-lg truncate">{lesson.name} sorak siul silva</h3>
                   <p>Data: {lesson.date}</p>
                   <p>Status: <span className={lesson.status === 'Concluída' ? 'text-green-500' : 'text-red-500'}>{lesson.status}</span></p>
                 </div>
               ))}
             </div>
           </div>
-          <div className='flex-1 bg-[#4ED7E3] p-4 rounded shadow'>
+  
+          <div className='bg-[#4ED7E3] p-4 rounded shadow w-[75%] md:w-3/4'>
             <h2 className="text-xl font-semibold mb-4">Histórico de Presença</h2>
-            <div className="space-y-4">
+            <div className="space-y-4 overflow-x-auto">
               {presenca.map((record) => (
-                <div key={record.id} className="bg-white p-4 h-[110px] rounded shadow hover:bg-gray-300 cursor-pointer">
+                <div key={record.id} className="bg-white p-4 rounded shadow hover:bg-gray-300 cursor-pointer">
                   <p>Data: {record.date}</p>
                   <p>Status: <span className={record.status === 'Presente' ? 'text-green-500' : 'text-red-500'}>{record.status}</span></p>
                 </div>
               ))}
             </div>
           </div>
-        
-          <div className='flex-1 bg-[#4ED7E3] p-4 rounded shadow'>
-            <h2 className="text-xl font-semibold mb-4">Histórico de Produtos comprados recentemente</h2>
-            <div className="space-y-4">
+  
+          <div className='bg-[#4ED7E3] p-4 rounded shadow w-[75%] md:w-3/4'>
+            <h2 className="text-xl font-semibold mb-4">Histórico de Produtos Comprados Recentemente</h2>
+            <div className="space-y-4 overflow-x-auto">
               {produtosResgatados.map((product) => (
-                <div key={product.id} className="bg-white p-4 h-[110px]  rounded shadow hover:bg-gray-300 cursor-pointer">
+                <div key={product.id} className="bg-white p-4 rounded shadow hover:bg-gray-300 cursor-pointer">
                   <p>Produto: {product.product}</p>
                   <p>Data: {product.date}</p>
                 </div>

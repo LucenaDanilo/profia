@@ -58,22 +58,21 @@ function Page() {
                   <p className="text-gray-700 mb-2"><strong>Fim:</strong> {item.datafim}</p>
                   <p className="text-gray-700 mb-4"><strong>Horário:</strong> {item.horario}</p>
                 </div>
-
-                {item.aulas && item.aulas.length > 0 && (
-                  <div className="mb-4">
-                    <div className='flex items-center gap-1 mb-3'>
-                      <h3 className="text-xl font-semibold text-[#093248] ">Aulas </h3>
-                      <h3><SiGoogleclassroom fill='#093248' size={18}/></h3>
-                    </div>
-                    {item.aulas.map((aula: any) => (
-                      <div key={aula.id} className="bg-gradient-to-r from-[#e0eafc] via-[#cfdef3] to-[#93bed5] p-4 rounded-md mb-3 border-l-4 border-[#5fcdee] cursor-pointer">
-                        <p className="text-gray-700"><strong>Conteúdo:</strong> {aula.conteudo}</p>
-                        <p className="text-gray-700"><strong>Data:</strong> {aula.data}</p>
-                        <a href={aula.linkAtividade} target='_blank' className="text-blue-500 underline">Atividade</a>
+                <div>
+                  <h2 className="text-2xl font-bold text-[#093248] mb-4">Aulas</h2>
+                    {item.students.length > 0 && (
+                      <div>
+                        {item.students[0].aulas.map((aula: any, index: number) => (
+                          <div key={aula.id} className="bg-gradient-to-r from-[#e0eafc] via-[#cfdef3] to-[#93bed5] p-4 rounded-md mb-3 border-l-4 border-[#5fcdee] cursor-pointer">
+                            <p className="text-gray-700"><strong>Conteúdo:</strong> {aula.conteudo}</p>
+                            <p className="text-gray-700"><strong>Data:</strong> {aula.data}</p>
+                            <a href={aula.linkAtividade} target='_blank' className="text-blue-500 underline">Atividade</a>
+                          </div> 
+                        ))}
                       </div>
-                    ))}
+                    )}
                   </div>
-                )}
+                
 
                 {item.teachers && item.teachers.length > 0 && (
                   <div className="mb-4">
