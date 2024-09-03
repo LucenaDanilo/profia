@@ -37,7 +37,7 @@ function LoginForm() {
           Portal do Aluno Profia
         </h2>
       </div>
-      <div className='mt-6 sm:w-full sm:max-w-sm'>
+      <div className='mt-6 w-[80%] sm:max-w-sm'>
         {error && <p className='text-red-600 text-sm mb-4'>{error}</p>}
         <form onSubmit={handleSubmit} className='space-y-6'>
           <div>

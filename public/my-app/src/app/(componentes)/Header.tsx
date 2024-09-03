@@ -11,6 +11,9 @@ function Header() {
     const getEmailPrefix = (email: string | undefined) => {
         return email ? email.split('@')[0] : '';
     };
+    const handleSignOut = async () => {
+        await signOut({ callbackUrl: '/login' });
+      };
 
   return (
     <header className='bg-[#1e2b38] text-[#5fcdee]  w-full h-[70px] shadow-lg'>
@@ -31,7 +34,7 @@ function Header() {
                 </div>
                 <div>
                     <button 
-                        onClick={() => signOut()} 
+                        onClick={handleSignOut} 
                         className='flex flex-col justify-center text-[#ffffffb7] hover:text-[#3a4140] transition-colors duration-300'
                     >
                         <IoLogOutOutline size={28} color='5fcdee'/>

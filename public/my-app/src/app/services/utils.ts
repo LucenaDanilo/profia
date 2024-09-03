@@ -1,3 +1,4 @@
-const apiUrl = 'http://192.168.15.6:8080'
+
+const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL
 
 export default apiUrl;

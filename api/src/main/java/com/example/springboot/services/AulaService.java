@@ -50,7 +50,7 @@ public class AulaService {
         aula.setLinkAtividade(aulaDto.linkAtividade());
 
         turma.getAulas().add(aula);
-
+        return aulaRepository.save(aula);
         // Atualizar o percentual de presença de todos os estudantes da turma
 //        for (Student student : turma.getStudents()) {
 //            // Contar o número total de aulas da turma
@@ -76,7 +76,7 @@ public class AulaService {
 //            studentRepository.save(student);
 //        }
 
-        return aulaRepository.save(aula);
+
     }
 
 

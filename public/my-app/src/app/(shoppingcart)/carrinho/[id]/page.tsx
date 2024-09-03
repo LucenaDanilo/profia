@@ -51,7 +51,7 @@ function CheckoutPage({ params }: { params: { id: string } }) {
                             
                             <div className="flex flex-col md:flex-row items-center gap-8">
                               <img 
-                                src="/img.png" 
+                                src={product.image} 
                                 alt={product.name} 
                                 className="w-full md:w-1/2 object-cover rounded-lg shadow-lg border border-[#5fcdee]" 
                               />

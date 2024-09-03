@@ -8,7 +8,7 @@ function page() {
         <Header/>
         <div className='flex'>
         <Aside/>
-        <UpdateExam/>
+        {/* <UpdateExam/> */}
         </div>
     </>
   )

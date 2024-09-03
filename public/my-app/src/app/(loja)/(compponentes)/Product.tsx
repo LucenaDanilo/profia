@@ -25,7 +25,7 @@ function Product({ idProduct, name, value, description, image }: ProductType) {
         <Link href={`/products/${idProduct}`} className='hover:shadow-lg h-[330px] w-[260px]  md:h-[330px] md:w-[290px] lg:h-[330px] lg:w-[340px] transition-shadow duration-300 ease-in-out transform hover:scale-[1.01] bg-[#28272B] flex flex-col rounded-md '>
             <div className="">
                     <div className='bg-[#FFA049] w-full flex justify-center h-[120px] rounded-t-md'>
-                        <img src="/img.png" className="max-h-[100px] max-w-[320px]"alt="produto" />
+                        <img src={image} className="max-h-[100px] max-w-[320px]"alt="produto" />
                     </div>
                     <div className='flex flex-col mt-6 '>
                         <div className='flex flex-col p-4'>
