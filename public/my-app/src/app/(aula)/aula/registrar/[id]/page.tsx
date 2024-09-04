@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { fetchClient } from '@/app/services/fetchClient';
-import { Student } from '@/types/Student';
+import { Student } from '../../../../../../types/Student';
 import Header from '@/app/(componentes)/Header';
 import Aside from '@/app/(componentes)/Aside';
 
