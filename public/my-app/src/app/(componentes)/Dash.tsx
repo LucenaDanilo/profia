@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { FaBook, FaClock, FaClipboardList, FaPenFancy } from 'react-icons/fa';
-import customSession from '../customHooks/customSession';
 import ClassCard from './Card';
 import SkeletonCard from './SkeletonCard';
 import { Turma } from '@/types/Turma';

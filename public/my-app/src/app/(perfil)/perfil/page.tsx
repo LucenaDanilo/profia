@@ -4,6 +4,7 @@ import { fetchClient } from '@/app/services/fetchClient';
 import Header from '@/app/(componentes)/Header';
 import Aside from '@/app/(componentes)/Aside';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 interface User {
   name: string;
@@ -144,7 +145,7 @@ function EditProfilePage() {
             <div className="bg-gradient-to-r from-cyan-500 to-blue-400 h-[60px] rounded-t-lg w-full"></div>
             <div className="flex flex-col sm:flex-row justify-between p-6">
               <div className="flex items-center mb-4 sm:mb-0">
-                <img
+                <Image
                   src="/Robo.jpg"
                   alt="Profile"
                   width={60}

@@ -4,7 +4,7 @@ import Header from '@/app/(componentes)/Header'
 import Aside from '@/app/(componentes)/Aside'
 import Dash from '@/app/(componentes)/Dash'
 import { useSession } from 'next-auth/react'
-function page() {
+function Page() {
   const {data: session} = useSession();
   return (
     <div className="bg-custom-gradient min-h-screen">
@@ -21,4 +21,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
