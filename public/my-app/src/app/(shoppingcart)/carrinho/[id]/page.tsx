@@ -37,6 +37,7 @@ function CheckoutPage({ params }: { params: { id: string } }) {
 
         fetchProduct();
     }, [id]); 
+    }, [id]); 
 
     return (
         <div className="min-h-screen bg-custom-gradient">

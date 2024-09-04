@@ -1,6 +1,6 @@
 "use client"
 import React, {useState, createContext} from "react"
-import {Product} from '@/types/Product'
+import {Product} from '../../../types/Product'
 import getProductById from "../(services)/ProductFetch"
 import { fetchClient } from "../services/fetchClient"
 

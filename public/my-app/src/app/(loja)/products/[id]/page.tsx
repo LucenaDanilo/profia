@@ -25,6 +25,7 @@ export default function ProductInfo({ params }: { params: { id: string } }) {
 
     fetchProduct(); 
   }, [id]);
+  }, [id]);
 
   const addToCart = () => {
         if (product) {
@@ -63,6 +64,7 @@ export default function ProductInfo({ params }: { params: { id: string } }) {
                 </div>
                 <div className='flex gap-4 items-center p-2 bg-gray-600 rounded-b-lg'>
                   <div>
+                    <Image src="/profiacoin.svg" alt="achei"width={30} height={30} className='rotate-90' />
                     <Image src="/profiacoin.svg" alt="achei"width={30} height={30} className='rotate-90' />
                   </div>
                   <div className='flex flex-col gap-1'>

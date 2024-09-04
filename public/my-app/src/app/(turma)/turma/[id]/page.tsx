@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '@/app/(componentes)/Header';
 import Aside from '@/app/(componentes)/Aside';
-import { Turma } from '@/types/Turma';
+import { Turma } from '../../../../../types/Turma';
 import { fetchClient } from '@/app/services/fetchClient';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
