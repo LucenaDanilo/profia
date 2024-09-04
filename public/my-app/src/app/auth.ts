@@ -1,8 +1,8 @@
-// @ts-ignore 
+// nextAuthOptions.ts
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { cookies } from 'next/headers';
 import apiUrl from '@/app/services/utils';
+
 const nextAuthOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -24,11 +24,9 @@ const nextAuthOptions: NextAuthOptions = {
         });
 
         const user = await response.json();
-        cookies().set("jwt", user.token)
-        if(user && response.ok){
-          return user
+        if (user && response.ok) {
+          return user;
         }
-
         return null;
       },
     }),
@@ -37,19 +35,19 @@ const nextAuthOptions: NextAuthOptions = {
     signIn: '/login',
   },
   callbacks: {
-    async jwt({token,user}){
-      user && (token.user = user)
-      return token
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
     },
-    async session({session, token}){
-        session = token.user as any
-        return session
-    }
-  
+    async session({ session, token }) {
+      if (token.user) {
+        session.user = token.user as any;
+      }
+      return session;
+    },
   },
-
 };
 
-const handler = NextAuth(nextAuthOptions);
-
-export { handler as GET, handler as POST, nextAuthOptions };
+export default nextAuthOptions;

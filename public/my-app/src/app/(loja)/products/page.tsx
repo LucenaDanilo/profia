@@ -13,7 +13,7 @@ export interface Props {
     produtos: ProductType[];
 }
 
-export default function Page({ produtos }: Props) {
+export default function Page() {
     const [products, setProducts] = useState<ProductType[]>([]);
     const [loading, setLoading] = useState<boolean>(true); 
     const {data: session} = useSession();

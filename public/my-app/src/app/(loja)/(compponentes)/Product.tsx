@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FaPlusCircle } from "react-icons/fa";
 import { link } from 'node:fs/promises';
 import { TbShoppingCartSearch } from "react-icons/tb";
-
+import Image from 'next/image';
 
 export interface ProductType {
     idProduct?: string;
@@ -25,7 +25,7 @@ function Product({ idProduct, name, value, description, image }: ProductType) {
         <Link href={`/products/${idProduct}`} className='hover:shadow-lg h-[330px] w-[260px]  md:h-[330px] md:w-[290px] lg:h-[330px] lg:w-[340px] transition-shadow duration-300 ease-in-out transform hover:scale-[1.01] bg-[#28272B] flex flex-col rounded-md '>
             <div className="">
                     <div className='bg-[#FFA049] w-full flex justify-center h-[120px] rounded-t-md'>
-                        <img src={image} className="max-h-[100px] max-w-[320px]"alt="produto" />
+                        <Image  width={320} src={image|| ''} className="max-h-[100px] max-w-[320px]"alt="produto" />
                     </div>
                     <div className='flex flex-col mt-6 '>
                         <div className='flex flex-col p-4'>

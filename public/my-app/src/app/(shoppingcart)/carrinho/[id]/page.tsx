@@ -7,7 +7,7 @@ import Header from '@/app/(componentes)/Header';
 import Aside from '@/app/(componentes)/Aside';
 import { CartContext } from '@/app/providers/cartprovider';
 import apiUrl from '@/app/services/utils';
-
+import Image from 'next/image';
 function CheckoutPage({ params }: { params: { id: string } }) {
     const [product, setProduct] = useState<ProductType | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -36,7 +36,7 @@ function CheckoutPage({ params }: { params: { id: string } }) {
         };
 
         fetchProduct();
-    }, []); 
+    }, [id]); 
 
     return (
         <div className="min-h-screen bg-custom-gradient">
@@ -50,9 +50,10 @@ function CheckoutPage({ params }: { params: { id: string } }) {
                             <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Finalize sua solicitação</h1>
                             
                             <div className="flex flex-col md:flex-row items-center gap-8">
-                              <img 
-                                src={product.image} 
-                                alt={product.name} 
+                              <Image 
+                                width={90}
+                                src={product.image || ''} 
+                                alt={product.name || ''} 
                                 className="w-full md:w-1/2 object-cover rounded-lg shadow-lg border border-[#5fcdee]" 
                               />
                               

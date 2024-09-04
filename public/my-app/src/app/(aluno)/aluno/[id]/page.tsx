@@ -100,7 +100,7 @@ function Page({ params }: { params: { id: string } }) {
             <div className="bg-gradient-to-r from-cyan-500 to-blue-400 h-[60px] rounded-t-lg w-full"></div>
             <div className='flex justify-between p-6'>
               <div className='flex'>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfaclSlk2r66bbWERGnl22DK3rzT3AKdtdMw&s" alt='buba' width={60} height={60} className='rounded-full p-1'/>
+                <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfaclSlk2r66bbWERGnl22DK3rzT3AKdtdMw&s" alt='buba' width={60} height={60} className='rounded-full p-1'/>
                 <div className='flex flex-col pl-3 pt-1'>
                   <span className='font-bold'>{aluno.name}</span>
                   <span className='text-gray-400'>{aluno.email}</span>

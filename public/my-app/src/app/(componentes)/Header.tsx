@@ -20,7 +20,7 @@ function Header() {
         <div className='container mx-auto'>
             <div className='flex items-center justify-between px-4 md:px-0 py-2'>
                 <div className='flex items-center  cursor-pointer' onClick={() => router.replace("/perfil")}>
-                    <img 
+                    <Image 
                         src="/Robo.jpg" 
                         alt="profile image" 
                         width={50} 
