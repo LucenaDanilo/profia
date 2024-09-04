@@ -145,7 +145,6 @@ function EditProfilePage() {
             <div className="flex flex-col sm:flex-row justify-between p-6">
               <div className="flex items-center mb-4 sm:mb-0">
                 <Image
-                <Image
                   src="/Robo.jpg"
                   alt="Profile"
                   width={60}
