@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NextAuthSessionProvider from "./providers/authprovider";
 import { CartProvider } from "./providers/cartprovider";
-
+import { Session } from "next-auth";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({
   session,
 }: {
   children: React.ReactNode;
-  session: never; 
+  session: Session | null;  
 }) {
   return (
     <html lang="en">

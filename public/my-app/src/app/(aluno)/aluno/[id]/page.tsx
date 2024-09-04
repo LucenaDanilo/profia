@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { fetchClient } from '@/app/services/fetchClient';
-import { Student } from '@/types/Student';
+import { Student } from '../../../../../types/Student';
 import Aside from '@/app/(componentes)/Aside';
 import Header from '@/app/(componentes)/Header';
 import Image from 'next/image';

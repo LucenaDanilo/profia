@@ -1,5 +1,5 @@
 import { fetchClient } from "../services/fetchClient";
-import { Product } from "@/types/Product";
+import { Product } from "../../../types/Product";
 import apiUrl from "../services/utils";
 
 export default async function getProductById(id: string): Promise<Product | undefined> {
