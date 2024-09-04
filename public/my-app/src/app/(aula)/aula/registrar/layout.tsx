@@ -1,6 +1,7 @@
 // @ts-ignore
 import { getServerSession } from "next-auth"
-import nextAuthOptions from "@/app/api/auth/authOptions"
+import nextAuthOptions from '@/app/auth';
+
 import { redirect } from "next/navigation"
 
 export default async function layout({children}: {children: React.ReactNode}){

@@ -5,7 +5,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { fetchClient } from '@/app/services/fetchClient';
 import Header from '@/app/(componentes)/Header';
+import { useRouter } from 'next/navigation';
 function Page() {   
+    const router = useRouter();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -152,4 +154,5 @@ function Page() {
     )
 }
 
+export default Page;
 export default Page;

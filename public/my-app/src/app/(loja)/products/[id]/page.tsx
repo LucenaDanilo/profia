@@ -11,7 +11,6 @@ import { useSession } from 'next-auth/react';
 import SkeletonDetails from '../../(compponentes)/SkeletonDetails';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-
 export default function ProductInfo({ params }: { params: { id: string } }) {
   const [product, setProduct] = useState<ProductType | null>(null);
   const [userBalance, setUserBalance] = useState(100);
@@ -25,6 +24,7 @@ export default function ProductInfo({ params }: { params: { id: string } }) {
     };
 
     fetchProduct(); 
+  }, [id]);
   }, [id]);
 
   const addToCart = () => {
@@ -44,7 +44,7 @@ export default function ProductInfo({ params }: { params: { id: string } }) {
             <div className='pt-2'>
               <div className="shadow-lg rounded-lg bg-[#1d1c1f] max-w-[400px]  text-white flex flex-col gap-6" >
                 <div className='bg-[#5DBF79] rounded-t-lg h-[180px] flex justify-center items-center'>
-                  <Image src={product.image ? product.image : ''} alt="imagem do produto" className='h-[130px] max-w-[200px]'  />
+                  <Image width={200} src={product.image || ''} alt="imagem do produto" className='h-[130px] max-w-[200px]'  />
                 </div>
                 <div className='flex flex-col p-2 gap-2'>
                   <span>{product.name}</span>
@@ -64,6 +64,7 @@ export default function ProductInfo({ params }: { params: { id: string } }) {
                 </div>
                 <div className='flex gap-4 items-center p-2 bg-gray-600 rounded-b-lg'>
                   <div>
+                    <Image src="/profiacoin.svg" alt="achei"width={30} height={30} className='rotate-90' />
                     <Image src="/profiacoin.svg" alt="achei"width={30} height={30} className='rotate-90' />
                   </div>
                   <div className='flex flex-col gap-1'>

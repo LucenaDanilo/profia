@@ -14,7 +14,7 @@ export interface Props {
 }
 
 export default function Page() {
-    const [products, setProducts] = useState<ProductType[]| any>([]);
+    const [products, setProducts] = useState<ProductType[]>([]);
     const [loading, setLoading] = useState<boolean>(true); 
     const {data: session} = useSession();
 
