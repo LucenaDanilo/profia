@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NextAuthSessionProvider from "./providers/authprovider";
 import { CartProvider } from "./providers/cartprovider";
-import { Session } from 'next-auth';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,12 +11,13 @@ export const metadata: Metadata = {
   description: "Portal academico da escola de programação Profia",
 };
 
-interface RootLayoutProps {
-  session: Session | null;
+export default function RootLayout({
+  children,
+  session,
+}: {
   children: React.ReactNode;
-}
-
-export default function RootLayout({ session, children }: RootLayoutProps) {
+  session: never; 
+}) {
   return (
     <html lang="en">
       <body className={inter.className}>
