@@ -5,7 +5,6 @@ import "./globals.css";
 import NextAuthSessionProvider from "./providers/authprovider";
 import { CartProvider } from "./providers/cartprovider";
 import { Session } from "next-auth";
-import { Session } from "next-auth";
 const inter = Inter({ subsets: ["latin"] });
 import { SessionProvider } from "next-auth/react"
 
