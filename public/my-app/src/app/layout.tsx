@@ -2,11 +2,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NextAuthSessionProvider from "./providers/authprovider";
 import { CartProvider } from "./providers/cartprovider";
 import { Session } from "next-auth";
+import { NextAuthProvider } from "./providers/authprovider";
 const inter = Inter({ subsets: ["latin"] });
-import { SessionProvider } from "next-auth/react"
 
 export const metadata: Metadata = {
   title: "Profia Academico",
@@ -15,19 +14,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  session
 }: {
   children: React.ReactNode; 
-  session: Session
 }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextAuthSessionProvider session={session} >
+       <NextAuthProvider>
           <CartProvider>
             {children}
           </CartProvider>
-        </NextAuthSessionProvider>
+       </NextAuthProvider>       
       </body>
     </html>
   );
