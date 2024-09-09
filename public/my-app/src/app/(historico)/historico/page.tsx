@@ -21,15 +21,15 @@ const StudentHistory = () => {
   return (
     <div>
       <Header />
-      <div className='flex  md:flex-row h-full bg-black'>
+      <div className='flex md:flex-row h-full bg-black'>
         <Aside />
-        <div className="flex flex-col gap-4 p-4 w-full md:w-3/4">
+        <div className="flex flex-col justify-center items-center gap-4 p-4 w-full md:w-3/4 mx-auto">
           <div className='bg-[#4ED7E3] p-4 rounded shadow w-[75%] md:w-3/4'>
             <h2 className="text-xl font-semibold mb-4">Histórico de Aulas</h2>
             <div className="space-y-4 overflow-x-auto">
               {aulas.map((lesson) => (
                 <div key={lesson.id} className="bg-white p-4 rounded shadow hover:bg-gray-300 cursor-pointer">
-                  <h3 className="font-bold text-lg truncate">{lesson.name} sorak siul silva</h3>
+                  <h3 className="font-bold text-lg truncate">{lesson.name}</h3>
                   <p>Data: {lesson.date}</p>
                   <p>Status: <span className={lesson.status === 'Concluída' ? 'text-green-500' : 'text-red-500'}>{lesson.status}</span></p>
                 </div>

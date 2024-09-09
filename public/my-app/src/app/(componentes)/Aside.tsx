@@ -18,7 +18,7 @@ function Aside() {
   const currentPath = usePathname();
   const {data: session} = useSession();
   const id = session?.user.id
-
+  const role = session?.user.userRole;
   const [open, setOpen] = useState(false);
   return (
     <div className=' min-h-screen'>
@@ -45,7 +45,7 @@ function Aside() {
           </div>
           
         </Link>
-        <Link href="/products" className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath.startsWith("/products") ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
+        <Link href="/products" className={`flex flex-col ${role === 'ROLE_TEACHER' ? 'hidden': 'block'}  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath.startsWith("/products") ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
           <div>
             <FaShoppingCart 
                 size={24} 
@@ -56,7 +56,7 @@ function Aside() {
           </div>
           
         </Link>
-        <Link href="/coins" className={`flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath === "/coins" ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
+        <Link href="/coins" className={` ${role === 'ROLE_TEACHER' ? 'hidden': 'block'} flex flex-col  ${open ? 'md:flex-row md:py-[12px] md:pl-4': 'flex flex-col gap-2 py-2'} ${currentPath === "/coins" ? "bg-dark-purple-hover" :"" } items-center  hover:bg-dark-purple-hover w-full`}>
           <div>
             <FaCoins 
                 size={24} 

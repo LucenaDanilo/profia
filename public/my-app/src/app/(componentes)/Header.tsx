@@ -37,8 +37,8 @@ function Header() {
                         onClick={handleSignOut} 
                         className='flex flex-col justify-center text-[#ffffffb7] hover:text-[#3a4140] transition-colors duration-300'
                     >
-                        <IoLogOutOutline size={28} color='5fcdee'/>
-                        <span className=' text-sm'>sair</span>
+                        <IoLogOutOutline size={32} color='5fcdee'/>
+                        
                     </button>
                 </div>
             </div>

@@ -8,8 +8,18 @@
   box-sizing: border-box;
   
 }
+html, body {
+  height: 100%; /* Garante que o body ocupe a altura total da tela */
+}
 body{
-  background: linear-gradient(90deg, #5fcdee, #4992d7, #093248);
+  background: linear-gradient(90deg, #5fcdee, #378682, #2668a5);
+  
+}
+.custom-back {
+  background-image: url('/wave.svg');
+  background-repeat: no-repeat;
+  background-position: center bottom -10vh ;
+  background-size: 100% auto;
 }
 
 

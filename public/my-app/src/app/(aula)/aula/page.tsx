@@ -6,12 +6,16 @@ import Aside from '@/app/(componentes)/Aside';
 import { PiUsersFour } from "react-icons/pi";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { SiGoogleclassroom } from "react-icons/si";
-
+import Head from 'next/head';
+import SkeletonAula from '../(components)/SkeletonAula';
+import { useSession } from 'next-auth/react';
 
 function Page() {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const {data: session} = useSession();
+  const currentAluno = session?.user.id;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +38,13 @@ function Page() {
   }, []);
 
   if (loading) {
-    return <div className="flex justify-center items-center h-screen text-2xl text-gray-500">Carregando...</div>;
+    return <div className='min-h-screen'>
+        <Header/>
+        <div className='flex h-full'>
+          <Aside/>
+          <SkeletonAula/>
+        </div>
+      </div>;
   }
 
   if (error) {
@@ -59,19 +69,37 @@ function Page() {
                   <p className="text-gray-700 mb-4"><strong>Horário:</strong> {item.horario}</p>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-[#093248] mb-4">Aulas</h2>
-                    {item.students.length > 0 && (
-                      <div>
-                        {item.students[0].aulas.map((aula: any, index: number) => (
-                          <div key={aula.id} className="bg-gradient-to-r from-[#e0eafc] via-[#cfdef3] to-[#93bed5] p-4 rounded-md mb-3 border-l-4 border-[#5fcdee] cursor-pointer">
-                            <p className="text-gray-700"><strong>Conteúdo:</strong> {aula.conteudo}</p>
-                            <p className="text-gray-700"><strong>Data:</strong> {aula.data}</p>
-                            <a href={aula.linkAtividade} target='_blank' className="text-blue-500 underline">Atividade</a>
-                          </div> 
-                        ))}
-                      </div>
-                    )}
+                    <h2 className="text-2xl font-bold text-[#093248] mb-4">Aulas</h2>
+                {item.students.length > 0 && (
+                  <div>
+                    {item.students
+                      .filter((student: any) => student.id === currentAluno) 
+                      .flatMap((student: any) => student.aulas) 
+                      .map((aula: any, index: number) => (
+                        <div
+                          key={aula.id}
+                          className="bg-gradient-to-r from-[#e0eafc] via-[#cfdef3] to-[#93bed5] p-4 rounded-md mb-3 border-l-4 border-[#5fcdee] cursor-pointer"
+                        >
+                          <p className="text-gray-700">
+                            <strong>Conteúdo:</strong> {aula.conteudo}
+                          </p>
+                          <p className="text-gray-700">
+                            <strong>Data:</strong> {aula.data}
+                          </p>
+                          <a
+                            href={aula.linkAtividade}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-500 underline"
+                          >
+                            Atividade
+                          </a>
+                        </div>
+                      ))}
                   </div>
+                )}
+              </div>
+
                 
 
                 {item.teachers && item.teachers.length > 0 && (

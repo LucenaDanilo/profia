@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { fetchClient } from '@/app/services/fetchClient';
@@ -9,6 +9,7 @@ import Aside from '@/app/(componentes)/Aside';
 function Page({ params }: { params: { id: string } }) {
   const idTurma = params.id;
   const [students, setStudents] = useState<Student[]>([]);
+  const [presenca, setPresenca] = useState<Map<string, boolean>>(new Map());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [linkAtividade, setLinkAtividade] = useState('');
   const [conteudo, setConteudo] = useState('');
@@ -21,11 +22,13 @@ function Page({ params }: { params: { id: string } }) {
         const response = await fetchClient(`/turmas/${idTurma}`);
         if (response.status === 200) {
           const data = await response.json();
-          const studentData = data.students.map((student: Student) => ({
-            id: student.id,
-            name: student.name
-          }));
+          const studentData = data.students as Student[];
           setStudents(studentData);
+
+          const initialPresenca = new Map<string, boolean>(
+            studentData.map(student => [student.id, true]) // Presume presença inicial como verdadeira
+          );
+          setPresenca(initialPresenca);
         } else {
           throw new Error('Falha na API');
         }
@@ -37,11 +40,18 @@ function Page({ params }: { params: { id: string } }) {
     getStudents();
   }, [idTurma]);
 
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
+  const handleCheckboxChange = (studentId: string) => {
+    setPresenca(prevPresenca => {
+      const updatedPresenca = new Map(prevPresenca);
+      updatedPresenca.set(studentId, !updatedPresenca.get(studentId));
+      return updatedPresenca;
+    });
+  };
 
   const handleSubmit = async () => {
-    const studentIds = students.map(student => student.id);
+    const studentIds = Array.from(presenca.entries())
+      .filter(([id, presente]) => presente)
+      .map(([id]) => id);
     const professorId = session?.user.id;
     const turmaId = idTurma;
 
@@ -63,7 +73,7 @@ function Page({ params }: { params: { id: string } }) {
 
       if (response.ok) {
         alert('Aula registrada com sucesso');
-        handleCloseModal();
+        setIsModalOpen(false); // Fecha o modal ao registrar com sucesso
       } else {
         throw new Error('Falha ao registrar a aula');
       }
@@ -79,18 +89,17 @@ function Page({ params }: { params: { id: string } }) {
       <div className='flex h-full'>
         <Aside />
         <div className="p-6 bg-custom-gradient mx-auto flex-1">
-          <div className='bg-white flex flex-col  justify-center items-center w-[350px] rounded-lg p-4 mx-auto'>
+          <div className='bg-white flex flex-col justify-center items-center w-[350px] rounded-lg p-4 mx-auto'>
             <h2 className="text-xl mb-4">Olá, {session?.user.name}</h2>
             <h1 className="text-2xl font-bold mb-4">Cadastre uma nova atividade para sua turma</h1>
             <button
-              onClick={handleOpenModal}
+              onClick={() => setIsModalOpen(true)}
               className="bg-blue-600 text-white px-6 py-2 rounded-md shadow-md hover:bg-blue-700 transition"
             >
               Cadastrar Aula
             </button>
-
           </div>
-          
+
           {isModalOpen && (
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
               <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
@@ -132,7 +141,7 @@ function Page({ params }: { params: { id: string } }) {
                   </button>
                   <button
                     type="button"
-                    onClick={handleCloseModal}
+                    onClick={() => setIsModalOpen(false)}
                     className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md shadow-md hover:bg-gray-400 transition"
                   >
                     Fechar
@@ -141,21 +150,32 @@ function Page({ params }: { params: { id: string } }) {
               </div>
             </div>
           )}
+
           <div className="mt-6">
             <h3 className="text-xl font-semibold mb-4">Alunos</h3>
             {students.length > 0 ? (
-              <table className=" min-w-full divide-y divide-gray-200 border border-gray-200">
+              <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Presença</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {students.map((student) => (
                     <tr key={student.id}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{student.id ? student.id.split('-')[0]: ''}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {student.id && student.id.split('-')[0]}
+                      </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{student.name}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <input
+                          type="checkbox"
+                          checked={presenca.get(student.id) ?? true} // Default to true if not set
+                          onChange={() => handleCheckboxChange(student.id)}
+                        />
+                      </td>
                     </tr>
                   ))}
                 </tbody>
