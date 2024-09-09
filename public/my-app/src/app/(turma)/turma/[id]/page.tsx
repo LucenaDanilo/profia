@@ -74,6 +74,15 @@ export default function TurmaInfo({ params }: { params: { id: string } }) {
   if (myclass.length === 0) {
     return <p className="text-gray-500">Nenhuma turma disponível.</p>;
   }
+  const handleClick = (studentId: string) => {
+    if (userRole === 'ROLE_STUDENT') {
+      return;
+    } else if (userRole === 'ROLE_TEACHER') {
+      router.push(`/coins/${studentId}`);
+    } else if (userRole === 'ROLE_ADMIN') {
+      router.push(`/aluno/${studentId}`);
+    }
+  };
 
   return (
     <>
@@ -158,7 +167,7 @@ export default function TurmaInfo({ params }: { params: { id: string } }) {
                       <tr
                         key={student.id}
                         className="hover:bg-purple-100 cursor-pointer"
-                        onClick={userRole === 'ROLE_STUDENT' ? undefined : () => router.push(`/aluno/${student.id}`)}
+                        onClick={() => handleClick(student.id)}
                       >
                         <td className="py-2 px-4 border-b">{student.name}</td>
                         <td className="py-2 px-4 border-b hidden md:block">{student.email}</td>
