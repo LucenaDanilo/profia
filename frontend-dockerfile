@@ -12,7 +12,8 @@ RUN apt-get update && \
 
 WORKDIR /app/public/my-app
 
-RUN npm install
-RUN npm run build
+RUN npm install pnpm
+RUN pnpm install
+pnpm run build
 
-ENTRYPOINT ["npm", "run", "start"]  
+ENTRYPOINT ["pnpm", "run", "start"]  
