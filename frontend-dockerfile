@@ -5,15 +5,14 @@ LABEL maintainer="igorkso"
 
 WORKDIR /app
 
-COPY ./public/ .
+COPY ./public/my-app /app
 
 RUN apt-get update && \
     apt-get install -y nodejs npm vim 
 
-WORKDIR /app/public
+WORKDIR /app/public/my-app
 
-RUN npm install pnpm -g
-RUN pnpm i
-RUN pnpm run build
+RUN npm install
+RUN npm run build
 
-ENTRYPOINT ["pnpm", "run", "start"]  
+ENTRYPOINT ["npm", "run", "start"]  

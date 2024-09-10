@@ -3,14 +3,13 @@ FROM ubuntu:jammy
 
 LABEL maintainer="igorkso"
 
-RUN mkdir /app
+#RUN mkdir /app
+WORKDIR /app
 
 COPY ./api /app
 
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk maven git
-
-WORKDIR /app
 
 RUN mvn clean package
 
