@@ -38,7 +38,7 @@ export default function Page() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-custom-gradient">
+        <div className="min-h-screen custom-back">
             <Header />
             <div className="flex h-full">
                 <Aside />
