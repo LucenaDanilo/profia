@@ -14,3 +14,5 @@ RUN apt-get update && \
 RUN mvn clean package
 
 ENTRYPOINT ["mvn", "spring-boot:run"]  
+
+EXPOSE 8080
