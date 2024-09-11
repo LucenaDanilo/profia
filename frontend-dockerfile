@@ -8,12 +8,15 @@ WORKDIR /app
 COPY ./public/my-app /app
 
 RUN apt-get update && \
-    apt-get install -y nodejs npm vim 
+    apt-get install curl -y && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - && \
+    apt-get install -y nodejs vim 
 
 WORKDIR /app/public/my-app
 
-RUN npm install pnpm
-RUN pnpm install
-pnpm run build
+RUN npm install
+npm run build
 
-ENTRYPOINT ["pnpm", "run", "start"]
+ENTRYPOINT ["npm", "run", "start"]
+
+EXPOSE 3000
