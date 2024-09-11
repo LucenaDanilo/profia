@@ -15,7 +15,7 @@ RUN apt-get update && \
 WORKDIR /app/public/my-app
 
 RUN npm install
-npm run build
+RUN npm run build
 
 ENTRYPOINT ["npm", "run", "start"]
 
