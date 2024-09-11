@@ -9,7 +9,7 @@ COPY ./public/my-app /app
 
 RUN apt-get update && \
     apt-get install curl -y && \
-    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs vim 
 
 WORKDIR /app/public/my-app
