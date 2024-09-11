@@ -16,4 +16,4 @@ RUN npm install pnpm
 RUN pnpm install
 pnpm run build
 
-ENTRYPOINT ["pnpm", "run", "start"]  
+ENTRYPOINT ["pnpm", "run", "start"]
