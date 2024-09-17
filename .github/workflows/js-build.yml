@@ -2,9 +2,13 @@ name: Node CI app
 
 on:
   push:
-    branches: [ main ]
+    branches:  
+      - main
+      - infra
   pull_request:
-    branches: [ main ]
+    branches: 
+      - main
+      - infra
 
 jobs:
   build:
