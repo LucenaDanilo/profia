@@ -22,5 +22,7 @@ jobs:
       with:
         node-version: 20.x
         cache: npm
+    - name: Install Next-JS
+      run: npm i next
     - name: Build with NPM
       run: npm --prefix public/my-app/ run build 
