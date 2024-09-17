@@ -9,7 +9,7 @@
   
 }
 html, body {
-  height: 100%; /* Garante que o body ocupe a altura total da tela */
+  height: 100%; 
 }
 body{
   background: linear-gradient(90deg, #5fcdee, #378682, #2668a5);
@@ -18,8 +18,9 @@ body{
 .custom-back {
   background-image: url('/wave.svg');
   background-repeat: no-repeat;
-  background-position: center bottom -10vh ;
+  background-position: center bottom -14vh ;
   background-size: 100% auto;
+ 
 }
 
 

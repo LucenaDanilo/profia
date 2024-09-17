@@ -1,5 +1,5 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import Header from '@/app/(componentes)/Header';
 import { useRouter } from 'next/navigation';
 import { FaArrowAltCircleLeft } from "react-icons/fa";
@@ -9,20 +9,44 @@ import { fetchClient } from "@/app/services/fetchClient";
 function TeacherPage() {
     const router = useRouter();
     const [name, setName] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
     const [cnpj, setCnpj] = useState<string>("");
     const [hrAula, setHrAula] = useState<number>(0);
     const [especialidade, setEspecialidade] = useState<string>("");
-    const [turmaIds, setTurmaIds] = useState<string[]>([]);  
+    const [turmaIds, setTurmaIds] = useState<string[]>([]);
+    const [turmas, setTurmas] = useState<{ id: string, name: string }[]>([]);
+    const [errorMessage, setErrorMessage] = useState<string>("");
+    const [successMessage, setSuccessMessage] = useState<string>("");
+
+    const fetchTurmas = async () => {
+        try {
+            const response = await fetchClient('/turmas');
+            if (!response.ok) {
+                throw new Error('Erro ao recuperar a lista de turmas');
+            }
+            const data = await response.json();
+            setTurmas(data);
+        } catch (error) {
+            console.error('Erro:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchTurmas();
+    }, []);
 
     const handleCreateTeacher = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const formData = {
             name,
+            email,
+            password,
             cnpj,
             hrAula,
             especialidade,
-            turmaIds,
+            turmaIds 
         };
 
         try {
@@ -39,15 +63,21 @@ function TeacherPage() {
             }
 
             const data = await response.json();
-            console.log('Professor cadastrado com sucesso:', data);
+            setSuccessMessage('Professor cadastrado com sucesso!');
+            setErrorMessage(""); 
 
+         
             setName("");
+            setEmail(""); 
+            setPassword(""); 
             setCnpj("");
             setHrAula(0);
             setEspecialidade("");
-            setTurmaIds([]); 
+            setTurmaIds([]);
 
         } catch (error) {
+            setErrorMessage('Erro ao cadastrar o professor.');
+            setSuccessMessage(""); 
             console.error('Erro:', error);
         }
     };
@@ -69,6 +99,8 @@ function TeacherPage() {
                     <section className="bg-white dark:bg-gray-900">
                         <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
                             <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white text-center">Cadastrar novo professor</h2>
+                            {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
+                            {successMessage && <p className="text-green-500 text-center">{successMessage}</p>}
                             <form onSubmit={handleCreateTeacher} method='POST'>
                                 <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                                     <div className="sm:col-span-2">
@@ -81,6 +113,32 @@ function TeacherPage() {
                                             onChange={(e) => setName(e.target.value)}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             placeholder="Nome"
+                                            required
+                                        />
+                                    </div>
+                                    <div className="w-full">
+                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Email"
+                                            required
+                                        />
+                                    </div>
+                                    <div className="w-full">
+                                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Senha</label>
+                                        <input
+                                            type="password"
+                                            name="password"
+                                            id="password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Senha"
                                             required
                                         />
                                     </div>
@@ -98,8 +156,7 @@ function TeacherPage() {
                                         />
                                     </div>
                                     <div className="w-full">
-                                        <label htmlFor="hrAula"
-                                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora/Aula</label>
+                                        <label htmlFor="hrAula" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora/Aula</label>
                                         <input
                                             type="number"
                                             name="hrAula"
@@ -114,8 +171,7 @@ function TeacherPage() {
                                         />
                                     </div>
                                     <div className="sm:col-span-2">
-                                        <label htmlFor="especialidade"
-                                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Especialidade</label>
+                                        <label htmlFor="especialidade" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Especialidade</label>
                                         <input
                                             type="text"
                                             name="especialidade"
@@ -127,18 +183,21 @@ function TeacherPage() {
                                             required
                                         />
                                     </div>
-                                  
-                                    <div className="sm:col-span-2">
+                                    <div className="w-full">
                                         <label htmlFor="turmaIds" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Turmas</label>
-                                        <input
-                                            type="text"
-                                            name="turmaIds"
+                                        <select
+                                            multiple
                                             id="turmaIds"
-                                            value={turmaIds.join(',')} 
-                                            onChange={(e) => setTurmaIds(e.target.value.split(','))}
+                                            value={turmaIds}
+                                            onChange={(e) => setTurmaIds(Array.from(e.target.selectedOptions, option => option.value))}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="IDs das turmas separadas por vírgula"
-                                        />
+                                        >
+                                            {turmas.map(turma => (
+                                                <option key={turma.id} value={turma.id}>
+                                                    {turma.name}
+                                                </option>
+                                            ))}
+                                        </select>
                                     </div>
                                 </div>
                                 <div className='flex justify-around p-6'>
@@ -151,7 +210,7 @@ function TeacherPage() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default TeacherPage;

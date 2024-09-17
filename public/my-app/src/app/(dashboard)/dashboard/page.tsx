@@ -8,7 +8,7 @@ export default async function page() {
   return (
     <div className="custom-back min-h-screen">
       <Header />
-      <div className="flex h-full">
+      <div className="flex min-h-screen">
         <Aside />
         <Dash/>
       </div>
