@@ -6,7 +6,7 @@ import SkeletonCard from './SkeletonCard';
 import { Turma } from '../../../types/Turma';
 import { fetchClient } from '../services/fetchClient';
 import apiUrl from '../services/utils';
-
+import Link from 'next/link';
 const Dashboard: React.FC = () => {
   const [turmas, setTurmas] = useState<Turma[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -25,7 +25,6 @@ const Dashboard: React.FC = () => {
         if (response.status === 200) {
           const data = await response.json();
 
-          // Filtragem com base no role do usuário
           if (userRole === 'ROLE_TEACHER') {
             const filteredTurmas = data.filter((turma: Turma) =>
               turma.teachers?.some((teacher) => teacher.name === userName)
@@ -34,7 +33,6 @@ const Dashboard: React.FC = () => {
           } else if (userRole === 'ROLE_ADMIN') {
             setTurmas(data);
           } else {
-            // Adicione outras regras para diferentes papéis, se necessário
             setTurmas(data);
           }
         } else {
@@ -51,20 +49,35 @@ const Dashboard: React.FC = () => {
   }, [id, userRole, userName]);
 
   return (
-    <main className="container flex flex-wrap min-h-full justify-center gap-6 md:gap-x-6 md:gap-y-2 mx-auto w-[90%] md:p-4">
-      {loading
-        ? Array.from({ length: 3 }).map((_, index) => <SkeletonCard key={index} />)
-        : turmas.map((turma: Turma) => (
-            <ClassCard
-              key={turma.id}
-              id={turma.id ?? 'id da turma'}
-              nome={turma.name ?? 'Nome não disponível'}
-              horario={turma.horario ?? 'Horário não disponível'}
-              professor={turma.teachers?.map((x) => x.name).join(', ') ?? 'Professor não disponível'}
-              descricao={turma.trilha ?? 'Descrição não disponível'}
-            />
-          ))}
-    </main>
+    <div className='mx-auto'>
+      <div className='flex justify-center items-center gap-4 mx-auto w-full '>
+        {userRole === 'ROLE_ADMIN' && (
+          <Link className="block mt-2  bg-blue-300 w-[120px] text-white py-2 rounded-md text-center" href={'/turma/new'}>
+            Cadastrar Turma
+          </Link>
+        )}
+         {userRole === 'ROLE_ADMIN' && (
+          <Link className="block mt-2  bg-blue-300 w-[120px] text-white py-2 rounded-md text-center" href={'/teacher'}>
+            Cadastrar Teacher
+          </Link>
+        )}
+      </div>
+        
+        <main className="container flex flex-wrap justify-center gap-6 md:gap-x-6 md:gap-y-2 mx-auto w-full md:p-4">
+          {loading
+            ? Array.from({ length: 3 }).map((_, index) => <SkeletonCard key={index} />)
+            : turmas.map((turma: Turma) => (
+                <ClassCard
+                  key={turma.id}
+                  id={turma.id ?? 'id da turma'}
+                  nome={turma.name ?? 'Nome não disponível'}
+                  horario={turma.horario ?? 'Horário não disponível'}
+                  professor={turma.teachers?.map((x) => x.name).join(', ') ?? 'Professor não disponível'}
+                  descricao={turma.trilha ?? 'Descrição não disponível'}
+                />
+              ))}
+        </main>
+      </div>    
   );
 };
 
