@@ -31,5 +31,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm --prefix public/my-app/ ci
-    - run: npm --prexi public/my-app run build --if-present
-    - run: npm --prexi public/my-app test
+    - run: npm --prefix public/my-app run build --if-present
+    - run: npm --prefix public/my-app test
