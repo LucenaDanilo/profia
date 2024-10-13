@@ -17,32 +17,29 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("auth")
+@CrossOrigin(origins = "*") // Configuração CORS aplicada em todas as rotas
 public class AuthController {
 
     @Autowired
-    AuthorizationService authorizationService = AuthorizationService.getInstance();
-
+    private AuthorizationService authorizationService;
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody @Valid AuthetinticationDto authenticationDto){
+    public ResponseEntity<Object> login(@RequestBody @Valid AuthetinticationDto authenticationDto) {
         return authorizationService.login(authenticationDto);
     }
 
-
-
     @PostMapping("/student/register")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<Object> Studentregister(@RequestBody StudentRegisterDto studentregisterDto) {
+    public ResponseEntity<Object> studentRegister(@RequestBody StudentRegisterDto studentregisterDto) {
         return authorizationService.studentRegister(studentregisterDto);
     }
 
     @PostMapping("/teacher/register")
-    public ResponseEntity<Object> Teacherregister(@RequestBody TeacherRegisterDto teacherRegisterDto) {
+    public ResponseEntity<Object> teacherRegister(@RequestBody TeacherRegisterDto teacherRegisterDto) {
         return authorizationService.teacherRegister(teacherRegisterDto);
     }
 
     @PostMapping("/manager/register")
-    public ResponseEntity<Object> Managerregister(@RequestBody ManagerRegisterDto managerRegisterDto) {
+    public ResponseEntity<Object> managerRegister(@RequestBody ManagerRegisterDto managerRegisterDto) {
         return authorizationService.managerRegister(managerRegisterDto);
     }
 }

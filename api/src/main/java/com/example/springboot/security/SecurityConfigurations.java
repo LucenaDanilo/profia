@@ -13,13 +13,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfigurations {
 
     @Autowired
-    SecurityFilter securityFilter;
+    private SecurityFilter securityFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -27,46 +29,33 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        // Allow OPTIONS requests to pass through for CORS preflight checks
+                        // Permitir requisições OPTIONS (pre-flight CORS)
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                        // Allow self-update for students
-                        .requestMatchers(HttpMethod.PUT, "/students/myprofile/**").hasAnyAuthority("ROLE_STUDENT")
-
-                        // Allow public access for login
+                        // Acesso público para login
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
 
-                        // Allow access to registration only for ADMIN
+                        // Acesso ao registro de usuários apenas para ADMIN
                         .requestMatchers("/auth/register").hasAuthority("ROLE_ADMIN")
 
-                        // Allow access to redeem products only for STUDENT
+                        // Permitir "resgatar produtos" apenas para alunos
                         .requestMatchers(HttpMethod.POST, "/products/resgatar").hasAuthority("ROLE_STUDENT")
 
-                        // Allow access for admins and teachers to /api/students/** and /api/teachers/**
+                        // Controle de acesso para alunos e professores
                         .requestMatchers("/students/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
                         .requestMatchers("/teachers/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
 
-                        // Allow admin access (admin token) to student detail page
-                        .requestMatchers(HttpMethod.GET, "/students/**").hasAnyAuthority("ROLE_ADMIN","ROLE_TEACHER")
-                        .requestMatchers(HttpMethod.POST, "/students/**").hasAnyAuthority("ROLE_ADMIN","ROLE_TEACHER")
-                        .requestMatchers(HttpMethod.PUT, "/students/**").hasAnyAuthority("ROLE_ADMIN","ROLE_TEACHER")
-                        .requestMatchers(HttpMethod.DELETE, "/students/**").hasAnyAuthority("ROLE_ADMIN","ROLE_TEACHER")
-
-                        .requestMatchers("/aula/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TEACHER")
-
-                        // Allow GET access to products only for STUDENT
+                        // Permitir GET em produtos para alunos
                         .requestMatchers(HttpMethod.GET, "/products/**").hasAuthority("ROLE_STUDENT")
-                        .requestMatchers(HttpMethod.GET, "/students/**").hasAuthority("ROLE_STUDENT")
 
-                        // Allow "Minha turma" access for students and teachers
+                        // "Minha turma" acessível para alunos e professores
                         .requestMatchers(HttpMethod.GET, "/turma/**").hasAnyAuthority("ROLE_STUDENT", "ROLE_TEACHER")
                         .requestMatchers(HttpMethod.GET, "/myclassrooms").hasAnyAuthority("ROLE_STUDENT", "ROLE_TEACHER")
 
-                        // Allow full access to products only for ADMIN
+                        // Permitir CRUD completo de produtos para ADMIN
                         .requestMatchers("/products/**").hasAuthority("ROLE_ADMIN")
-                        // Verificar isso posteriormente
-                        .requestMatchers("/products/**").hasAuthority("ROLE_STUDENT")
-                        // Require authentication for all other requests
+
+                        // Exigir autenticação para qualquer outra requisição
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
@@ -79,7 +68,22 @@ public class SecurityConfigurations {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    // Configuração global de CORS
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("*") // Modifique para seu domínio se necessário
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
+            }
+        };
     }
 }
