@@ -8,6 +8,6 @@ RUN npm run build
 # Usa uma imagem de servidor leve para servir o Next.js app
 FROM node:18-alpine
 WORKDIR /app
-COPY --from=build /app ./
+COPY --from=build /public/my-app ./
 EXPOSE 3000
 CMD ["npm", "run", "start"]
